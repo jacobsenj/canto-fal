@@ -12,72 +12,72 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 // Register new fal driver
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['fal']['registeredDrivers'][\Fairway\CantoSaasFal\Resource\Driver\CantoDriver::DRIVER_NAME] = [
-    'class' => \Fairway\CantoSaasFal\Resource\Driver\CantoDriver::class,
-    'shortName' => \Fairway\CantoSaasFal\Resource\Driver\CantoDriver::DRIVER_NAME,
-    'flexFormDS' => 'FILE:EXT:canto_saas_fal/Configuration/FlexForm/CantoDriver.xml',
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['fal']['registeredDrivers'][\TYPO3Canto\CantoFal\Resource\Driver\CantoDriver::DRIVER_NAME] = [
+    'class' => \TYPO3Canto\CantoFal\Resource\Driver\CantoDriver::class,
+    'shortName' => \TYPO3Canto\CantoFal\Resource\Driver\CantoDriver::DRIVER_NAME,
+    'flexFormDS' => 'FILE:EXT:canto_fal/Configuration/FlexForm/CantoDriver.xml',
     'label' => 'Canto DAM',
 ];
 
 // Register canto specific file processors.
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['fal']['processors']['CantoPreviewProcessor'] = [
-    'className' => \Fairway\CantoSaasFal\Resource\Processing\CantoPreviewProcessor::class,
+    'className' => \TYPO3Canto\CantoFal\Resource\Processing\CantoPreviewProcessor::class,
     'before' => [
         'SvgImageProcessor'
     ]
 ];
 
 ExtensionManagementUtility::addTypoScript(
-    'canto_saas_fal',
+    'canto_fal',
     'setup',
-    "@import 'EXT:canto_saas_fal/Configuration/TypoScript/setup.typoscript'",
+    "@import 'EXT:canto_fal/Configuration/TypoScript/setup.typoscript'",
 );
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['fal']['processors']['CantoMdcProcessor'] = [
-    'className' => \Fairway\CantoSaasFal\Resource\Processing\CantoMdcProcessor::class,
+    'className' => \TYPO3Canto\CantoFal\Resource\Processing\CantoMdcProcessor::class,
     'before' => ['LocalImageProcessor'],
 ];
 
 // Register XClasses to handle multi folder assignments.
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Resource\ResourceStorage::class] = [
-    'className' => \Fairway\CantoSaasFal\Xclass\ResourceStorage::class,
+    'className' => \TYPO3Canto\CantoFal\Xclass\ResourceStorage::class,
 ];
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Resource\Index\Indexer::class] = [
-    'className' => \Fairway\CantoSaasFal\Xclass\Indexer::class,
+    'className' => \TYPO3Canto\CantoFal\Xclass\Indexer::class,
 ];
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Filelist\Controller\FileListController::class] = [
-    'className' => \Fairway\CantoSaasFal\Xclass\FileListController::class,
+    'className' => \TYPO3Canto\CantoFal\Xclass\FileListController::class,
 ];
 
 // Hooks
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][1627626213]
-    = \Fairway\CantoSaasFal\Hooks\DataHandlerHooks::class;
+    = \TYPO3Canto\CantoFal\Hooks\DataHandlerHooks::class;
 
 // Override Inline node type to add canto asset button.
 if (\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getMajorVersion() < 12) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1628070217] = [
         'nodeName' => 'inline',
         'priority' => 100,
-        'class' => \Fairway\CantoSaasFal\Form\Container\InlineControlContainer::class,
+        'class' => \TYPO3Canto\CantoFal\Form\Container\InlineControlContainer::class,
     ];/**/
 } else {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1628070217] = [
         'nodeName' => \TYPO3\CMS\Backend\Form\Container\FilesControlContainer::NODE_TYPE_IDENTIFIER,
         'priority' => 100,
-        'class' => \Fairway\CantoSaasFal\Form\Container\FileControlContainer::class,
+        'class' => \TYPO3Canto\CantoFal\Form\Container\FileControlContainer::class,
     ];
 }
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ElementBrowsers']['canto']
-    = \Fairway\CantoSaasFal\Browser\CantoAssetBrowser::class;
+    = \TYPO3Canto\CantoFal\Browser\CantoAssetBrowser::class;
 
 $extractorRegistry = GeneralUtility::makeInstance(ExtractorRegistry::class);
-$extractorRegistry->registerExtractionService(\Fairway\CantoSaasFal\Resource\Metadata\Extractor::class);
+$extractorRegistry->registerExtractionService(\TYPO3Canto\CantoFal\Resource\Metadata\Extractor::class);
 unset($extractorRegistry);
 
 // Register files and folder information cache
-if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['canto_saas_fal_folder'] ?? null)) {
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['canto_saas_fal_folder'] = [
+if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['canto_fal_folder'] ?? null)) {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['canto_fal_folder'] = [
         'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
         'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
         'groups' => [
@@ -89,8 +89,8 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
         ],
     ];
 }
-if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['canto_saas_fal_file'] ?? null)) {
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['canto_saas_fal_file'] = [
+if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['canto_fal_file'] ?? null)) {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['canto_fal_file'] = [
         'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
         'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
         'groups' => [
@@ -104,7 +104,7 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
 }
 
 $mediaFileExtensions = $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'];
-$GLOBALS['CANTO_SAAS_FAL']['IMAGE_TYPES'] = explode(',', $mediaFileExtensions);
+$GLOBALS['CANTO_FAL']['IMAGE_TYPES'] = explode(',', $mediaFileExtensions);
 
 if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'] .= ',eps';
@@ -115,13 +115,13 @@ if ($GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'canto_saas_fal',
+    'canto_fal',
     'metadataWebhook',
     [
-        \Fairway\CantoSaasFal\Controller\MetadataWebhookController::class => 'index',
+        \TYPO3Canto\CantoFal\Controller\MetadataWebhookController::class => 'index',
     ],
     [
-        \Fairway\CantoSaasFal\Controller\MetadataWebhookController::class => 'index',
+        \TYPO3Canto\CantoFal\Controller\MetadataWebhookController::class => 'index',
     ],
 );
 /*
@@ -129,7 +129,7 @@ $signalSlotDispatcher = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSl
 $signalSlotDispatcher->connect(
     TYPO3\CMS\Backend\Controller\EditDocumentController::class,
     'initAfter',
-    Fairway\CantoSaasFal\Resource\EventListener\AfterFormEnginePageInitializedEventListener::class,
+    TYPO3Canto\CantoFal\Resource\EventListener\AfterFormEnginePageInitializedEventListener::class,
     'updateMetadataInCantoSlot'
 );*/
 
@@ -137,4 +137,4 @@ $signalSlotDispatcher->connect(
  * Only for TYPO3 11+10
  * Ignored in V12 service.yaml
 */
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ElementBrowsers']['canto'] = \Fairway\CantoSaasFal\Browser\CantoAssetBrowserV11AndV10::class;
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ElementBrowsers']['canto'] = \TYPO3Canto\CantoFal\Browser\CantoAssetBrowserV11AndV10::class;

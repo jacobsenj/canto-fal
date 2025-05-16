@@ -4,59 +4,59 @@ services:
     autoconfigure: true
     public: false
 
-  Fairway\CantoSaasFal\:
+  TYPO3Canto\CantoFal\:
     resource: '../Classes/*'
 
-  Fairway\CantoSaasFal\Browser\CantoAssetBrowser:
+  TYPO3Canto\CantoFal\Browser\CantoAssetBrowser:
     shared: false
     public: true
     tags:
       - name: recordlist.elementbrowser
 
-  Fairway\CantoSaasFal\Browser\CantoAssetBrowserV11AndV10:
+  TYPO3Canto\CantoFal\Browser\CantoAssetBrowserV11AndV10:
     shared: false
     public: true
     tags:
       - name: recordlist.elementbrowser
 
-  Fairway\CantoSaasFal\Hooks\DataHandlerHooks:
+  TYPO3Canto\CantoFal\Hooks\DataHandlerHooks:
     public: true
     arguments:
       - '@TYPO3\CMS\Core\Registry'
       - '@cache.canto_folder'
       - '@cache.canto_file'
 
-  Fairway\CantoSaasFal\Resource\Repository\CantoRepository:
+  TYPO3Canto\CantoFal\Resource\Repository\CantoRepository:
     public: true
     arguments:
       - '@TYPO3\CMS\Core\Registry'
       - '@cache.canto_folder'
       - '@cache.canto_file'
 
-  Fairway\CantoSaasFal\Resource\Metadata\Extractor:
+  TYPO3Canto\CantoFal\Resource\Metadata\Extractor:
     public: true
 
-  Fairway\CantoSaasFal\Resource\Processing\CantoPreviewProcessor:
+  TYPO3Canto\CantoFal\Resource\Processing\CantoPreviewProcessor:
     public: true
 
-  Fairway\CantoSaasFal\Resource\Processing\CantoMdcProcessor:
+  TYPO3Canto\CantoFal\Resource\Processing\CantoMdcProcessor:
     public: true
 
-  Fairway\CantoSaasFal\Controller\Backend\CantoAssetBrowserController:
+  TYPO3Canto\CantoFal\Controller\Backend\CantoAssetBrowserController:
     public: true
 
-  Fairway\CantoSaasFal\Resource\MdcUrlGenerator:
+  TYPO3Canto\CantoFal\Resource\MdcUrlGenerator:
     public: true
 
-  Fairway\CantoSaasFal\Resource\Metadata\Exporter:
+  TYPO3Canto\CantoFal\Resource\Metadata\Exporter:
     public: true
 
-  Fairway\CantoSaasFal\Resource\Repository\CantoAlbumRepository:
+  TYPO3Canto\CantoFal\Resource\Repository\CantoAlbumRepository:
     arguments:
       - 'sys_file_canto_album'
       - '@TYPO3\CMS\Core\Database\ConnectionPool'
 
-  Fairway\CantoSaasFal\Command\WarmupCantoCache:
+  TYPO3Canto\CantoFal\Command\WarmupCantoCache:
     calls:
       - injectStorageRepository: ['@TYPO3\CMS\Core\Resource\StorageRepository']
       - injectCantoFolderCache: ['@cache.canto_folder']
@@ -64,31 +64,31 @@ services:
       - name: 'console.command'
         command: 'canto:warmupcache'
 
-  Fairway\CantoSaasFal\Command\UpdateMetadataAssetsCommand:
+  TYPO3Canto\CantoFal\Command\UpdateMetadataAssetsCommand:
     calls:
       - injectCantoFileCache: [ '@cache.canto_file' ]
     tags:
       - name: 'console.command'
         command: 'canto:updatemetadataassets'
 
-  Fairway\CantoSaasFal\Command\UpdateImageAssetsUsedInFrontendCommand:
+  TYPO3Canto\CantoFal\Command\UpdateImageAssetsUsedInFrontendCommand:
     calls:
       - injectCantoFileCache: ['@cache.canto_file']
     tags:
       - name: 'console.command'
         command: 'canto:updateusedmetadataassets'
 
-  Fairway\CantoSaasFal\Command\RemoveMdcPrefixForFilesCommand:
+  TYPO3Canto\CantoFal\Command\RemoveMdcPrefixForFilesCommand:
     tags:
       - name: 'console.command'
         command: 'canto:removemdcprefixforfiles'
 
-  Fairway\CantoSaasFal\Command\MigrateFileIdentifiersToNewFormat:
+  TYPO3Canto\CantoFal\Command\MigrateFileIdentifiersToNewFormat:
     tags:
       - name: 'console.command'
         command: 'canto:migratefileidentifiers'
 
-  Fairway\CantoSaasFal\Resource\EventListener\HandleMultipleFolders:
+  TYPO3Canto\CantoFal\Resource\EventListener\HandleMultipleFolders:
     tags:
       - name: event.listener
         identifier: updateFoldersAfterFileAddedToIndexEvent
@@ -99,54 +99,54 @@ services:
         event: TYPO3\CMS\Core\Resource\Event\AfterFileUpdatedInIndexEvent
         method: afterFileUpdatedInIndexEvent
 
-  Fairway\CantoSaasFal\Resource\EventListener\GeneratePublicUrlForResourceEventListener:
+  TYPO3Canto\CantoFal\Resource\EventListener\GeneratePublicUrlForResourceEventListener:
     tags:
       - name: event.listener
         identifier: generatePublicUrlForMdcFiles
         event: TYPO3\CMS\Core\Resource\Event\GeneratePublicUrlForResourceEvent
 
-  Fairway\CantoSaasFal\Resource\EventListener\ForceJpgPreviewImage:
+  TYPO3Canto\CantoFal\Resource\EventListener\ForceJpgPreviewImage:
     tags:
       - name: event.listener
         identifier: forceCantoJpegPreview
         event: TYPO3\CMS\Core\Resource\Event\BeforeFileProcessingEvent
 
-  Fairway\CantoSaasFal\Resource\EventListener\MetadataWebhookEventListener:
+  TYPO3Canto\CantoFal\Resource\EventListener\MetadataWebhookEventListener:
     tags:
       - name: event.listener
         identifier: metadataWebhookEventListener
-        event: Fairway\CantoSaasFal\Resource\Event\IncomingWebhookEvent
+        event: TYPO3Canto\CantoFal\Resource\Event\IncomingWebhookEvent
 
-  Fairway\CantoSaasFal\Resource\EventListener\NewAssetVersionWebhookEventListener:
+  TYPO3Canto\CantoFal\Resource\EventListener\NewAssetVersionWebhookEventListener:
     tags:
       - name: event.listener
         identifier: newAssetVersionWebhookEventListener
-        event: Fairway\CantoSaasFal\Resource\Event\IncomingWebhookEvent
+        event: TYPO3Canto\CantoFal\Resource\Event\IncomingWebhookEvent
 
-  Fairway\CantoSaasFal\Resource\EventListener\DeleteAssetWebhookEventListener:
+  TYPO3Canto\CantoFal\Resource\EventListener\DeleteAssetWebhookEventListener:
     tags:
       - name: event.listener
         identifier: deleteAssetWebhookEventListener
-        event: Fairway\CantoSaasFal\Resource\Event\IncomingWebhookEvent
+        event: TYPO3Canto\CantoFal\Resource\Event\IncomingWebhookEvent
 
-  Fairway\CantoSaasFal\Resource\EventListener\BeforeFileProcessingEventListener:
+  TYPO3Canto\CantoFal\Resource\EventListener\BeforeFileProcessingEventListener:
     arguments:
-      - "@Fairway\\CantoSaasFal\\Resource\\Repository\\CantoRepository"
+      - "@TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository"
       - "@TYPO3\\CMS\\Core\\Resource\\ProcessedFileRepository"
-      - "@Fairway\\CantoSaasFal\\Resource\\MdcUrlGenerator"
+      - "@TYPO3Canto\\CantoFal\\Resource\\MdcUrlGenerator"
     tags:
       - name: event.listener
         identifier: cantoMdcProcessingFileEnricher
         event: TYPO3\CMS\Core\Resource\Event\BeforeFileProcessingEvent
 
-  Fairway\CantoSaasFal\Resource\EventListener\AfterFormEnginePageInitializedEventListener:
+  TYPO3Canto\CantoFal\Resource\EventListener\AfterFormEnginePageInitializedEventListener:
     tags:
       - name: event.listener
         identifier: afterFormEnginePageInitializedEventListener
         event: TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent
 
 
-  Fairway\CantoSaasFal\Resource\EventListener\SyncMetaDataCategoriesEventListener:
+  TYPO3Canto\CantoFal\Resource\EventListener\SyncMetaDataCategoriesEventListener:
     tags:
       - name: event.listener
         identifier: 'synchronizeFileMetaDataCategoriesAfterCreation'
@@ -157,7 +157,7 @@ services:
         method: 'afterFileMetaDataUpdated'
         event: TYPO3\CMS\Core\Resource\Event\AfterFileMetaDataUpdatedEvent
 
-  Fairway\CantoSaasFal\Resource\EventListener\SyncMetaDataTranslationsEventListener:
+  TYPO3Canto\CantoFal\Resource\EventListener\SyncMetaDataTranslationsEventListener:
     tags:
       - name: event.listener
         identifier: 'synchronizeFileMetaDataTranslationsAfterCreation'
@@ -173,10 +173,10 @@ services:
     class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
     public: true
     factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
-    arguments: ['canto_saas_fal_folder']
+    arguments: ['canto_fal_folder']
 
   cache.canto_file:
     class: TYPO3\CMS\Core\Cache\Frontend\FrontendInterface
     public: true
     factory: [ '@TYPO3\CMS\Core\Cache\CacheManager', 'getCache' ]
-    arguments: [ 'canto_saas_fal_file' ]
+    arguments: [ 'canto_fal_file' ]

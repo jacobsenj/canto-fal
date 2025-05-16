@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\Event;
+namespace TYPO3Canto\CantoFal\Resource\Event;
 
 final class AfterMetaDataExtractionEvent
 {

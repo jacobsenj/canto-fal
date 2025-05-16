@@ -12,6 +12,6 @@ return [
         'core',
     ],
     'imports' => [
-        '@fairway/canto-saas-fal/' => 'EXT:canto_saas_fal/Resources/Public/JavaScript/',
+        '@typo3-canto/canto-fal/' => 'EXT:canto_fal/Resources/Public/JavaScript/',
     ],
 ];

@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\Repository\Exception;
+namespace TYPO3Canto\CantoFal\Resource\Repository\Exception;
 
-use Fairway\CantoSaasFal\Exception;
+use TYPO3Canto\CantoFal\Exception;
 
 class InvalidSearchTypeException extends Exception
 {

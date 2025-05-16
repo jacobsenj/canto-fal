@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Form\Container;
+namespace TYPO3Canto\CantoFal\Form\Container;
 
-use Fairway\CantoSaasFal\Resource\Driver\CantoDriver;
-use Fairway\CantoSaasFal\Utility\SiteConfigurationResolver;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Utility\SiteConfigurationResolver;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;

@@ -7,20 +7,20 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$EM_CONF['canto_saas_fal'] = [
-    'title' => 'Canto SaaS FAL',
-    'description' => 'Adds Canto SaaS FAL driver.',
+$EM_CONF['canto_fal'] = [
+    'title' => 'Canto FAL',
+    'description' => 'Adds Canto FAL driver.',
     'category' => 'misc',
     'version' => '1.0.7.3',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-11.5.99',
-            'filemetadata' => '10.4.0-11.5.99',
+            'typo3' => '11.5.0-12.4.99',
+            'filemetadata' => '11.5.0-12.4.99',
         ],
     ],
     'state' => 'stable',
     'clearCacheOnLoad' => true,
-    'author' => 'Tim Schreiner',
-    'author_email' => 'tim.schreiner@km2.de',
-    'author_company' => 'eCentral GmbH',
+    'author' => 'Nicole Hummel',
+    'author_email' => 'nicole-typo3@nimut.dev',
+    'author_company' => 'biz-design',
 ];

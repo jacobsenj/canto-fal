@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Domain\Model\Dto;
+namespace TYPO3Canto\CantoFal\Domain\Model\Dto;
 
 class AssetSearchResponse
 {

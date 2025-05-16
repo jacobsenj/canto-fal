@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Xclass;
+namespace TYPO3Canto\CantoFal\Xclass;
 
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Routing\UriBuilder;

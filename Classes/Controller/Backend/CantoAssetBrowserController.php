@@ -9,16 +9,16 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Controller\Backend;
+namespace TYPO3Canto\CantoFal\Controller\Backend;
 
-use Fairway\CantoSaasApi\Endpoint\Authorization\AuthorizationFailedException;
-use Fairway\CantoSaasFal\Domain\Model\Dto\AssetSearch;
-use Fairway\CantoSaasFal\Pagination\SearchResultPaginator;
-use Fairway\CantoSaasFal\Resource\Driver\CantoDriver;
-use Fairway\CantoSaasFal\Resource\NoCantoStorageException;
-use Fairway\CantoSaasFal\Resource\Repository\CantoRepository;
-use Fairway\CantoSaasFal\Resource\Repository\Exception\InvalidSearchTypeException;
-use Fairway\CantoSaasFal\Utility\CantoUtility;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoFal\Domain\Model\Dto\AssetSearch;
+use TYPO3Canto\CantoFal\Pagination\SearchResultPaginator;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Resource\Repository\Exception\InvalidSearchTypeException;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\JsonResponse;
@@ -161,13 +161,13 @@ class CantoAssetBrowserController
     {
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setLayoutRootPaths([
-            100 => 'EXT:canto_saas_fal/Resources/Private/Layouts/'
+            100 => 'EXT:canto_fal/Resources/Private/Layouts/'
         ]);
         $view->setPartialRootPaths([
-            100 => 'EXT:canto_saas_fal/Resources/Private/Partials/',
+            100 => 'EXT:canto_fal/Resources/Private/Partials/',
         ]);
         $view->setTemplateRootPaths([
-            100 => 'EXT:canto_saas_fal/Resources/Private/Templates/CantoAssetBrowser/Ajax/'
+            100 => 'EXT:canto_fal/Resources/Private/Templates/CantoAssetBrowser/Ajax/'
         ]);
         return $view;
     }

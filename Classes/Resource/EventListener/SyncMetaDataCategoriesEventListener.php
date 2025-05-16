@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\EventListener;
+namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
-use Fairway\CantoSaasFal\Resource\Driver\CantoDriver;
-use Fairway\CantoSaasFal\Resource\Metadata\Extractor;
-use Fairway\CantoSaasFal\Resource\Metadata\MetadataRepository;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Metadata\Extractor;
+use TYPO3Canto\CantoFal\Resource\Metadata\MetadataRepository;
 use TYPO3\CMS\Core\Category\Collection\CategoryCollection;
 use TYPO3\CMS\Core\Resource\Event\AfterFileMetaDataCreatedEvent;
 use TYPO3\CMS\Core\Resource\Event\AfterFileMetaDataUpdatedEvent;

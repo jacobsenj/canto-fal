@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal;
+namespace TYPO3Canto\CantoFal;
 
 class Exception extends \TYPO3\CMS\Core\Exception
 {

@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Xclass;
+namespace TYPO3Canto\CantoFal\Xclass;
 
-use Fairway\CantoSaasFal\Resource\Driver\CantoDriver;
-use Fairway\CantoSaasFal\Resource\Repository\CantoFileIndexRepository;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoFileIndexRepository;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

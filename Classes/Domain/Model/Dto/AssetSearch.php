@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Domain\Model\Dto;
+namespace TYPO3Canto\CantoFal\Domain\Model\Dto;
 
-use Fairway\CantoSaasApi\Http\Asset\SearchRequest;
+use TYPO3Canto\CantoApi\Http\Asset\SearchRequest;
 
 class AssetSearch
 {

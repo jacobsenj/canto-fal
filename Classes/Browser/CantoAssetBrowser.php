@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Browser;
+namespace TYPO3Canto\CantoFal\Browser;
 
-use Fairway\CantoSaasFal\Resource\CantoClientFactory;
-use Fairway\CantoSaasFal\Resource\Driver\CantoDriver;
-use Fairway\CantoSaasFal\Resource\NoCantoStorageException;
+use TYPO3Canto\CantoFal\Resource\CantoClientFactory;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
 use TYPO3\CMS\Backend\ElementBrowser\AbstractElementBrowser;
 use TYPO3\CMS\Backend\ElementBrowser\ElementBrowserInterface;
 use TYPO3\CMS\Backend\Tree\View\LinkParameterProviderInterface;
@@ -37,10 +37,10 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
         parent::initialize();
 
         $this->initializeStorage();
-        $this->pageRenderer->loadJavaScriptModule('@fairway/canto-saas-fal/BrowseCantoAssetsV12.js');
+        $this->pageRenderer->loadJavaScriptModule('@typo3-canto/canto-fal/BrowseCantoAssetsV12.js');
 
         $this->pageRenderer->addCssFile(
-            'EXT:canto_saas_fal/Resources/Public/Css/CantoAssetBrowser.css'
+            'EXT:canto_fal/Resources/Public/Css/CantoAssetBrowser.css'
         );
     }
 
@@ -60,7 +60,7 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
         $templateView = (fn ($templateView): FluidViewAdapter => $templateView)($templateView);
 
         $contentOnly = (bool)($this->getRequest()->getQueryParams()['contentOnly'] ?? false);
-        $this->pageRenderer->setTitle($this->getLanguageService()->sL('LLL:EXT:canto_saas_fal/Resources/Private/Language/locallang_be.xlf:canto_asset_browser.title'));
+        $this->pageRenderer->setTitle($this->getLanguageService()->sL('LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:canto_asset_browser.title'));
 
         $domain = $this->getAssetPickerDomain();
 
@@ -127,13 +127,13 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
     {
         $view = $this->moduleTemplate->getView();
         $view->setLayoutRootPaths([
-            100 => 'EXT:canto_saas_fal/Resources/Private/Layouts/'
+            100 => 'EXT:canto_fal/Resources/Private/Layouts/'
         ]);
         $view->setPartialRootPaths([
-            100 => 'EXT:canto_saas_fal/Resources/Private/Partials/',
+            100 => 'EXT:canto_fal/Resources/Private/Partials/',
         ]);
         $view->setTemplateRootPaths([
-            100 => 'EXT:canto_saas_fal/Resources/Private/Templates/CantoAssetBrowser/'
+            100 => 'EXT:canto_fal/Resources/Private/Templates/CantoAssetBrowser/'
         ]);
     }
 

@@ -9,8 +9,8 @@
 
 return [
     'canto_assset_browser' => [
-        'path' => '/canto-saas-fal/canto-asset-browser',
+        'path' => '/canto-fal/canto-asset-browser',
         'access' => 'public',
-        'target' => \Fairway\CantoSaasFal\Controller\Backend\CantoAssetBrowserController::class . '::mainAction',
+        'target' => \TYPO3Canto\CantoFal\Controller\Backend\CantoAssetBrowserController::class . '::mainAction',
     ],
 ];

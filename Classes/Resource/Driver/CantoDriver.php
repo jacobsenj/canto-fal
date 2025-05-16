@@ -9,25 +9,25 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\Driver;
+namespace TYPO3Canto\CantoFal\Resource\Driver;
 
-use Fairway\CantoSaasApi\DTO\Status;
-use Fairway\CantoSaasApi\Endpoint\Authorization\AuthorizationFailedException;
-use Fairway\CantoSaasApi\Endpoint\Authorization\NotAuthorizedException;
-use Fairway\CantoSaasApi\Http\Asset\BatchDeleteContentRequest;
-use Fairway\CantoSaasApi\Http\Asset\RenameContentRequest;
-use Fairway\CantoSaasApi\Http\InvalidResponseException;
-use Fairway\CantoSaasApi\Http\LibraryTree\CreateAlbumFolderRequest;
-use Fairway\CantoSaasApi\Http\LibraryTree\DeleteFolderOrAlbumRequest;
-use Fairway\CantoSaasApi\Http\LibraryTree\GetTreeRequest;
-use Fairway\CantoSaasApi\Http\LibraryTree\ListAlbumContentRequest;
-use Fairway\CantoSaasApi\Http\LibraryTree\SearchFolderRequest;
-use Fairway\CantoSaasApi\Http\Upload\GetUploadSettingRequest;
-use Fairway\CantoSaasApi\Http\Upload\QueryUploadStatusRequest;
-use Fairway\CantoSaasApi\Http\Upload\UploadFileRequest;
-use Fairway\CantoSaasFal\Resource\MdcUrlGenerator;
-use Fairway\CantoSaasFal\Resource\Repository\CantoRepository;
-use Fairway\CantoSaasFal\Utility\CantoUtility;
+use TYPO3Canto\CantoApi\DTO\Status;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
+use TYPO3Canto\CantoApi\Http\Asset\BatchDeleteContentRequest;
+use TYPO3Canto\CantoApi\Http\Asset\RenameContentRequest;
+use TYPO3Canto\CantoApi\Http\InvalidResponseException;
+use TYPO3Canto\CantoApi\Http\LibraryTree\CreateAlbumFolderRequest;
+use TYPO3Canto\CantoApi\Http\LibraryTree\DeleteFolderOrAlbumRequest;
+use TYPO3Canto\CantoApi\Http\LibraryTree\GetTreeRequest;
+use TYPO3Canto\CantoApi\Http\LibraryTree\ListAlbumContentRequest;
+use TYPO3Canto\CantoApi\Http\LibraryTree\SearchFolderRequest;
+use TYPO3Canto\CantoApi\Http\Upload\GetUploadSettingRequest;
+use TYPO3Canto\CantoApi\Http\Upload\QueryUploadStatusRequest;
+use TYPO3Canto\CantoApi\Http\Upload\UploadFileRequest;
+use TYPO3Canto\CantoFal\Resource\MdcUrlGenerator;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;

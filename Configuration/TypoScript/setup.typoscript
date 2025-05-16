@@ -1,5 +1,5 @@
-canto_saas_fal = PAGE
-canto_saas_fal {
+canto_fal = PAGE
+canto_fal {
   typeNum = 1638434149
   config {
     disableAllHeaderCode = 1
@@ -15,7 +15,7 @@ canto_saas_fal {
 
   10 = USER
   10.userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-  10.extensionName= CantoSaasFal
+  10.extensionName= CantoFal
   10.pluginName = metadataWebhook
   10.vendorName = Fairway
 }

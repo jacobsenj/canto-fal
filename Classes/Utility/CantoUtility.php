@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Utility;
+namespace TYPO3Canto\CantoFal\Utility;
 
 use DateTime;
-use Fairway\CantoSaasFal\Resource\Event\MdcEnabledCheckEvent;
-use Fairway\CantoSaasFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Resource\Event\MdcEnabledCheckEvent;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 use InvalidArgumentException;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -83,8 +83,8 @@ class CantoUtility
             return false;
         }
         $mdc = SiteConfigurationResolver::get('canto_mdc_enabled') ?? false;
-        if (isset($GLOBALS['CANTO_SAAS_FAL']['OVERRIDE_MDC_IS_ENABLED'])) {
-            $mdc = $GLOBALS['CANTO_SAAS_FAL']['OVERRIDE_MDC_IS_ENABLED'] ?? false;
+        if (isset($GLOBALS['CANTO_FAL']['OVERRIDE_MDC_IS_ENABLED'])) {
+            $mdc = $GLOBALS['CANTO_FAL']['OVERRIDE_MDC_IS_ENABLED'] ?? false;
         }
         $event = new MdcEnabledCheckEvent($mdc);
         /** @var MdcEnabledCheckEvent $dispatchedEvent */

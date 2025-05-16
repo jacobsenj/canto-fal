@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Form\Container;
+namespace TYPO3Canto\CantoFal\Form\Container;
 
 use TYPO3\CMS\Backend\Form\Container\FilesControlContainer as FilesControlContainerCore;
 use TYPO3\CMS\Core\Resource\Filter\FileExtensionFilter;

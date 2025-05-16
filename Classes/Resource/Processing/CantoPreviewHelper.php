@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\Processing;
+namespace TYPO3Canto\CantoFal\Resource\Processing;
 
-use Fairway\CantoSaasFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Processing\LocalPreviewHelper;

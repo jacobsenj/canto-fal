@@ -9,24 +9,24 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\Repository;
+namespace TYPO3Canto\CantoFal\Resource\Repository;
 
-use Fairway\CantoSaasApi\Client;
-use Fairway\CantoSaasApi\Endpoint\Authorization\AuthorizationFailedException;
-use Fairway\CantoSaasApi\Endpoint\Authorization\NotAuthorizedException;
-use Fairway\CantoSaasApi\Http\Asset\GetContentDetailsRequest;
-use Fairway\CantoSaasApi\Http\Asset\SearchRequest;
-use Fairway\CantoSaasApi\Http\Authorization\OAuth2Request;
-use Fairway\CantoSaasApi\Http\InvalidResponseException;
-use Fairway\CantoSaasApi\Http\LibraryTree\GetDetailsRequest;
-use Fairway\CantoSaasApi\Http\LibraryTree\GetTreeRequest;
-use Fairway\CantoSaasApi\Http\LibraryTree\ListAlbumContentRequest;
-use Fairway\CantoSaasFal\Domain\Model\Dto\AssetSearch;
-use Fairway\CantoSaasFal\Domain\Model\Dto\AssetSearchResponse;
-use Fairway\CantoSaasFal\Resource\CantoClientFactory;
-use Fairway\CantoSaasFal\Resource\Driver\CantoDriver;
-use Fairway\CantoSaasFal\Resource\Event\BeforeLocalFileProcessingEvent;
-use Fairway\CantoSaasFal\Utility\CantoUtility;
+use TYPO3Canto\CantoApi\Client;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
+use TYPO3Canto\CantoApi\Http\Asset\GetContentDetailsRequest;
+use TYPO3Canto\CantoApi\Http\Asset\SearchRequest;
+use TYPO3Canto\CantoApi\Http\Authorization\OAuth2Request;
+use TYPO3Canto\CantoApi\Http\InvalidResponseException;
+use TYPO3Canto\CantoApi\Http\LibraryTree\GetDetailsRequest;
+use TYPO3Canto\CantoApi\Http\LibraryTree\GetTreeRequest;
+use TYPO3Canto\CantoApi\Http\LibraryTree\ListAlbumContentRequest;
+use TYPO3Canto\CantoFal\Domain\Model\Dto\AssetSearch;
+use TYPO3Canto\CantoFal\Domain\Model\Dto\AssetSearchResponse;
+use TYPO3Canto\CantoFal\Resource\CantoClientFactory;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Event\BeforeLocalFileProcessingEvent;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
@@ -37,7 +37,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CantoRepository
 {
-    public const REGISTRY_NAMESPACE = 'cantoSaasFal';
+    public const REGISTRY_NAMESPACE = 'cantoFal';
     public const CANTO_CACHE_TAG_BLUEPRINT = 'canto_storage_%s';
 
     /**
@@ -207,7 +207,7 @@ class CantoRepository
         $fileData = $this->getFileDetails($scheme, $identifier);
 
         if ($fileData == null) {
-            $extensionPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('canto_saas_fal');
+            $extensionPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('canto_fal');
 
             // Relativer Pfad zum Bild innerhalb der Extension
             $imagePath = 'Resources/Public/Images/fallback.png';

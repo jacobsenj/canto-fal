@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\EventListener;
+namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
-use Fairway\CantoSaasFal\Utility\CantoUtility;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use TYPO3\CMS\Core\Resource\Event\GeneratePublicUrlForResourceEvent;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\ProcessedFile;

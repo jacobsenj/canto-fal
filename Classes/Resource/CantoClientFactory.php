@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource;
+namespace TYPO3Canto\CantoFal\Resource;
 
-use Fairway\CantoSaasApi\Client;
-use Fairway\CantoSaasApi\ClientOptions;
+use TYPO3Canto\CantoApi\Client;
+use TYPO3Canto\CantoApi\ClientOptions;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Http\Client\GuzzleClientFactory;

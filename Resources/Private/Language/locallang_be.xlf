@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:canto_saas_fal/Resources/Private/Language/locallang_be.xlf" date="2021-07-22T06:52:24Z" product-name="lang">
+	<file source-language="en" datatype="plaintext" original="EXT:canto_fal/Resources/Private/Language/locallang_be.xlf" date="2021-07-22T06:52:24Z" product-name="lang">
 		<header/>
 		<body>
 			<trans-unit id="sys_file_storage.cantoDriverFlexform_appId" resname="sys_file_storage.cantoDriverFlexform_appId">

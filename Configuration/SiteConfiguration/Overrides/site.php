@@ -34,7 +34,7 @@ $GLOBALS['SiteConfiguration']['site']['columns']['canto_asset_picker_storage'] =
         ],
         'foreign_table' => 'sys_file_storage',
         'foreign_table_where' => 'AND deleted = 0 AND driver = "'
-            . \Fairway\CantoSaasFal\Resource\Driver\CantoDriver::DRIVER_NAME . '"',
+            . \TYPO3Canto\CantoFal\Resource\Driver\CantoDriver::DRIVER_NAME . '"',
         'default' => 0,
     ],
 ];

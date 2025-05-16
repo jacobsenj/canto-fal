@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\Event;
+namespace TYPO3Canto\CantoFal\Resource\Event;
 
 use TYPO3\CMS\Core\Utility\PathUtility;
 
@@ -59,7 +59,7 @@ final class BeforeLocalFileProcessingEvent
         if ($this->isForPreview()) {
             return $this->fileData['url']['directUrlPreview'] ?? null;
         }
-        if ($this->scheme === 'image' && !in_array($this->getFileExtension(), $GLOBALS['CANTO_SAAS_FAL']['IMAGE_TYPES'], true)) {
+        if ($this->scheme === 'image' && !in_array($this->getFileExtension(), $GLOBALS['CANTO_FAL']['IMAGE_TYPES'], true)) {
             $this->setFileExtension(self::DEFAULT_IMAGE_FILE_EXTENSION);
             return $this->fileData['url']['detail'] ?? null;
         }

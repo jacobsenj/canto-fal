@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\Processing;
+namespace TYPO3Canto\CantoFal\Resource\Processing;
 
-use Fairway\CantoSaasApi\Endpoint\Authorization\AuthorizationFailedException;
-use Fairway\CantoSaasFal\Resource\Driver\CantoDriver;
-use Fairway\CantoSaasFal\Resource\Repository\CantoRepository;
-use Fairway\CantoSaasFal\Utility\CantoUtility;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Resource\Processing\ProcessorInterface;
 use TYPO3\CMS\Core\Resource\Processing\TaskInterface;

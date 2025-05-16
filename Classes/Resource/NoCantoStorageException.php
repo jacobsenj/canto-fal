@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource;
+namespace TYPO3Canto\CantoFal\Resource;
 
-use Fairway\CantoSaasFal\Exception;
+use TYPO3Canto\CantoFal\Exception;
 
 class NoCantoStorageException extends Exception
 {

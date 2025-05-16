@@ -1,8 +1,8 @@
 {
-  "name": "fairway/canto-saas-fal",
+  "name": "typo3-canto/canto-fal",
   "type": "typo3-cms-extension",
-  "description": "Adds Canto SaaS FAL driver.",
-  "homepage": "https://gitlab.ecentral.de/canto-saas/ext-canto-saas-fal",
+  "description": "Adds Canto FAL driver.",
+  "homepage": "https://github.com/TYPO3-Canto/canto-fal",
   "license": "GPL-2.0-or-later",
   "keywords": [
     "TYPO3 CMS",
@@ -10,6 +10,11 @@
     "FAL"
   ],
   "authors": [
+    {
+      "name": "Nicole Hummel",
+      "email": "nicole-typo3@nimut.dev",
+      "role": "Developer"
+    },
     {
       "name": "Tim Schreiner",
       "role": "Developer",
@@ -29,7 +34,7 @@
     "typo3/cms-filelist": "^11 || ^12",
     "guzzlehttp/guzzle": "^6.3 || ^7.3",
     "psr/log": "^1.1 || ^3.0",
-    "fairway/canto-saas-api": "@dev"
+    "typo3-canto/canto-api": "@dev"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.0",
@@ -38,16 +43,16 @@
   },
   "autoload": {
     "psr-4": {
-      "Fairway\\CantoSaasFal\\": "Classes"
+      "TYPO3Canto\\CantoFal\\": "Classes"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Fairway\\CantoSaasFal\\Tests\\": "Tests"
+      "TYPO3Canto\\CantoFal\\Tests\\": "Tests"
     }
   },
   "replace": {
-    "typo3-ter/canto-saas-fal": "self.version"
+    "typo3-ter/canto-fal": "self.version"
   },
   "config": {
     "vendor-dir": ".Build/vendor",
@@ -60,7 +65,7 @@
   "scripts": {
     "post-autoload-dump": [
       "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/canto_saas_fal ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/canto_saas_fal"
+      "[ -L .Build/Web/typo3conf/ext/canto_fal ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/canto_fal"
     ],
     "phpcsfixer": "php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run --using-cache=no --diff",
     "phpcsfixer:fix": "php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --using-cache=no --diff",
@@ -69,7 +74,7 @@
   "extra": {
     "typo3/cms": {
       "web-dir": ".Build/Web",
-      "extension-key": "canto_saas_fal"
+      "extension-key": "canto_fal"
     }
   }
 }

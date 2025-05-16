@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Controller;
+namespace TYPO3Canto\CantoFal\Controller;
 
-use Fairway\CantoSaasFal\Exception;
-use Fairway\CantoSaasFal\Resource\Event\IncomingWebhookEvent;
+use TYPO3Canto\CantoFal\Exception;
+use TYPO3Canto\CantoFal\Resource\Event\IncomingWebhookEvent;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -38,9 +38,9 @@ final class MetadataWebhookController extends ActionController
     public function indexAction(): string
     {
         $json = $this->getBody();
-        $metadataToken = $this->extensionConfiguration->get('canto_saas_fal', 'metadata_hook_token');
-        $assetVersionUpdate = $this->extensionConfiguration->get('canto_saas_fal', 'newversion_hook_token');
-        $assetDeletion = $this->extensionConfiguration->get('canto_saas_fal', 'deletion_hook_token');
+        $metadataToken = $this->extensionConfiguration->get('canto_fal', 'metadata_hook_token');
+        $assetVersionUpdate = $this->extensionConfiguration->get('canto_fal', 'newversion_hook_token');
+        $assetDeletion = $this->extensionConfiguration->get('canto_fal', 'deletion_hook_token');
 
         switch ($json['secure_token']) {
             case $metadataToken:

@@ -9,19 +9,19 @@ declare(strict_types=1);
  * LICENSE file that was distributed with this source code.
  */
 
-namespace Fairway\CantoSaasFal\Resource\Metadata;
+namespace TYPO3Canto\CantoFal\Resource\Metadata;
 
-use Fairway\CantoSaasApi\Endpoint\Authorization\AuthorizationFailedException;
-use Fairway\CantoSaasFal\Resource\Driver\CantoDriver;
-use Fairway\CantoSaasFal\Resource\Event\AfterMetaDataExtractionEvent;
-use Fairway\CantoSaasFal\Resource\Repository\CantoRepository;
-use Fairway\CantoSaasFal\Utility\CantoUtility;
 use JsonException;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Index\ExtractorInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Event\AfterMetaDataExtractionEvent;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 class Extractor implements ExtractorInterface
 {

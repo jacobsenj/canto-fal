@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
-use TYPO3Canto\CantoFal\Resource\Metadata\Exporter;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Controller\EditDocumentController;
 use TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Canto\CantoFal\Resource\Metadata\Exporter;
 
 /**
  * The Filelist updates the metadata through the data handler, thus is not triggering any Metadata Repository Events.

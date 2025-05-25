@@ -47,7 +47,7 @@ class FileListController extends \TYPO3\CMS\Filelist\Controller\FileListControll
         $refreshLink = GeneralUtility::linkThisScript(
             [
                 'target' => rawurlencode($this->folderObject->getCombinedIdentifier()),
-                'imagemode' => $this->filelist->thumbs
+                'imagemode' => $this->filelist->thumbs,
             ]
         );
         $refreshButton = $buttonBar->makeLinkButton()
@@ -151,7 +151,7 @@ class FileListController extends \TYPO3\CMS\Filelist\Controller\FileListControll
                         ->setDataAttributes([
                             'severity' => 'warning',
                             'content' => $confirmText,
-                            'title' => $lang->getLL('clip_paste')
+                            'title' => $lang->getLL('clip_paste'),
                         ])
                         ->setTitle($lang->getLL('clip_paste'))
                         ->setIcon($iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));

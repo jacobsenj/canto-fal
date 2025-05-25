@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use TYPO3Canto\CantoFal\Resource\Event\IncomingWebhookEvent;
 use TYPO3Canto\CantoFal\Resource\Metadata\Extractor;
 use TYPO3Canto\CantoFal\Utility\CantoUtility;
-use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\ResourceFactory;
-use TYPO3\CMS\Core\Resource\StorageRepository;
 
 final class MetadataWebhookEventListener
 {

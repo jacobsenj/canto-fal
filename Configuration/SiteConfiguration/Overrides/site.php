@@ -17,9 +17,9 @@ $GLOBALS['SiteConfiguration']['site']['columns']['canto_enabled_asset_picker'] =
         'items' => [
             [
                 0 => '',
-                1 => ''
-            ]
-        ]
+                1 => '',
+            ],
+        ],
     ],
 ];
 
@@ -30,7 +30,7 @@ $GLOBALS['SiteConfiguration']['site']['columns']['canto_asset_picker_storage'] =
         'type' => 'select',
         'renderType' => 'selectSingle',
         'items' => [
-            ['Auto', 0]
+            ['Auto', 0],
         ],
         'foreign_table' => 'sys_file_storage',
         'foreign_table_where' => 'AND deleted = 0 AND driver = "'
@@ -49,9 +49,9 @@ $GLOBALS['SiteConfiguration']['site']['columns']['canto_mdc_enabled'] = [
         'items' => [
             [
                 0 => true,
-                1 => false
-            ]
-        ]
+                1 => false,
+            ],
+        ],
     ],
 ];
 

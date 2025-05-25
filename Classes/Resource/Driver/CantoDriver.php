@@ -11,6 +11,20 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Driver;
 
+use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\FalDumpFileContentsDecoratorStream;
+use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Resource\Driver\AbstractDriver;
+use TYPO3\CMS\Core\Resource\Driver\StreamableDriverInterface;
+use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
+use TYPO3\CMS\Core\Resource\ResourceStorage;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
+use TYPO3\CMS\Core\Utility\Exception\MissingArrayPathException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3Canto\CantoApi\DTO\Status;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
@@ -28,21 +42,6 @@ use TYPO3Canto\CantoApi\Http\Upload\UploadFileRequest;
 use TYPO3Canto\CantoFal\Resource\MdcUrlGenerator;
 use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 use TYPO3Canto\CantoFal\Utility\CantoUtility;
-use GuzzleHttp\Exception\GuzzleException;
-use Psr\Http\Message\ResponseInterface;
-use RuntimeException;
-use TYPO3\CMS\Core\Http\FalDumpFileContentsDecoratorStream;
-use TYPO3\CMS\Core\Http\Response;
-use TYPO3\CMS\Core\Messaging\FlashMessage;
-use TYPO3\CMS\Core\Messaging\FlashMessageService;
-use TYPO3\CMS\Core\Resource\Driver\AbstractDriver;
-use TYPO3\CMS\Core\Resource\Driver\StreamableDriverInterface;
-use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
-use TYPO3\CMS\Core\Resource\ResourceStorage;
-use TYPO3\CMS\Core\Utility\ArrayUtility;
-use TYPO3\CMS\Core\Utility\Exception\MissingArrayPathException;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\PathUtility;
 
 class CantoDriver extends AbstractDriver implements StreamableDriverInterface
 {
@@ -395,8 +394,8 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             'storage' => $this->storageUid,
             'folder_hash' => '',
             'folder_identifiers' => $folders,
-            'width' =>$result['height'],
-            'height' =>$result['width']
+            'width' => $result['height'],
+            'height' => $result['width'],
         ];
         if (!$propertiesToExtract) {
             return $data;
@@ -420,7 +419,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             'name' => 'Canto',
             'mtime' => $now,
             'ctime' => $now,
-            'storage' => $this->storageUid
+            'storage' => $this->storageUid,
         ];
         if (!$folderIdentifier || $folderIdentifier === $this->rootFolderIdentifier) {
             return $rootFolder;
@@ -439,7 +438,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             'name' => $folderName,
             'mtime' => CantoUtility::buildTimestampFromCantoDate($result['time']),
             'ctime' => CantoUtility::buildTimestampFromCantoDate($result['created']),
-            'storage' => $this->storageUid
+            'storage' => $this->storageUid,
         ];
     }
 
@@ -788,7 +787,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             $this->cantoRepository->setFolderCache($id, $folder->getResponseData());
             return $id;
         } catch (NotAuthorizedException|InvalidResponseException $e) {
-            throw new RuntimeException('Creating the folder did not work - ' . $e->getMessage());
+            throw new \RuntimeException('Creating the folder did not work - ' . $e->getMessage());
         }
     }
 
@@ -880,7 +879,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
                 }
             }
             if (++$count > 15) {
-                $this->sendFlashMessageToUser('Timeout', 'File not fully processed. Please reload', FlashMessage::WARNING, );
+                $this->sendFlashMessageToUser('Timeout', 'File not fully processed. Please reload', FlashMessage::WARNING);
                 return '';
             }
         }

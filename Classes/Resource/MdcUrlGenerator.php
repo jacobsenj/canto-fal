@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource;
 
-use TYPO3Canto\CantoFal\Resource\Event\BeforeMdcUrlGenerationEvent;
-use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
-use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Resource\File;
+use TYPO3Canto\CantoFal\Resource\Event\BeforeMdcUrlGenerationEvent;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 /**
  * todo: add documentation

@@ -13,6 +13,4 @@ namespace TYPO3Canto\CantoFal\Resource\Repository\Exception;
 
 use TYPO3Canto\CantoFal\Exception;
 
-class InvalidSearchTypeException extends Exception
-{
-}
+class InvalidSearchTypeException extends Exception {}

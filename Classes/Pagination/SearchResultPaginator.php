@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Pagination;
 
+use TYPO3\CMS\Core\Pagination\AbstractPaginator;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
 use TYPO3Canto\CantoApi\Http\InvalidResponseException;
 use TYPO3Canto\CantoFal\Domain\Model\Dto\AssetSearch;
 use TYPO3Canto\CantoFal\Domain\Model\Dto\AssetSearchResponse;
 use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
-use TYPO3\CMS\Core\Pagination\AbstractPaginator;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class SearchResultPaginator extends AbstractPaginator
 {
@@ -86,9 +86,7 @@ final class SearchResultPaginator extends AbstractPaginator
     /**
      * Results are fetched in SearchResultPaginator::fetchItems()
      */
-    protected function updatePaginatedItems(int $itemsPerPage, int $offset): void
-    {
-    }
+    protected function updatePaginatedItems(int $itemsPerPage, int $offset): void {}
 
     protected function getTotalAmountOfItems(): int
     {

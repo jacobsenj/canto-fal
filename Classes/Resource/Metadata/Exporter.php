@@ -12,15 +12,15 @@ declare(strict_types=1);
 namespace TYPO3Canto\CantoFal\Resource\Metadata;
 
 use Doctrine\DBAL\FetchMode;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3Canto\CantoApi\Http\Asset\BatchUpdatePropertiesRequest;
 use TYPO3Canto\CantoApi\Http\InvalidResponseException;
 use TYPO3Canto\CantoFal\Resource\Event\BeforeMetadataUploadEvent;
 use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 use TYPO3Canto\CantoFal\Utility\CantoUtility;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
-use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\FileRepository;
 
 final class Exporter
 {
@@ -137,7 +137,7 @@ final class Exporter
                     'propertyId' => $cantoField['name'],
                     'propertyValue' => $data[$metadataKey] ?? '',
                     'action' => $cantoField['action'] ?? '',
-                    'customField' => $cantoField['customField'] ?? false
+                    'customField' => $cantoField['customField'] ?? false,
                 ];
             }
         }

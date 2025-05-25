@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
-use TYPO3Canto\CantoFal\Resource\Metadata\Extractor;
-use TYPO3Canto\CantoFal\Resource\Metadata\MetadataRepository;
 use TYPO3\CMS\Core\Category\Collection\CategoryCollection;
 use TYPO3\CMS\Core\Resource\Event\AfterFileMetaDataCreatedEvent;
 use TYPO3\CMS\Core\Resource\Event\AfterFileMetaDataUpdatedEvent;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Metadata\Extractor;
+use TYPO3Canto\CantoFal\Resource\Metadata\MetadataRepository;
 
 final class SyncMetaDataCategoriesEventListener
 {

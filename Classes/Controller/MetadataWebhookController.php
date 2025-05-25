@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Controller;
 
-use TYPO3Canto\CantoFal\Exception;
-use TYPO3Canto\CantoFal\Resource\Event\IncomingWebhookEvent;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
+use TYPO3Canto\CantoFal\Exception;
+use TYPO3Canto\CantoFal\Resource\Event\IncomingWebhookEvent;
 
 final class MetadataWebhookController extends ActionController
 {

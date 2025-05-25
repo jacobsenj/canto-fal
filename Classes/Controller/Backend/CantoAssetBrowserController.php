@@ -11,14 +11,6 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Controller\Backend;
 
-use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
-use TYPO3Canto\CantoFal\Domain\Model\Dto\AssetSearch;
-use TYPO3Canto\CantoFal\Pagination\SearchResultPaginator;
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
-use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
-use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
-use TYPO3Canto\CantoFal\Resource\Repository\Exception\InvalidSearchTypeException;
-use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\JsonResponse;
@@ -29,6 +21,14 @@ use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoFal\Domain\Model\Dto\AssetSearch;
+use TYPO3Canto\CantoFal\Pagination\SearchResultPaginator;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Resource\Repository\Exception\InvalidSearchTypeException;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 class CantoAssetBrowserController
 {
@@ -104,7 +104,7 @@ class CantoAssetBrowserController
         $allowedFileExtensions = $request->getQueryParams()['allowedFileExtensions'] ?? '';
         if ($allowedFileExtensions) {
             $search->setKeyword(implode('|', array_map(
-                static fn (string $fileExtension) => '.' . trim($fileExtension),
+                static fn(string $fileExtension) => '.' . trim($fileExtension),
                 explode(',', $allowedFileExtensions)
             )));
         }
@@ -161,13 +161,13 @@ class CantoAssetBrowserController
     {
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setLayoutRootPaths([
-            100 => 'EXT:canto_fal/Resources/Private/Layouts/'
+            100 => 'EXT:canto_fal/Resources/Private/Layouts/',
         ]);
         $view->setPartialRootPaths([
             100 => 'EXT:canto_fal/Resources/Private/Partials/',
         ]);
         $view->setTemplateRootPaths([
-            100 => 'EXT:canto_fal/Resources/Private/Templates/CantoAssetBrowser/Ajax/'
+            100 => 'EXT:canto_fal/Resources/Private/Templates/CantoAssetBrowser/Ajax/',
         ]);
         return $view;
     }

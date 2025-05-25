@@ -11,12 +11,10 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Utility;
 
-use DateTime;
-use TYPO3Canto\CantoFal\Resource\Event\MdcEnabledCheckEvent;
-use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
-use InvalidArgumentException;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Canto\CantoFal\Resource\Event\MdcEnabledCheckEvent;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 
 class CantoUtility
 {
@@ -48,7 +46,7 @@ class CantoUtility
     public static function splitCombinedIdentifier(string $combinedIdentifier): array
     {
         if (!self::isValidCombinedIdentifier($combinedIdentifier)) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Invalid combined identifier given: ' . $combinedIdentifier,
                 1626954151
             );
@@ -94,7 +92,7 @@ class CantoUtility
 
     public static function buildTimestampFromCantoDate(string $cantoDate): int
     {
-        return DateTime::createFromFormat('YmdHisv', $cantoDate)->getTimestamp();
+        return \DateTime::createFromFormat('YmdHisv', $cantoDate)->getTimestamp();
     }
 
     public static function identifierToProcessedIdentifier(string $identifier): string

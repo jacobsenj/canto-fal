@@ -12,8 +12,6 @@ declare(strict_types=1);
 namespace TYPO3Canto\CantoFal\Command;
 
 use Doctrine\DBAL\FetchMode;
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
-use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,6 +19,8 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 /**
  * The old canto file identifier splitting scheme and id with a "#" did create problems with url requests.

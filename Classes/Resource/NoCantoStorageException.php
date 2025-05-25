@@ -13,6 +13,4 @@ namespace TYPO3Canto\CantoFal\Resource;
 
 use TYPO3Canto\CantoFal\Exception;
 
-class NoCantoStorageException extends Exception
-{
-}
+class NoCantoStorageException extends Exception {}

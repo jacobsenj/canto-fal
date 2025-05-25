@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Metadata;
 
-use JsonException;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Index\ExtractorInterface;
@@ -92,8 +91,8 @@ class Extractor implements ExtractorInterface
                 // we currently do not support translating sys_categories
                 $categoryData = $this->applyMappedMetaData($mapping, [], $fileData)[0] ?? [];
                 $categories = $this->buildCategoryTree($categoryData);
-            } catch (JsonException $exception) {
-                # todo: add mapping logging
+            } catch (\JsonException $exception) {
+                // todo: add mapping logging
             }
         }
 
@@ -114,8 +113,8 @@ class Extractor implements ExtractorInterface
             try {
                 $mapping = json_decode($configuration['metadataMapping'], true, 512, JSON_THROW_ON_ERROR);
                 $metadata = $this->applyMappedMetaData($mapping, $fileData);
-            } catch (JsonException $exception) {
-                # todo: add mapping logging
+            } catch (\JsonException $exception) {
+                // todo: add mapping logging
             }
             //$metadataObjects[] = $metadata['uid'];
         }
@@ -142,7 +141,7 @@ class Extractor implements ExtractorInterface
 
         return array_replace(
             [
-                $array_filedata
+                $array_filedata,
             ],
             $metadata
         );
@@ -216,7 +215,7 @@ class Extractor implements ExtractorInterface
                 }
             }
         }
-        return array_map(static fn ($uid) => (int)$uid, $uidList);
+        return array_map(static fn($uid) => (int)$uid, $uidList);
     }
 
     private function extractFromMetadata(array $metadata, array $fileKey)
@@ -245,7 +244,7 @@ class Extractor implements ExtractorInterface
      * @param CategoryRepository|null $categoryRepository
      * @return Category[]
      */
-    private function buildCategoryTree(array $mappedCategoryConfiguration, Category $parent = null, CategoryRepository $categoryRepository = null): array
+    private function buildCategoryTree(array $mappedCategoryConfiguration, ?Category $parent = null, ?CategoryRepository $categoryRepository = null): array
     {
         $categoryRepository ??= GeneralUtility::makeInstance(CategoryRepository::class);
         assert($categoryRepository instanceof CategoryRepository);

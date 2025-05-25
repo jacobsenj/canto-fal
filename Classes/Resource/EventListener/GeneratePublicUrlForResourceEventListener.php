@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
-use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use TYPO3\CMS\Core\Resource\Event\GeneratePublicUrlForResourceEvent;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\ProcessedFile;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 final class GeneratePublicUrlForResourceEventListener
 {

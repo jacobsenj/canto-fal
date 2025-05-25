@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal;
 
-class Exception extends \TYPO3\CMS\Core\Exception
-{
-}
+class Exception extends \TYPO3\CMS\Core\Exception {}

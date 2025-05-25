@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
-use TYPO3Canto\CantoFal\Resource\Repository\CantoAlbumRepository;
 use TYPO3\CMS\Core\Resource\Event\AfterFileAddedToIndexEvent;
 use TYPO3\CMS\Core\Resource\Event\AfterFileUpdatedInIndexEvent;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoAlbumRepository;
 
 class HandleMultipleFolders implements SingletonInterface
 {

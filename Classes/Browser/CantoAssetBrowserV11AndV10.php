@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Browser;
 
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
-use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Recordlist\Browser\AbstractElementBrowser;
 use TYPO3\CMS\Recordlist\Browser\ElementBrowserInterface;
 use TYPO3\CMS\Recordlist\Tree\View\LinkParameterProviderInterface;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
 
 final class CantoAssetBrowserV11AndV10 extends AbstractElementBrowser implements ElementBrowserInterface, LinkParameterProviderInterface
 {
@@ -48,7 +48,7 @@ final class CantoAssetBrowserV11AndV10 extends AbstractElementBrowser implements
         return [
             'data-mode' => 'canto',
             'data-storage-uid' => (string)$this->storage->getUid(),
-            'data-allowed-file-extensions' => explode('|', $this->bparams)[3] ?? ''
+            'data-allowed-file-extensions' => explode('|', $this->bparams)[3] ?? '',
         ];
     }
 
@@ -89,7 +89,7 @@ final class CantoAssetBrowserV11AndV10 extends AbstractElementBrowser implements
     {
         return [
             'mode' => 'canto',
-            'bparams' => $this->bparams
+            'bparams' => $this->bparams,
         ];
     }
 
@@ -111,13 +111,13 @@ final class CantoAssetBrowserV11AndV10 extends AbstractElementBrowser implements
     {
         $view = $this->moduleTemplate->getView();
         $view->setLayoutRootPaths([
-            100 => 'EXT:canto_fal/Resources/Private/Layouts/'
+            100 => 'EXT:canto_fal/Resources/Private/Layouts/',
         ]);
         $view->setPartialRootPaths([
             100 => 'EXT:canto_fal/Resources/Private/Partials/',
         ]);
         $view->setTemplateRootPaths([
-            100 => 'EXT:canto_fal/Resources/Private/Templates/CantoAssetBrowser/'
+            100 => 'EXT:canto_fal/Resources/Private/Templates/CantoAssetBrowser/',
         ]);
     }
 

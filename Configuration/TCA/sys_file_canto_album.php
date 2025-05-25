@@ -33,12 +33,12 @@ return [
                 'readOnly' => true,
                 'type' => 'input',
                 'size' => 10,
-            ]
+            ],
         ],
     ],
     'types' => [
         0 => [
-            'showitem' => 'file, album'
+            'showitem' => 'file, album',
         ],
     ],
     'palettes' => [],

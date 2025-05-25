@@ -23,8 +23,8 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['fal']['registeredDrivers'][\TYPO3Canto\Canto
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['fal']['processors']['CantoPreviewProcessor'] = [
     'className' => \TYPO3Canto\CantoFal\Resource\Processing\CantoPreviewProcessor::class,
     'before' => [
-        'SvgImageProcessor'
-    ]
+        'SvgImageProcessor',
+    ],
 ];
 
 ExtensionManagementUtility::addTypoScript(

@@ -11,9 +11,6 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Browser;
 
-use TYPO3Canto\CantoFal\Resource\CantoClientFactory;
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
-use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
 use TYPO3\CMS\Backend\ElementBrowser\AbstractElementBrowser;
 use TYPO3\CMS\Backend\ElementBrowser\ElementBrowserInterface;
 use TYPO3\CMS\Backend\Tree\View\LinkParameterProviderInterface;
@@ -21,6 +18,9 @@ use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\View\FluidViewAdapter;
+use TYPO3Canto\CantoFal\Resource\CantoClientFactory;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
 
 final class CantoAssetBrowser extends AbstractElementBrowser implements ElementBrowserInterface, LinkParameterProviderInterface
 {
@@ -49,7 +49,7 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
         return [
             'data-mode' => 'canto',
             'data-storage-uid' => (string)$this->storage->getUid(),
-            'data-allowed-file-extensions' => explode('|', $this->bparams)[3] ?? ''
+            'data-allowed-file-extensions' => explode('|', $this->bparams)[3] ?? '',
         ];
     }
 
@@ -57,7 +57,7 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
     {
         $templateView = $this->view;
         // Make sure that the base initialization creates an FluidView within an FluidViewAdapter
-        $templateView = (fn ($templateView): FluidViewAdapter => $templateView)($templateView);
+        $templateView = (fn($templateView): FluidViewAdapter => $templateView)($templateView);
 
         $contentOnly = (bool)($this->getRequest()->getQueryParams()['contentOnly'] ?? false);
         $this->pageRenderer->setTitle($this->getLanguageService()->sL('LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:canto_asset_browser.title'));
@@ -105,7 +105,7 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
     {
         return [
             'mode' => 'canto',
-            'bparams' => $this->bparams
+            'bparams' => $this->bparams,
         ];
     }
 
@@ -127,13 +127,13 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
     {
         $view = $this->moduleTemplate->getView();
         $view->setLayoutRootPaths([
-            100 => 'EXT:canto_fal/Resources/Private/Layouts/'
+            100 => 'EXT:canto_fal/Resources/Private/Layouts/',
         ]);
         $view->setPartialRootPaths([
             100 => 'EXT:canto_fal/Resources/Private/Partials/',
         ]);
         $view->setTemplateRootPaths([
-            100 => 'EXT:canto_fal/Resources/Private/Templates/CantoAssetBrowser/'
+            100 => 'EXT:canto_fal/Resources/Private/Templates/CantoAssetBrowser/',
         ]);
     }
 

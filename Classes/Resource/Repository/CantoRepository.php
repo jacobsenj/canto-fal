@@ -11,6 +11,13 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Repository;
 
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use TYPO3\CMS\Core\Http\ApplicationType;
+use TYPO3\CMS\Core\Registry;
+use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Canto\CantoApi\Client;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
@@ -27,13 +34,6 @@ use TYPO3Canto\CantoFal\Resource\CantoClientFactory;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use TYPO3Canto\CantoFal\Resource\Event\BeforeLocalFileProcessingEvent;
 use TYPO3Canto\CantoFal\Utility\CantoUtility;
-use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
-use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
-use TYPO3\CMS\Core\Http\ApplicationType;
-use TYPO3\CMS\Core\Registry;
-use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CantoRepository
 {

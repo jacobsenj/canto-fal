@@ -11,12 +11,6 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Command;
 
-use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
-use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
-use TYPO3Canto\CantoApi\Http\InvalidResponseException;
-use TYPO3Canto\CantoApi\Http\LibraryTree\GetTreeRequest;
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
-use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,6 +19,12 @@ use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
+use TYPO3Canto\CantoApi\Http\InvalidResponseException;
+use TYPO3Canto\CantoApi\Http\LibraryTree\GetTreeRequest;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 
 class WarmupCantoCache extends Command
 {

@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Processing;
 
-use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
-use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
-use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Resource\Processing\ProcessorInterface;
 use TYPO3\CMS\Core\Resource\Processing\TaskInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 class CantoPreviewProcessor implements ProcessorInterface
 {

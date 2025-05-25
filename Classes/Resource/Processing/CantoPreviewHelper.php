@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Processing;
 
-use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Processing\LocalPreviewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 
 class CantoPreviewHelper extends LocalPreviewHelper
 {

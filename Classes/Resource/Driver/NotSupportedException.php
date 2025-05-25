@@ -13,6 +13,4 @@ namespace TYPO3Canto\CantoFal\Resource\Driver;
 
 use TYPO3\CMS\Core\Resource\Exception;
 
-class NotSupportedException extends Exception
-{
-}
+class NotSupportedException extends Exception {}

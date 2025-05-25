@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Command;
 
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,6 +18,7 @@ use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Resource\Index\Indexer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 
 /**
  * todo: remove this command before public release

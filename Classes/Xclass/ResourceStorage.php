@@ -11,9 +11,6 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Xclass;
 
-use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
-use TYPO3Canto\CantoFal\Resource\Repository\CantoFileIndexRepository;
-use TYPO3Canto\CantoFal\Utility\CantoUtility;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Resource\Driver\StreamableDriverInterface;
 use TYPO3\CMS\Core\Resource\FileInterface;
@@ -22,6 +19,9 @@ use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Core\Utility\Exception\NotImplementedMethodException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Repository\CantoFileIndexRepository;
+use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 class ResourceStorage extends \TYPO3\CMS\Core\Resource\ResourceStorage
 {
@@ -33,7 +33,7 @@ class ResourceStorage extends \TYPO3\CMS\Core\Resource\ResourceStorage
         return parent::getFileIndexRepository();
     }
 
-    public function checkFolderActionPermission($action, Folder $folder = null)
+    public function checkFolderActionPermission($action, ?Folder $folder = null)
     {
         if ($folder !== null && $action === 'writeFolder' && $this->getDriverType() === CantoDriver::DRIVER_NAME) {
             return CantoUtility::getSchemeFromCombinedIdentifier($folder->getIdentifier()) !== 'folder';
@@ -53,8 +53,8 @@ class ResourceStorage extends \TYPO3\CMS\Core\Resource\ResourceStorage
     public function streamFile(
         FileInterface $file,
         bool $asDownload = false,
-        string $alternativeFilename = null,
-        string $overrideMimeType = null
+        ?string $alternativeFilename = null,
+        ?string $overrideMimeType = null
     ): ResponseInterface {
         if (!$this->driver instanceof StreamableDriverInterface) {
             return $this->getPseudoStream($file, $asDownload, $alternativeFilename, $overrideMimeType);

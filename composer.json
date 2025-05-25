@@ -39,7 +39,7 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.0",
     "php-parallel-lint/php-parallel-lint": "^1.4",
-    "phpstan/phpstan": "^0.12.92",
+    "phpstan/phpstan": "^1.2",
     "typo3/testing-framework": "^6.16 || 7.*@dev"
   },
   "autoload": {

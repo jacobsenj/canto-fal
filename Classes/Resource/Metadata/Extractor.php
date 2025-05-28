@@ -69,7 +69,7 @@ class Extractor implements ExtractorInterface
 
         $mappedMetaData = $this->getMappedMetaData($file);
 
-        $metadata = array_replace($previousExtractedData, ($mappedMetaData[0] ?? []));
+        $metadata = array_replace($previousExtractedData, ($mappedMetaData[0]));
         $event = new AfterMetaDataExtractionEvent($metadata, $fileData);
 
         return $this->dispatcher->dispatch($event)->getMetadata();
@@ -115,7 +115,6 @@ class Extractor implements ExtractorInterface
             } catch (\JsonException $exception) {
                 // todo: add mapping logging
             }
-            //$metadataObjects[] = $metadata['uid'];
         }
 
         $array_filedata = [
@@ -130,10 +129,16 @@ class Extractor implements ExtractorInterface
         if (isset($fileData['default']['Pages'])) {
             $array_filedata['pages'] = $fileData['default']['Pages'];
         }
-        return array_replace(
-            [
-                $array_filedata,
-            ],
+
+        // Always enforce default language
+        if (!isset($metadata[0])) {
+            $metadata[0] = [];
+        }
+
+        return array_map(
+            function ($metaData) use ($array_filedata) {
+                return array_replace($array_filedata, $metaData);
+            },
             $metadata
         );
     }

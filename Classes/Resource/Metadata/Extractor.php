@@ -76,23 +76,24 @@ class Extractor implements ExtractorInterface
     }
     public function getMappedCategories(File $file): array
     {
-        $fileData = $this->fetchDataForFile($file);
+        $configuration = $file->getStorage()->getConfiguration();
+        if (($configuration['categoryMapping'] ?? '') === '') {
+            return [];
+        }
 
+        $fileData = $this->fetchDataForFile($file);
         if ($fileData === null) {
             return [];
         }
 
         $categories = [];
-        $configuration = $file->getStorage()->getConfiguration();
-        if (array_key_exists('categoryMapping', $configuration)) {
-            try {
-                $mapping = json_decode($configuration['categoryMapping'], true, 512, JSON_THROW_ON_ERROR);
-                // we currently do not support translating sys_categories
-                $categoryData = $this->applyMappedMetaData($mapping, [], $fileData)[0] ?? [];
-                $categories = $this->buildCategoryTree($categoryData);
-            } catch (\JsonException $exception) {
-                // todo: add mapping logging
-            }
+        try {
+            $mapping = json_decode($configuration['categoryMapping'], true, 512, JSON_THROW_ON_ERROR);
+            // we currently do not support translating sys_categories
+            $categoryData = $this->applyMappedMetaData($mapping, [], $fileData)[0] ?? [];
+            $categories = $this->buildCategoryTree($categoryData);
+        } catch (\JsonException $exception) {
+            // todo: add mapping logging
         }
 
         return $categories;

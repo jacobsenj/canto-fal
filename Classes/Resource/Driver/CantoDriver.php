@@ -394,8 +394,6 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             'storage' => $this->storageUid,
             'folder_hash' => '',
             'folder_identifiers' => $folders,
-            'width' => $result['height'],
-            'height' => $result['width'],
         ];
         if (!$propertiesToExtract) {
             return $data;

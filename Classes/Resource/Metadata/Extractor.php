@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Index\ExtractorInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use TYPO3Canto\CantoFal\Resource\Event\AfterMetaDataExtractionEvent;
@@ -70,30 +69,31 @@ class Extractor implements ExtractorInterface
 
         $mappedMetaData = $this->getMappedMetaData($file);
 
-        $metadata = array_replace($previousExtractedData, ($mappedMetaData[0] ?? []));
+        $metadata = array_replace($previousExtractedData, ($mappedMetaData[0]));
         $event = new AfterMetaDataExtractionEvent($metadata, $fileData);
 
         return $this->dispatcher->dispatch($event)->getMetadata();
     }
     public function getMappedCategories(File $file): array
     {
-        $fileData = $this->fetchDataForFile($file);
+        $configuration = $file->getStorage()->getConfiguration();
+        if (($configuration['categoryMapping'] ?? '') === '') {
+            return [];
+        }
 
+        $fileData = $this->fetchDataForFile($file);
         if ($fileData === null) {
             return [];
         }
 
         $categories = [];
-        $configuration = $file->getStorage()->getConfiguration();
-        if (array_key_exists('categoryMapping', $configuration)) {
-            try {
-                $mapping = json_decode($configuration['categoryMapping'], true, 512, JSON_THROW_ON_ERROR);
-                // we currently do not support translating sys_categories
-                $categoryData = $this->applyMappedMetaData($mapping, [], $fileData)[0] ?? [];
-                $categories = $this->buildCategoryTree($categoryData);
-            } catch (\JsonException $exception) {
-                // todo: add mapping logging
-            }
+        try {
+            $mapping = json_decode($configuration['categoryMapping'], true, 512, JSON_THROW_ON_ERROR);
+            // we currently do not support translating sys_categories
+            $categoryData = $this->applyMappedMetaData($mapping, [], $fileData)[0] ?? [];
+            $categories = $this->buildCategoryTree($categoryData);
+        } catch (\JsonException $exception) {
+            // todo: add mapping logging
         }
 
         return $categories;
@@ -116,7 +116,6 @@ class Extractor implements ExtractorInterface
             } catch (\JsonException $exception) {
                 // todo: add mapping logging
             }
-            //$metadataObjects[] = $metadata['uid'];
         }
 
         $array_filedata = [
@@ -131,18 +130,16 @@ class Extractor implements ExtractorInterface
         if (isset($fileData['default']['Pages'])) {
             $array_filedata['pages'] = $fileData['default']['Pages'];
         }
-        //Refresh sizes after append(for first add a new canto image, before call main filetree in site menu)
-        $file->updateProperties($array_filedata);
-        $persistenceManager = GeneralUtility::makeInstance(PersistenceManagerInterface::class);
-        $metaData = $file->getMetaData();
-        $metaData->add($array_filedata);
-        $metaData->save();
-        $persistenceManager->persistAll();
 
-        return array_replace(
-            [
-                $array_filedata,
-            ],
+        // Always enforce default language
+        if (!isset($metadata[0])) {
+            $metadata[0] = [];
+        }
+
+        return array_map(
+            function ($metaData) use ($array_filedata) {
+                return array_replace($array_filedata, $metaData);
+            },
             $metadata
         );
     }

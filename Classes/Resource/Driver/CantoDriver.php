@@ -238,49 +238,33 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
      */
     public function fileExistsInFolder($fileName, $folderIdentifier): bool
     {
-        return $this->getFileInFolder($fileName, $folderIdentifier) !== '';
+        $fileInfo = $this->getFileInfoByIdentifier($fileName);
+        foreach ($fileInfo['folder_identifiers'] as $parentFolderIdentifier) {
+            if ($this->isWithin($folderIdentifier, $parentFolderIdentifier)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
-     * @param string $folderName
+     * @param string $parentFolderIdentifier
      * @param string $folderIdentifier
      */
-    public function folderExistsInFolder($folderName, $folderIdentifier): bool
+    public function folderExistsInFolder($parentFolderIdentifier, $folderIdentifier): bool
     {
-        if ($folderName === $folderIdentifier) {
+        if ($parentFolderIdentifier === $folderIdentifier) {
             return true;
         }
         try {
-            $parentFolderId = CantoUtility::getIdFromCombinedIdentifier($folderIdentifier);
-            $request = new GetTreeRequest($parentFolderId);
-            $parentFolderChildren = $this->cantoRepository
-                ->getClient()
-                ->libraryTree()
-                ->getTree($request)
-                ->getResults();
+            $parentFolderId = CantoUtility::getIdFromCombinedIdentifier($parentFolderIdentifier);
+            $folderInfo = $this->getFolderInfoByIdentifier($folderIdentifier);
         } catch (NotAuthorizedException|InvalidResponseException $e) {
             return false;
         }
 
-        if ($parentFolderChildren === []) {
-            return false;
-        }
-
-        if (!CantoUtility::isValidCombinedIdentifier($folderName)) {
-            foreach ($parentFolderChildren as $leaf) {
-                if ($leaf['name'] === $folderName) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        $folderId = CantoUtility::getIdFromCombinedIdentifier($folderName);
-        foreach ($parentFolderChildren as $leaf) {
-            if ($leaf['id'] === $folderId) {
-                return true;
-            }
-        }
-        return false;
+        return in_array($parentFolderId, GeneralUtility::trimExplode('/', $folderInfo['idPath']), true);
     }
 
     /**
@@ -338,7 +322,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             return $this->folderExistsInFolder($folderIdentifier, $identifier);
         }
 
-        return $this->fileExistsInFolder($folderIdentifier, $identifier);
+        return $this->fileExistsInFolder($identifier, $folderIdentifier);
     }
 
     /**
@@ -418,6 +402,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             'mtime' => $now,
             'ctime' => $now,
             'storage' => $this->storageUid,
+            'idPath' => CantoUtility::getIdFromCombinedIdentifier($this->rootFolderIdentifier),
         ];
         if (!$folderIdentifier || $folderIdentifier === $this->rootFolderIdentifier) {
             return $rootFolder;
@@ -437,6 +422,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             'mtime' => CantoUtility::buildTimestampFromCantoDate($result['time']),
             'ctime' => CantoUtility::buildTimestampFromCantoDate($result['created']),
             'storage' => $this->storageUid,
+            'idPath' => $result['idPath'],
         ];
     }
 

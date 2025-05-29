@@ -90,7 +90,7 @@ final class SiteConfigurationResolver
 
     private function getTypo3Request(): ?ServerRequest
     {
-        return $GLOBALS['TYPO3_REQUEST'];
+        return $GLOBALS['TYPO3_REQUEST'] ?? null;
     }
 
     private function getSiteFinder(): SiteFinder

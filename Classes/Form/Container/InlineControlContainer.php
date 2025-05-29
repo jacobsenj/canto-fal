@@ -36,14 +36,11 @@ class InlineControlContainer extends \TYPO3\CMS\Backend\Form\Container\InlineCon
 
     protected function getTargetStorageId(): int
     {
-        $storageId = 0;
-        if ((SiteConfigurationResolver::get('canto_enabled_asset_picker') ?? false) === true) {
-            $storageId = (int)SiteConfigurationResolver::get('canto_asset_picker_storage');
-            if ($storageId === 0) {
-                $storages = $this->getStorageRepository()->findByStorageType(CantoDriver::DRIVER_NAME);
-                if (isset($storages[0])) {
-                    $storageId = $storages[0]->getUid();
-                }
+        $storageId = (int)SiteConfigurationResolver::get('canto_enabled_asset_picker', $this->data['effectivePid']);
+        if ($storageId === 0) {
+            $storages = $this->getStorageRepository()->findByStorageType(CantoDriver::DRIVER_NAME);
+            if (isset($storages[0])) {
+                $storageId = $storages[0]->getUid();
             }
         }
         return $storageId;

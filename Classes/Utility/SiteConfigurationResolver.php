@@ -21,20 +21,22 @@ final class SiteConfigurationResolver
 {
     /**
      * @param string $configurationKey
+     * @param int $pageId
      * @return mixed|null
      */
-    public static function get(string $configurationKey)
+    public static function get(string $configurationKey, ?int $pageId = null)
     {
         try {
-            $site = (new self())->getCurrentSite();
+            $site = (new self())->getCurrentSite($pageId);
             $siteConfiguration = $site->getConfiguration();
+
             return $siteConfiguration[$configurationKey] ?? null;
         } catch (SiteNotFoundException $exception) {
             return null;
         }
     }
 
-    public function getCurrentSite(): Site
+    public function getCurrentSite(?int $pageId = null): Site
     {
         $request = $this->getTypo3Request();
         $site = $request ? $request->getAttribute('site') : null;
@@ -42,6 +44,10 @@ final class SiteConfigurationResolver
         if ($site instanceof Site) {
             return $site;
         }
+        if ($pageId !== null) {
+            return $this->getSiteFinder()->getSiteByPageId($pageId);
+        }
+        $pageId = 0;
         $ajax = $request ? ($request->getParsedBody()['ajax'] ?? $request->getQueryParams()['ajax'] ?? null) : null;
         $returnUrl = '';
         if (!empty($ajax['context'])) {
@@ -55,14 +61,18 @@ final class SiteConfigurationResolver
                 $returnUrl = urldecode($config['originalReturnUrl'] ?? '');
             }
         }
-        // should the site attribute not be set for a normal Request, them we fall back to the SiteFinder-Method way
+        // get pageId from any returnUrl parameter
         if ($request && !$returnUrl) {
             $returnUrl = $request->getQueryParams()['returnUrl'] ?? '';
         }
-        $queryString = parse_url($returnUrl, PHP_URL_QUERY) ?? '';
-        parse_str($queryString, $queryParams);
-        $pageId = (int)($queryParams['id'] ?? 0);
-        if ($returnUrl === '' || $pageId === 0) {
+        while ($returnUrl !== '' && $pageId === 0) {
+            $queryString = parse_url($returnUrl, PHP_URL_QUERY) ?? '';
+            parse_str($queryString, $queryParams);
+            $pageId = (int)($queryParams['id'] ?? 0);
+            $returnUrl = $queryParams['returnUrl'] ?? '';
+        }
+        // should the site attribute not be set for a normal Request, them we fall back to the SiteFinder-Method way
+        if ($pageId === 0) {
             $allSites = $this->getSiteFinder()->getAllSites();
             if (count($allSites) === 1) {
                 // this is the absolute last fallback if all other methods should fail

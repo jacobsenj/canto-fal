@@ -155,11 +155,15 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             return null;
         }
         if ($useMdc && $this->mdcUrlGenerator) {
-            $url = $this->cantoRepository->generateMdcUrl($identifier);
-            $url .= $this->mdcUrlGenerator->addOperationToMdcUrl([
-                'width' => (int)$fileData['width'],
-                'height' => (int)$fileData['height'],
-            ]);
+            if ($scheme === 'document') {
+                $url = $this->cantoRepository->generateAssetMdcUrl($identifier, $fileData['name']);
+            } else {
+                $url = $this->cantoRepository->generateMdcUrl($identifier);
+                $url .= $this->mdcUrlGenerator->addOperationToMdcUrl([
+                    'width' => (int)$fileData['width'],
+                    'height' => (int)$fileData['height'],
+                ]);
+            }
             return rawurldecode($url);
         }
         // todo: add FAIRCANTO-72 here

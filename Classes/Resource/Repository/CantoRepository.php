@@ -266,6 +266,15 @@ class CantoRepository
         }
     }
 
+    public function generateAssetMdcUrl(string $identifier, ?string $downloadName): string
+    {
+        $domain = $this->driverConfiguration['mdcDomainName'];
+        $awsAccountId = $this->driverConfiguration['mdcAwsAccountId'];
+        $combinedIdentifier = CantoUtility::splitCombinedIdentifier($identifier);
+
+        return sprintf('https://%s/asset/%s/%s_%s/%s', $domain, $awsAccountId, $combinedIdentifier['scheme'], $combinedIdentifier['identifier'], $downloadName);
+    }
+
     public function generateMdcUrl(string $identifier): string
     {
         $domain = $this->driverConfiguration['mdcDomainName'];

@@ -45,10 +45,9 @@ final class MdcUrlGenerator
 
     public function generateMdcUrl(TaskInterface $task): string
     {
-        $assetId = CantoUtility::getIdFromCombinedIdentifier($task->getSourceFile()->getIdentifier());
         $transformedConfiguration = $this->transformConfiguration($task);
 
-        return $this->cantoRepository->generateMdcUrl($assetId) . $this->addOperationToMdcUrl($transformedConfiguration);
+        return $this->cantoRepository->generateMdcUrl($task->getSourceFile()->getIdentifier()) . $this->addOperationToMdcUrl($transformedConfiguration);
     }
 
     /**

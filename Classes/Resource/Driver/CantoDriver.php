@@ -155,7 +155,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             return null;
         }
         if ($useMdc && $this->mdcUrlGenerator) {
-            $url = $this->cantoRepository->generateMdcUrl($fileIdentifier);
+            $url = $this->cantoRepository->generateMdcUrl($identifier);
             $url .= $this->mdcUrlGenerator->addOperationToMdcUrl([
                 'width' => (int)$fileData['width'],
                 'height' => (int)$fileData['height'],

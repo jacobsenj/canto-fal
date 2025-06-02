@@ -270,7 +270,7 @@ class CantoRepository
     {
         $domain = $this->driverConfiguration['mdcDomainName'];
         $awsAccountId = $this->driverConfiguration['mdcAwsAccountId'];
-        return sprintf('https://%s/rendition/%s/image_%s/', $domain, $awsAccountId, $assetId);
+        return sprintf('https://%s/image/%s/image_%s/', $domain, $awsAccountId, $assetId);
     }
 
     public function getFilesInFolder(

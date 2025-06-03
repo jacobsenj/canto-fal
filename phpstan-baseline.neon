@@ -316,16 +316,6 @@ parameters:
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Offset 'height' does not exist on array\\|null\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Offset 'width' does not exist on array\\|null\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
 			message: "#^Parameter \\#1 \\$scheme of static method TYPO3Canto\\\\CantoFal\\\\Utility\\\\CantoUtility\\:\\:buildCombinedIdentifier\\(\\) expects string, string\\|null given\\.$#"
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
@@ -496,53 +486,13 @@ parameters:
 			path: Classes/Resource/MdcUrlGenerator.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\MdcUrlGenerator\\:\\:generateMdcUrl\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\MdcUrlGenerator\\:\\:resolveImageWidthHeight\\(\\) has parameter \\$processingConfiguration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
-			message: "#^Offset 'fileExtension' on array\\{width\\: int, height\\: int, minWidth\\: float\\|int\\|numeric\\-string\\|null, minHeight\\: float\\|int\\|numeric\\-string\\|null, maxWidth\\: float\\|int\\|numeric\\-string\\|null, maxHeight\\: float\\|int\\|numeric\\-string\\|null, crop\\: TYPO3\\\\CMS\\\\Core\\\\Imaging\\\\ImageManipulation\\\\Area\\|null, resizedCropped\\?\\: array\\{width\\: int, height\\: int, offsetLeft\\: int, offsetTop\\: int\\}, \\.\\.\\.\\} in isset\\(\\) does not exist\\.$#"
-			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
 			message: "#^Offset 'height' on array\\{width\\: int, height\\: int, scale\\: float\\} on left side of \\?\\? always exists and is not nullable\\.$#"
-			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
-			message: "#^Offset 'height' on array\\{width\\: int, height\\: int, size\\?\\: int, x\\?\\: int, y\\?\\: int, format\\?\\: string, crop\\?\\: TYPO3\\\\CMS\\\\Core\\\\Imaging\\\\ImageManipulation\\\\Area\\|null, resizedCropped\\?\\: array\\{width\\: int, height\\: int, offsetLeft\\: int, offsetTop\\: int\\}\\} in isset\\(\\) always exists and is not nullable\\.$#"
-			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
-			message: "#^Offset 'resizedCropped' does not exist on array\\{width\\: int, height\\: int, size\\?\\: int, x\\?\\: int, y\\?\\: int, format\\?\\: string, crop\\?\\: TYPO3\\\\CMS\\\\Core\\\\Imaging\\\\ImageManipulation\\\\Area\\|null, resizedCropped\\?\\: array\\{width\\: int, height\\: int, offsetLeft\\: int, offsetTop\\: int\\}\\}\\.$#"
 			count: 1
 			path: Classes/Resource/MdcUrlGenerator.php
 
 		-
 			message: "#^Offset 'width' on array\\{width\\: int, height\\: int, scale\\: float\\} on left side of \\?\\? always exists and is not nullable\\.$#"
 			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
-			message: "#^Offset 'width' on array\\{width\\: int, height\\: int, size\\?\\: int, x\\?\\: int, y\\?\\: int, format\\?\\: string, crop\\?\\: TYPO3\\\\CMS\\\\Core\\\\Imaging\\\\ImageManipulation\\\\Area\\|null, resizedCropped\\?\\: array\\{width\\: int, height\\: int, offsetLeft\\: int, offsetTop\\: int\\}\\} in isset\\(\\) always exists and is not nullable\\.$#"
-			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
-			message: "#^Parameter \\#1 \\$configuration of method TYPO3Canto\\\\CantoFal\\\\Resource\\\\MdcUrlGenerator\\:\\:addOperationToMdcUrl\\(\\) expects array\\{width\\: int, height\\: int, size\\?\\: int, x\\?\\: int, y\\?\\: int, format\\?\\: string, crop\\?\\: TYPO3\\\\CMS\\\\Core\\\\Imaging\\\\ImageManipulation\\\\Area\\|null, resizedCropped\\?\\: array\\{width\\: int, height\\: int, offsetLeft\\: int, offsetTop\\: int\\}\\}, array\\{width\\: int, height\\: int, size\\?\\: int\\|null, x\\?\\: int\\|null, y\\?\\: int\\|null, format\\?\\: string\\|null, crop\\: TYPO3\\\\CMS\\\\Core\\\\Imaging\\\\ImageManipulation\\\\Area\\|null, minWidth\\?\\: float\\|int\\|numeric\\-string\\|null, \\.\\.\\.\\} given\\.$#"
-			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
-			message: "#^Parameter \\#2 \\$configuration of method TYPO3Canto\\\\CantoFal\\\\Resource\\\\MdcUrlGenerator\\:\\:transformConfiguration\\(\\) expects array\\{width\\: int\\|null, height\\: int\\|null, minWidth\\: float\\|int\\|numeric\\-string\\|null, minHeight\\: float\\|int\\|numeric\\-string\\|null, maxWidth\\: float\\|int\\|numeric\\-string\\|null, maxHeight\\: float\\|int\\|numeric\\-string\\|null, crop\\: TYPO3\\\\CMS\\\\Core\\\\Imaging\\\\ImageManipulation\\\\Area\\|null\\}, array given\\.$#"
-			count: 2
 			path: Classes/Resource/MdcUrlGenerator.php
 
 		-

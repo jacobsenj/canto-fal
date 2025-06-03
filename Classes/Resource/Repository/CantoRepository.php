@@ -266,11 +266,22 @@ class CantoRepository
         }
     }
 
-    public function generateMdcUrl(string $assetId): string
+    public function generateAssetMdcUrl(string $identifier, ?string $downloadName): string
     {
         $domain = $this->driverConfiguration['mdcDomainName'];
         $awsAccountId = $this->driverConfiguration['mdcAwsAccountId'];
-        return sprintf('https://%s/rendition/%s/image_%s/', $domain, $awsAccountId, $assetId);
+        $combinedIdentifier = CantoUtility::splitCombinedIdentifier($identifier);
+
+        return sprintf('https://%s/asset/%s/%s_%s/%s', $domain, $awsAccountId, $combinedIdentifier['scheme'], $combinedIdentifier['identifier'], $downloadName);
+    }
+
+    public function generateMdcUrl(string $identifier): string
+    {
+        $domain = $this->driverConfiguration['mdcDomainName'];
+        $awsAccountId = $this->driverConfiguration['mdcAwsAccountId'];
+        $combinedIdentifier = CantoUtility::splitCombinedIdentifier($identifier);
+
+        return sprintf('https://%s/image/%s/%s_%s/', $domain, $awsAccountId, $combinedIdentifier['scheme'], $combinedIdentifier['identifier']);
     }
 
     public function getFilesInFolder(

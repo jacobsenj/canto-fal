@@ -88,6 +88,12 @@ services:
       - name: 'console.command'
         command: 'canto:migratefileidentifiers'
 
+  TYPO3Canto\CantoFal\Resource\EventListener\AddDomainsToContentSecurityPolicyEventListener:
+    tags:
+      - name: event.listener
+        identifier: addDomainsToContentSecurityPolicyEventListener
+        event: TYPO3\CMS\Core\Security\ContentSecurityPolicy\Event\PolicyMutatedEvent
+
   TYPO3Canto\CantoFal\Resource\EventListener\HandleMultipleFolders:
     tags:
       - name: event.listener

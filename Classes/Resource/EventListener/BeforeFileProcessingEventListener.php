@@ -46,12 +46,10 @@ final class BeforeFileProcessingEventListener
         if ($event->getTaskType() === ProcessedFile::CONTEXT_IMAGEPREVIEW) {
             $configuration['fileExtension'] = 'jpg';
         }
-        $url = $this->mdcUrlGenerator->generateMdcUrl($processedFile->getOriginalFile(), $configuration);
+        $url = $this->mdcUrlGenerator->generateMdcUrl($processedFile->getTask());
+        $processedFile->updateProcessingUrl($url);
         $properties = $processedFile->getProperties() ?? [];
-        $properties = array_merge($properties, $this->mdcUrlGenerator->resolveImageWidthHeight(
-            $processedFile->getOriginalFile(),
-            $configuration
-        ));
+        $properties = array_merge($properties, $this->mdcUrlGenerator->resolveImageWidthHeight($processedFile->getTask()));
         $properties['processing_url'] = $url;
         $processedFile->updateProperties($properties);
         $processedFile->setIdentifier(CantoUtility::identifierToProcessedIdentifier($identifier));

@@ -185,6 +185,26 @@
                     </config>
                 </TCEforms>
             </metadataExportMapping>
+            <contentDisposition>
+                <TCEforms>
+                    <label>LLL:EXT:canto_saas_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_contentDisposition</label>
+                    <config>
+                        <type>select</type>
+                        <renderType>selectSingle</renderType>
+                        <items type="array">
+                            <numIndex index="0" type="array">
+                                <numIndex index="0">attachment</numIndex>
+                                <numIndex index="1">attachment</numIndex>
+                            </numIndex>
+                            <numIndex index="1" type="array">
+                                <numIndex index="0">inline</numIndex>
+                                <numIndex index="1">inline</numIndex>
+                            </numIndex>
+                        </items>
+                        <default>attachment</default>
+                    </config>
+                </TCEforms>
+            </contentDisposition>
         </el>
     </ROOT>
 </T3DataStructure>

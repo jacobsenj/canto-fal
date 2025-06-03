@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Registry;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3Canto\CantoApi\Client;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
@@ -272,7 +273,19 @@ class CantoRepository
         $awsAccountId = $this->driverConfiguration['mdcAwsAccountId'];
         $combinedIdentifier = CantoUtility::splitCombinedIdentifier($identifier);
 
-        return sprintf('https://%s/asset/%s/%s_%s/%s', $domain, $awsAccountId, $combinedIdentifier['scheme'], $combinedIdentifier['identifier'], $downloadName);
+        $queryParams = [
+            'content-disposition' => $this->driverConfiguration['contentDisposition'],
+        ];
+
+        return sprintf(
+            'https://%s/asset/%s/%s_%s/%s%s',
+            $domain,
+            $awsAccountId,
+            $combinedIdentifier['scheme'],
+            $combinedIdentifier['identifier'],
+            $downloadName,
+            HttpUtility::buildQueryString($queryParams, '?', true)
+        );
     }
 
     public function generateMdcUrl(string $identifier): string

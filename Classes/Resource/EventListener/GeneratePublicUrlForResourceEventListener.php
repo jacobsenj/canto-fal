@@ -13,32 +13,24 @@ namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
 use TYPO3\CMS\Core\Resource\Event\GeneratePublicUrlForResourceEvent;
 use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\ProcessedFile;
-use TYPO3Canto\CantoFal\Utility\CantoUtility;
+use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 
 final class GeneratePublicUrlForResourceEventListener
 {
     public function __invoke(GeneratePublicUrlForResourceEvent $event): void
     {
         $file = $event->getResource();
-        $identifier = null;
-        if ($file instanceof File) {
-            $identifier = $file->getIdentifier();
-        }
-        if ($file instanceof ProcessedFile) {
-            $identifier = $file->getOriginalFile()->getIdentifier();
-        }
-        if (!$identifier) {
+        if (!$file instanceof File
+            || $file->getStorage()->getDriverType() !== CantoDriver::DRIVER_NAME
+        ) {
             return;
         }
         try {
-            if (CantoUtility::isMdcActivated($event->getStorage()->getConfiguration())) {
-                // This applies a public url for the given asset.
-                // If the file has been registered as a mdc-asset, then this returns the url for it
-                // Otherwise we get the url to the downloaded resource instead
-                $url = $event->getDriver()->getPublicUrl($identifier);
-                $event->setPublicUrl($url);
-            }
+            // This applies a public url for the given asset.
+            // If the file has been registered as a mdc-asset, then this returns the url for it
+            // Otherwise we get the url to the downloaded resource instead
+            $url = $event->getDriver()->getPublicUrl($file->getIdentifier());
+            $event->setPublicUrl($url);
         } catch (\InvalidArgumentException $e) {
             // todo: we should add logging in the future
         }

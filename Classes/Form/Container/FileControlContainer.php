@@ -28,14 +28,10 @@ final class FileControlContainer extends FilesControlContainerCore
         $storageReporitory = GeneralUtility::makeInstance(StorageRepository::class);
         $storages = $storageReporitory->findAll();
 
-        if ($inlineConfiguration['maxitems'] > count($this->data['parameterArray']['fieldConf']['children'])) {
-            foreach ($storages as $storage) {
-                if ($storage->getDriverType() == 'Canto') {
-                    if ($storage->getUid() > 0) {
-                        $newbuttonData = $this->renderAssetPickerButton($inlineConfiguration, $storage->getUid(), $storage->getName());
-                        $rval[count($rval)] = $newbuttonData;
-                    }
-                }
+        foreach ($storages as $storage) {
+            if ($storage->getDriverType() === 'Canto' && $storage->getUid() > 0) {
+                $newbuttonData = $this->renderAssetPickerButton($inlineConfiguration, $storage->getUid(), $storage->getName());
+                $rval[count($rval)] = $newbuttonData;
             }
         }
         return $rval;
@@ -48,11 +44,6 @@ final class FileControlContainer extends FilesControlContainerCore
      */
     private function renderAssetPickerButton(array $inlineConfiguration, int $storageId, string $storageName): string
     {
-        $buttonStyle = '';
-        if (isset($inlineConfiguration['inline']['inlineNewRelationButtonStyle'])) {
-            $buttonStyle = ' style="' . $inlineConfiguration['inline']['inlineNewRelationButtonStyle'] . '"';
-        }
-
         $foreign_table = $inlineConfiguration['foreign_table'];
         $allowed = '';
         if (isset($inlineConfiguration['allowed'])) {
@@ -63,15 +54,21 @@ final class FileControlContainer extends FilesControlContainerCore
         );
         $objectPrefix = $currentStructureDomObjectIdPrefix . '-' . $foreign_table;
 
-        $title = 'Add file';
-        $title .= ' [' . $storageName . ']';
+        $hideButton = isset($inlineConfiguration['maxitems']) && count($this->data['parameterArray']['fieldConf']['children']) >= $inlineConfiguration['maxitems'];
 
-        $browserParams = '|||' . $allowed . '|' . $objectPrefix . '|' . $storageId;
-        $icon = '';
-        return <<<HTML
-<button type="button" class="btn btn-default t3js-element-browser" data-mode="cantosaas" data-params="$browserParams" $buttonStyle title="$title">
-$icon $title
-</button>
-HTML;
+        $title = 'Add file [' . $storageName . ']';
+
+        $attributes = [
+            'type' => 'button',
+            'class' => 'btn btn-default t3js-element-browser',
+            'data-mode' => 'cantosaas',
+            'data-params' => '|||' . $allowed . '|' . $objectPrefix . '|' . $storageId,
+            'style' => $hideButton ? 'display: none;' : ''
+                . ($inlineConfiguration['inline']['inlineNewRelationButtonStyle'] ?? ''),
+            'title' => $title,
+        ];
+
+        return '
+<button ' . GeneralUtility::implodeAttributes($attributes, true) . '>' . htmlspecialchars($title) . '</button > ';
     }
 }

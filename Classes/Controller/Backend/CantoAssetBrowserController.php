@@ -107,6 +107,8 @@ class CantoAssetBrowserController
                 static fn(string $fileExtension) => '.' . trim($fileExtension),
                 explode(',', $allowedFileExtensions)
             )));
+        } else {
+            $search->setSchemes(['image', 'video', 'audio', 'document', 'presentation', 'other']);
         }
 
         // TODO We cannot use keyword search and file extension filter because of missing support for logical grouping.

@@ -27,20 +27,20 @@
     }
   ],
   "require": {
-    "php": "^7.4 || ^8",
+    "php": "^8.2",
     "ext-json": "*",
-    "guzzlehttp/guzzle": "^6.3 || ^7.3",
-    "typo3/cms-core": "^11 || ^12",
-    "typo3/cms-filelist": "^11 || ^12",
-    "typo3/cms-filemetadata": "^11 || ^12",
-    "psr/log": "^1.1 || ^3.0",
-    "typo3-canto/canto-api": "@dev"
+    "guzzlehttp/guzzle": "^7.9.2",
+    "typo3/cms-core": "^13.4",
+    "typo3/cms-filelist": "^13.4",
+    "typo3/cms-filemetadata": "^13.4",
+    "psr/log": "^3.0.1",
+    "typo3-canto/canto-api": "^1.1"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.0",
     "php-parallel-lint/php-parallel-lint": "^1.4",
     "phpstan/phpstan": "^1.2",
-    "typo3/testing-framework": "^6.16 || 7.*@dev"
+    "typo3/testing-framework": "^8.2.3"
   },
   "autoload": {
     "psr-4": {

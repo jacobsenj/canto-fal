@@ -45,28 +45,16 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Resource\ResourceS
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Resource\Index\Indexer::class] = [
     'className' => \TYPO3Canto\CantoFal\Xclass\Indexer::class,
 ];
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Filelist\Controller\FileListController::class] = [
-    'className' => \TYPO3Canto\CantoFal\Xclass\FileListController::class,
-];
 
 // Hooks
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][1627626213]
     = \TYPO3Canto\CantoFal\Hooks\DataHandlerHooks::class;
 
-// Override Inline node type to add canto asset button.
-if (\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getMajorVersion() < 12) {
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1628070217] = [
-        'nodeName' => 'inline',
-        'priority' => 100,
-        'class' => \TYPO3Canto\CantoFal\Form\Container\InlineControlContainer::class,
-    ];/**/
-} else {
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1628070217] = [
-        'nodeName' => \TYPO3\CMS\Backend\Form\Container\FilesControlContainer::NODE_TYPE_IDENTIFIER,
-        'priority' => 100,
-        'class' => \TYPO3Canto\CantoFal\Form\Container\FileControlContainer::class,
-    ];
-}
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1628070217] = [
+    'nodeName' => 'file',
+    'priority' => 100,
+    'class' => \TYPO3Canto\CantoFal\Form\Container\FileControlContainer::class,
+];
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ElementBrowsers']['canto']
     = \TYPO3Canto\CantoFal\Browser\CantoAssetBrowser::class;
@@ -132,9 +120,3 @@ $signalSlotDispatcher->connect(
     TYPO3Canto\CantoFal\Resource\EventListener\AfterFormEnginePageInitializedEventListener::class,
     'updateMetadataInCantoSlot'
 );*/
-
-/*
- * Only for TYPO3 11+10
- * Ignored in V12 service.yaml
-*/
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ElementBrowsers']['canto'] = \TYPO3Canto\CantoFal\Browser\CantoAssetBrowserV11AndV10::class;

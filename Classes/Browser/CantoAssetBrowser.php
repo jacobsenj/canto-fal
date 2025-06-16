@@ -11,13 +11,14 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Browser;
 
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\ElementBrowser\AbstractElementBrowser;
 use TYPO3\CMS\Backend\ElementBrowser\ElementBrowserInterface;
 use TYPO3\CMS\Backend\Tree\View\LinkParameterProviderInterface;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\View\FluidViewAdapter;
+use TYPO3\CMS\Fluid\View\FluidViewAdapter;
 use TYPO3Canto\CantoFal\Resource\CantoClientFactory;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use TYPO3Canto\CantoFal\Resource\NoCantoStorageException;
@@ -32,9 +33,9 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
     /**
      * @throws NoCantoStorageException
      */
-    protected function initialize(): void
+    protected function initialize(ServerRequestInterface $request): void
     {
-        parent::initialize();
+        parent::initialize($request);
 
         $this->initializeStorage();
         $this->pageRenderer->loadJavaScriptModule('@typo3-canto/canto-fal/BrowseCantoAssetsV12.js');
@@ -57,7 +58,7 @@ final class CantoAssetBrowser extends AbstractElementBrowser implements ElementB
     {
         $templateView = $this->view;
         // Make sure that the base initialization creates an FluidView within an FluidViewAdapter
-        $templateView = (fn($templateView): FluidViewAdapter => $templateView)($templateView);
+        $templateView = (fn($templateView): FluidViewAdapter => GeneralUtility::makeInstance(FluidViewAdapter::class, $templateView))($templateView);
 
         $contentOnly = (bool)($this->getRequest()->getQueryParams()['contentOnly'] ?? false);
         $this->pageRenderer->setTitle($this->getLanguageService()->sL('LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:canto_asset_browser.title'));

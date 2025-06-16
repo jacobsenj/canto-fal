@@ -121,8 +121,8 @@ class Extractor implements ExtractorInterface
         $array_filedata = [
             'width' => (int)($fileData['width'] ?? 0),
             'height' => (int)($fileData['height'] ?? 0),
-            'creator' => $fileData['default']['Author'],
-            'copyright' => $fileData['default']['Copyright'],
+            'creator' => $fileData['default']['Author'] ?? '',
+            'copyright' => $fileData['default']['Copyright'] ?? '',
         ];
         if (isset($fileData['default']['Creation Tool'])) {
             $array_filedata['creator_tool'] = $fileData['default']['Creation Tool'];

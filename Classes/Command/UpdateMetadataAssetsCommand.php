@@ -16,24 +16,26 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Resource\ProcessedFileRepository;
-use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use TYPO3Canto\CantoFal\Resource\Metadata\Extractor;
+use TYPO3Canto\CantoFal\Resource\Repository\FileRepository;
 use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 final class UpdateMetadataAssetsCommand extends Command
 {
     private Extractor $metadataExtractor;
-    private StorageRepository $storageRepository;
+
+    private FileRepository $fileRepository;
+
     protected FrontendInterface $cantoFileCache;
-    public function __construct(Extractor $metadataExtractor, StorageRepository $storageRepository)
+
+    public function __construct(?string $name = null)
     {
-        $this->metadataExtractor = $metadataExtractor;
-        $this->storageRepository = $storageRepository;
-        parent::__construct();
+        parent::__construct($name);
+        $this->metadataExtractor = GeneralUtility::makeInstance(Extractor::class);
+        $this->fileRepository = GeneralUtility::makeInstance(FileRepository::class);
     }
 
     public function injectCantoFileCache(FrontendInterface $cantoFileCache): void
@@ -54,9 +56,7 @@ EOF
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
-        assert($fileRepository instanceof FileRepository);
-        $files = $fileRepository->findAll();
+        $files = $this->fileRepository->findAll();
         $counter = 0;
         foreach ($files as $file) {
             assert($file instanceof File);
@@ -95,6 +95,7 @@ EOF
                 sleep(60);
             }
         }
+
         return self::SUCCESS;
     }
 }

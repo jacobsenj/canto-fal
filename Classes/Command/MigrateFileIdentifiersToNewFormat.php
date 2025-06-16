@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Command;
 
-use Doctrine\DBAL\FetchMode;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -53,15 +52,9 @@ final class MigrateFileIdentifiersToNewFormat extends Command
             $statement = $builder->select('uid', 'identifier')
                 ->from('sys_file')
                 ->where($builder->expr()->eq('storage', $uid))
-                ->execute();
+                ->executeQuery();
 
-            if (method_exists($statement, 'fetchAllAssociative')) {
-                $result = $statement->fetchAllAssociative();
-            } elseif (method_exists($statement, 'fetchAll')) {
-                $result = $statement->fetchAll(FetchMode::ASSOCIATIVE);
-            } else {
-                continue;
-            }
+            $result = $statement->fetchAllAssociative();
 
             foreach ($result as $item) {
                 if (!str_contains($item['identifier'], '#')) {
@@ -74,7 +67,7 @@ final class MigrateFileIdentifiersToNewFormat extends Command
                     ->set('identifier_hash', $storage->hashFileIdentifier($newIdentifier))
                     ->set('sha1', $storage->hashFileByIdentifier($newIdentifier, 'sha1'))
                     ->where($builder->expr()->eq('uid', $item['uid']))
-                    ->execute();
+                    ->executeStatement();
             }
         }
         return self::SUCCESS;

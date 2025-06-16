@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Processing;
 
-use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Processing\LocalPreviewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Imaging\GifBuilder;
 use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 
 class CantoPreviewHelper extends LocalPreviewHelper
@@ -32,13 +32,14 @@ class CantoPreviewHelper extends LocalPreviewHelper
             $tempFile = $this->cantoRepository->getFileForLocalProcessing($file->getIdentifier(), true);
         } catch (\Exception $e) {
             // Create a default image
-            $graphicalFunctions = GeneralUtility::makeInstance(GraphicalFunctions::class);
+            $graphicalFunctions = GeneralUtility::makeInstance(GifBuilder::class);
             $graphicalFunctions->getTemporaryImageWithText(
                 $targetFilePath,
                 'Not imagefile!',
                 'No ext!',
                 $file->getName()
             );
+
             return [
                 'filePath' => $targetFilePath,
             ];
@@ -46,6 +47,7 @@ class CantoPreviewHelper extends LocalPreviewHelper
 
         $processedImagePath = $this->generatePreviewFromLocalFile($tempFile, $configuration, $targetFilePath);
         GeneralUtility::unlink_tempfile($tempFile);
+
         return $processedImagePath;
     }
 }

@@ -48,16 +48,20 @@ class CantoPreviewProcessor implements ProcessorInterface
         $helper = $this->getHelper();
         $result = $helper->process($task);
 
+        $task->setExecuted(false);
         if (!empty($result['filePath']) && file_exists($result['filePath'])) {
-            $task->setExecuted(true);
             $imageDimensions = $this->getGraphicalFunctionsObject()->getImageDimensions($result['filePath']);
-            $task->getTargetFile()->setName($task->getTargetFileName());
-            $task->getTargetFile()->updateProperties(
-                ['width' => $imageDimensions[0], 'height' => $imageDimensions[1], 'size' => filesize($result['filePath']), 'checksum' => $task->getConfigurationChecksum()]
-            );
-            $task->getTargetFile()->updateWithLocalFile($result['filePath']);
-        } else {
-            $task->setExecuted(false);
+            if (is_array($imageDimensions)
+                && ($imageDimensions[0] ?? 0) > 0
+                && ($imageDimensions[1] ?? 0) > 0
+            ) {
+                $task->getTargetFile()->setName($task->getTargetFileName());
+                $task->getTargetFile()->updateProperties(
+                    ['width' => $imageDimensions[0], 'height' => $imageDimensions[1], 'size' => filesize($result['filePath']), 'checksum' => $task->getConfigurationChecksum()]
+                );
+                $task->getTargetFile()->updateWithLocalFile($result['filePath']);
+                $task->setExecuted(true);
+            }
         }
     }
 

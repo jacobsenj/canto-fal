@@ -4,206 +4,176 @@
         <type>array</type>
         <el>
             <appId>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_appId</label>
-                    <config>
-                        <type>input</type>
-                        <eval>required,trim</eval>
-                        <size>30</size>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_appId</label>
+                <config>
+                    <type>input</type>
+                    <eval>required,trim</eval>
+                    <size>30</size>
+                </config>
             </appId>
             <appSecret>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_appSecret</label>
-                    <config>
-                        <type>input</type>
-                        <eval>required,trim</eval>
-                        <size>30</size>
-                        <eval>password</eval>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_appSecret</label>
+                <config>
+                    <type>input</type>
+                    <eval>required,trim</eval>
+                    <size>30</size>
+                    <eval>password</eval>
+                </config>
             </appSecret>
             <cantoName>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_cantoName</label>
-                    <config>
-                        <type>input</type>
-                        <eval>required,trim</eval>
-                        <size>30</size>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_cantoName</label>
+                <config>
+                    <type>input</type>
+                    <eval>required,trim</eval>
+                    <size>30</size>
+                </config>
             </cantoName>
             <cantoDomain>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_cantoDomain</label>
-                    <config>
-                        <type>select</type>
-                        <renderType>selectSingle</renderType>
-                        <items type="array">
-                            <numIndex index="0" type="array">
-                                <numIndex index="0">canto.com</numIndex>
-                                <numIndex index="1">canto.com</numIndex>
-                            </numIndex>
-                            <numIndex index="1" type="array">
-                                <numIndex index="0">canto.de</numIndex>
-                                <numIndex index="1">canto.de</numIndex>
-                            </numIndex>
-                            <numIndex index="2" type="array">
-                                <numIndex index="0">canto.global</numIndex>
-                                <numIndex index="1">canto.global</numIndex>
-                            </numIndex>
-                        </items>
-                        <default>canto.com</default>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_cantoDomain</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array">
+                        <numIndex index="0" type="array">
+                            <numIndex index="0">canto.com</numIndex>
+                            <numIndex index="1">canto.com</numIndex>
+                        </numIndex>
+                        <numIndex index="1" type="array">
+                            <numIndex index="0">canto.de</numIndex>
+                            <numIndex index="1">canto.de</numIndex>
+                        </numIndex>
+                        <numIndex index="2" type="array">
+                            <numIndex index="0">canto.global</numIndex>
+                            <numIndex index="1">canto.global</numIndex>
+                        </numIndex>
+                    </items>
+                    <default>canto.com</default>
+                </config>
             </cantoDomain>
             <userId>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_userId</label>
-                    <config>
-                        <type>input</type>
-                        <eval>trim</eval>
-                        <size>30</size>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_userId</label>
+                <config>
+                    <type>input</type>
+                    <eval>trim</eval>
+                    <size>30</size>
+                </config>
             </userId>
             <scope>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_scope</label>
-                    <config>
-                        <type>select</type>
-                        <renderType>selectSingle</renderType>
-                        <items type="array">
-                            <numIndex index="0" type="array">
-                                <numIndex index="0">Admin</numIndex>
-                                <numIndex index="1">admin</numIndex>
-                            </numIndex>
-                            <numIndex index="1" type="array">
-                                <numIndex index="0">Contributor</numIndex>
-                                <numIndex index="1">contributor</numIndex>
-                            </numIndex>
-                            <numIndex index="2" type="array">
-                                <numIndex index="0">Consumer</numIndex>
-                                <numIndex index="1">consumer</numIndex>
-                            </numIndex>
-                        </items>
-                        <default>admin</default>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_scope</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array">
+                        <numIndex index="0" type="array">
+                            <numIndex index="0">Admin</numIndex>
+                            <numIndex index="1">admin</numIndex>
+                        </numIndex>
+                        <numIndex index="1" type="array">
+                            <numIndex index="0">Contributor</numIndex>
+                            <numIndex index="1">contributor</numIndex>
+                        </numIndex>
+                        <numIndex index="2" type="array">
+                            <numIndex index="0">Consumer</numIndex>
+                            <numIndex index="1">consumer</numIndex>
+                        </numIndex>
+                    </items>
+                    <default>admin</default>
+                </config>
             </scope>
             <rootFolderScheme>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_rootFolderScheme</label>
-                    <config>
-                        <type>select</type>
-                        <renderType>selectSingle</renderType>
-                        <items type="array">
-                            <numIndex index="0" type="array">
-                                <numIndex index="0">Folder</numIndex>
-                                <numIndex index="1">folder</numIndex>
-                            </numIndex>
-                            <numIndex index="1" type="array">
-                                <numIndex index="0">Album</numIndex>
-                                <numIndex index="1">album</numIndex>
-                            </numIndex>
-                        </items>
-                        <default>folder</default>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_rootFolderScheme</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array">
+                        <numIndex index="0" type="array">
+                            <numIndex index="0">Folder</numIndex>
+                            <numIndex index="1">folder</numIndex>
+                        </numIndex>
+                        <numIndex index="1" type="array">
+                            <numIndex index="0">Album</numIndex>
+                            <numIndex index="1">album</numIndex>
+                        </numIndex>
+                    </items>
+                    <default>folder</default>
+                </config>
             </rootFolderScheme>
             <rootFolder>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_rootFolder</label>
-                    <description>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_rootFolder.description</description>
-                    <config>
-                        <type>input</type>
-                        <size>6</size>
-                        <eval>alphanum,upper,trim</eval>
-                        <placeholder>VPA4H</placeholder>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_rootFolder</label>
+                <description>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_rootFolder.description</description>
+                <config>
+                    <type>input</type>
+                    <size>6</size>
+                    <eval>alphanum,upper,trim</eval>
+                    <placeholder>VPA4H</placeholder>
+                </config>
             </rootFolder>
             <mdcDomainName>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_mdcDomainName</label>
-                    <config>
-                        <type>input</type>
-                        <eval>trim</eval>
-                        <size>30</size>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_mdcDomainName</label>
+                <config>
+                    <type>input</type>
+                    <eval>trim</eval>
+                    <size>30</size>
+                </config>
             </mdcDomainName>
             <mdcAwsAccountId>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_mdcAwsAccountId</label>
-                    <config>
-                        <type>input</type>
-                        <eval>trim</eval>
-                        <size>30</size>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_mdcAwsAccountId</label>
+                <config>
+                    <type>input</type>
+                    <eval>trim</eval>
+                    <size>30</size>
+                </config>
             </mdcAwsAccountId>
             <masterImageSize>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_masterImageSize</label>
-                    <config>
-                        <type>input</type>
-                        <eval>trim,int</eval>
-                        <size>30</size>
-                        <default>2048</default>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_masterImageSize</label>
+                <config>
+                    <type>input</type>
+                    <eval>trim,int</eval>
+                    <size>30</size>
+                    <default>2048</default>
+                </config>
             </masterImageSize>
             <metadataMapping>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_metadataFieldMapping</label>
-                    <config>
-                        <type>text</type>
-                        <renderType>t3editor</renderType>
-                        <rows>9</rows>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_metadataFieldMapping</label>
+                <config>
+                    <type>text</type>
+                    <renderType>t3editor</renderType>
+                    <rows>9</rows>
+                </config>
             </metadataMapping>
             <categoryMapping>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_categoryFieldMapping</label>
-                    <config>
-                        <type>text</type>
-                        <renderType>t3editor</renderType>
-                        <rows>9</rows>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_categoryFieldMapping</label>
+                <config>
+                    <type>text</type>
+                    <renderType>t3editor</renderType>
+                    <rows>9</rows>
+                </config>
             </categoryMapping>
             <metadataExportMapping>
-                <TCEforms>
-                    <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_metadataExportMapping</label>
-                    <config>
-                        <type>text</type>
-                        <renderType>t3editor</renderType>
-                        <rows>9</rows>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_metadataExportMapping</label>
+                <config>
+                    <type>text</type>
+                    <renderType>t3editor</renderType>
+                    <rows>9</rows>
+                </config>
             </metadataExportMapping>
             <contentDisposition>
-                <TCEforms>
-                    <label>LLL:EXT:canto_saas_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_contentDisposition</label>
-                    <config>
-                        <type>select</type>
-                        <renderType>selectSingle</renderType>
-                        <items type="array">
-                            <numIndex index="0" type="array">
-                                <numIndex index="0">attachment</numIndex>
-                                <numIndex index="1">attachment</numIndex>
-                            </numIndex>
-                            <numIndex index="1" type="array">
-                                <numIndex index="0">inline</numIndex>
-                                <numIndex index="1">inline</numIndex>
-                            </numIndex>
-                        </items>
-                        <default>attachment</default>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:canto_saas_fal/Resources/Private/Language/locallang_be.xlf:sys_file_storage.cantoDriverFlexform_contentDisposition</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array">
+                        <numIndex index="0" type="array">
+                            <numIndex index="0">attachment</numIndex>
+                            <numIndex index="1">attachment</numIndex>
+                        </numIndex>
+                        <numIndex index="1" type="array">
+                            <numIndex index="0">inline</numIndex>
+                            <numIndex index="1">inline</numIndex>
+                        </numIndex>
+                    </items>
+                    <default>attachment</default>
+                </config>
             </contentDisposition>
         </el>
     </ROOT>

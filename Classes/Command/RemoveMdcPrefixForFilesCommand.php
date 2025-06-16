@@ -15,10 +15,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Resource\Index\Indexer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Repository\FileRepository;
 
 /**
  * todo: remove this command before public release
@@ -26,6 +26,14 @@ use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
  */
 final class RemoveMdcPrefixForFilesCommand extends Command
 {
+    protected FileRepository $fileRepository;
+
+    public function __construct(?string $name = null)
+    {
+        parent::__construct($name);
+        $this->fileRepository = GeneralUtility::makeInstance(FileRepository::class);
+    }
+
     protected function configure(): void
     {
         $this->setDescription('Remove mdc::-Prefix from all mdc files');
@@ -33,9 +41,7 @@ final class RemoveMdcPrefixForFilesCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
-        assert($fileRepository instanceof FileRepository);
-        $files = $fileRepository->findAll();
+        $files = $this->fileRepository->findAll();
         foreach ($files as $file) {
             assert($file instanceof File);
             if ($file->getStorage()->getDriverType() !== CantoDriver::DRIVER_NAME) {

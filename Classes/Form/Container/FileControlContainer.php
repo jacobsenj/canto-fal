@@ -11,13 +11,31 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Form\Container;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Backend\Form\Container\FilesControlContainer as FilesControlContainerCore;
+use TYPO3\CMS\Backend\Form\InlineStackProcessor;
+use TYPO3\CMS\Core\Crypto\HashService;
+use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Resource\DefaultUploadFolderResolver;
 use TYPO3\CMS\Core\Resource\Filter\FileExtensionFilter;
+use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class FileControlContainer extends FilesControlContainerCore
 {
+    public function __construct(
+        protected readonly IconFactory $iconFactory,
+        protected readonly InlineStackProcessor $inlineStackProcessor,
+        protected readonly EventDispatcherInterface $eventDispatcher,
+        protected readonly OnlineMediaHelperRegistry $onlineMediaHelperRegistry,
+        protected readonly DefaultUploadFolderResolver $defaultUploadFolderResolver,
+        protected readonly HashService $hashService,
+    ) {
+        // Set private parent properties
+        parent::__construct($iconFactory, $inlineStackProcessor, $eventDispatcher, $onlineMediaHelperRegistry, $defaultUploadFolderResolver, $hashService);
+    }
+
     /**
      * Generate buttons to select, reference and upload files.
      */
@@ -34,6 +52,7 @@ final class FileControlContainer extends FilesControlContainerCore
                 $rval[count($rval)] = $newbuttonData;
             }
         }
+
         return $rval;
     }
 

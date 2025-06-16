@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Repository;
 
+use Doctrine\DBAL\ParameterType;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -59,22 +60,15 @@ class CantoFileIndexRepository extends FileIndexRepository
                 ),
                 $queryBuilder->expr()->eq(
                     $this->table . '.storage',
-                    $queryBuilder->createNamedParameter($folder->getStorage()->getUid(), \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter($folder->getStorage()->getUid(), ParameterType::INTEGER)
                 )
             )
             ->groupBy($this->table . '.uid')
-            ->execute();
+            ->executeQuery();
 
         $resultRows = [];
-        if (method_exists($result, 'fetchAssociative')) {
-            while ($row = $result->fetchAssociative()) {
-                $resultRows[$row['identifier']] = $row;
-            }
-        } elseif (method_exists($result, 'fetchAll')) {
-            // Backward-Compatibility with doctrine/dbal < 2.11
-            while ($row = $result->fetchAll(\Doctrine\DBAL\FetchMode::ASSOCIATIVE)) {
-                $resultRows[$row['identifier']] = $row;
-            }
+        while ($row = $result->fetchAssociative()) {
+            $resultRows[$row['identifier']] = $row;
         }
 
         return $resultRows;
@@ -131,7 +125,7 @@ class CantoFileIndexRepository extends FileIndexRepository
             ->groupBy($this->table . '.uid');
 
         if (isset($fileName)) {
-            $nameParts = str_getcsv($fileName, ' ');
+            $nameParts = str_getcsv($fileName, ' ', '"', '');
             foreach ($nameParts as $part) {
                 $part = trim($part);
                 if ($part !== '') {
@@ -140,7 +134,7 @@ class CantoFileIndexRepository extends FileIndexRepository
                             'name',
                             $queryBuilder->createNamedParameter(
                                 '%' . $queryBuilder->escapeLikeWildcards($part) . '%',
-                                \PDO::PARAM_STR
+                                ParameterType::STRING
                             )
                         )
                     );
@@ -152,22 +146,16 @@ class CantoFileIndexRepository extends FileIndexRepository
             $queryBuilder->andWhere(
                 $queryBuilder->expr()->eq(
                     'missing',
-                    $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
                 )
             );
         }
 
-        $result = $queryBuilder->execute();
+        $result = $queryBuilder->executeQuery();
 
         $fileRecords = [];
-        if (method_exists($result, 'fetchAssociative')) {
-            while ($fileRecord = $result->fetchAssociative()) {
-                $fileRecords[$fileRecord['identifier']] = $fileRecord;
-            }
-        } elseif (method_exists($result, 'fetch')) {
-            while ($fileRecord = $result->fetch(\Doctrine\DBAL\FetchMode::ASSOCIATIVE)) {
-                $fileRecords[$fileRecord['identifier']] = $fileRecord;
-            }
+        while ($fileRecord = $result->fetchAssociative()) {
+            $fileRecords[$fileRecord['identifier']] = $fileRecord;
         }
 
         return $fileRecords;

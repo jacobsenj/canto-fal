@@ -56,6 +56,9 @@ class CantoUtility
         return array_combine(['scheme', 'identifier'], explode(self::SPLIT_CHARACTER, $combinedIdentifier));
     }
 
+    /**
+     * @return non-empty-string
+     */
     public static function buildCombinedIdentifier(string $scheme, string $id): string
     {
         return sprintf('%s%s%s', $scheme, self::SPLIT_CHARACTER, $id);

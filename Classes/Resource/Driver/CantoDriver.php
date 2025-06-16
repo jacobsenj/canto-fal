@@ -17,10 +17,11 @@ use TYPO3\CMS\Core\Http\FalDumpFileContentsDecoratorStream;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Resource\Capabilities;
 use TYPO3\CMS\Core\Resource\Driver\AbstractDriver;
 use TYPO3\CMS\Core\Resource\Driver\StreamableDriverInterface;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
-use TYPO3\CMS\Core\Resource\ResourceStorage;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\Exception\MissingArrayPathException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -51,7 +52,8 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
 
     protected CantoRepository $cantoRepository;
 
-    protected string $rootFolderIdentifier;
+    /** @var non-empty-string */
+    protected string $rootFolderIdentifier = self::ROOT_FOLDER;
 
     protected bool $validCantoConfiguration;
 
@@ -63,12 +65,14 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
     public function __construct(array $configuration = [])
     {
         parent::__construct($configuration);
-        $this->capabilities = ResourceStorage::CAPABILITY_BROWSABLE |
-            ResourceStorage::CAPABILITY_WRITABLE;
+        $this->capabilities = new Capabilities(
+            Capabilities::CAPABILITY_BROWSABLE
+            | Capabilities::CAPABILITY_WRITABLE
+        );
         $this->rootFolderIdentifier = $this->buildRootFolderIdentifier();
     }
 
-    public function processConfiguration()
+    public function processConfiguration(): void
     {
         $this->validCantoConfiguration = is_int($this->storageUid)
             && $this->storageUid > 0
@@ -78,13 +82,13 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             && ($this->configuration['appSecret'] ?? '') !== '';
     }
 
-    public function initialize()
+    public function initialize(): void
     {
         // The check is necessary to prevent an error thrown in Maintenance Admin Tool -> Remove Temporary Assets
         if ($this->validCantoConfiguration && GeneralUtility::getContainer()->has(CantoRepository::class)) {
             $this->cantoRepository = GeneralUtility::makeInstance(CantoRepository::class);
             try {
-                $this->cantoRepository->initialize($this->storageUid, $this->configuration);
+                $this->cantoRepository->initialize((int)$this->storageUid, $this->configuration);
             } catch (AuthorizationFailedException $e) {
                 echo 'Append Canto Fal Driver configuration.';
             }
@@ -92,15 +96,16 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         $this->mdcUrlGenerator = GeneralUtility::makeInstance(MdcUrlGenerator::class);
     }
 
-    /**
-     * @param int $capabilities
-     */
-    public function mergeConfigurationCapabilities($capabilities): int
+    public function mergeConfigurationCapabilities(Capabilities $capabilities): Capabilities
     {
-        $this->capabilities &= $capabilities;
+        $this->capabilities->and($capabilities);
+
         return $this->capabilities;
     }
 
+    /**
+     * @phpstan-return non-empty-string
+     */
     public function getRootLevelFolder(): string
     {
         return $this->rootFolderIdentifier;
@@ -118,7 +123,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
     public function getParentFolderIdentifierOfIdentifier($fileIdentifier): string
     {
         if (!$fileIdentifier) {
-            return '';
+            return self::ROOT_FOLDER;
         }
         if ($fileIdentifier === $this->rootFolderIdentifier) {
             return $fileIdentifier;
@@ -134,18 +139,19 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             }
             // Remove current folder/album id.
             array_pop($pathIds);
+
             // The parent folder is always of scheme folder because albums can only contain files.
             return CantoUtility::buildCombinedIdentifier(CantoUtility::SCHEME_FOLDER, array_pop($pathIds));
         }
 
         // TODO Check if this method is used for files.
-        return '';
+        return self::ROOT_FOLDER;
     }
 
     /**
-     * @param string $identifier
+     * @return non-empty-string|null
      */
-    public function getPublicUrl($identifier): ?string
+    public function getPublicUrl(string $identifier): ?string
     {
         $scheme = CantoUtility::getSchemeFromCombinedIdentifier($identifier);
         $fileIdentifier = CantoUtility::getIdFromCombinedIdentifier($identifier);
@@ -164,19 +170,18 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
                     'height' => (int)$fileData['height'],
                 ]);
             }
+
             return rawurldecode($url);
         }
         // todo: add FAIRCANTO-72 here
         if (!empty($fileData['url']['directUrlOriginal'])) {
             return rawurldecode($fileData['url']['directUrlOriginal']);
         }
+
         return null;
     }
 
-    /**
-     * @param string $fileIdentifier
-     */
-    public function fileExists($fileIdentifier): bool
+    public function fileExists(string $fileIdentifier): bool
     {
         $scheme = CantoUtility::getSchemeFromCombinedIdentifier($fileIdentifier);
         if (CantoUtility::isFolder($scheme)) {
@@ -187,13 +192,11 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             $scheme,
             $explicitFileIdentifier
         );
+
         return !empty($result);
     }
 
-    /**
-     * @param string $folderIdentifier
-     */
-    public function folderExists($folderIdentifier): bool
+    public function folderExists(string $folderIdentifier): bool
     {
         if ($folderIdentifier === $this->rootFolderIdentifier) {
             return true;
@@ -206,44 +209,36 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         } catch (FolderDoesNotExistException $e) {
             return false;
         }
+
         return !empty($result);
     }
 
-    /**
-     * @param string $folderIdentifier
-     * @throws FolderDoesNotExistException
-     */
-    public function isFolderEmpty($folderIdentifier): bool
+    public function isFolderEmpty(string $folderIdentifier): bool
     {
         return ($this->countFilesInFolder($folderIdentifier) + $this->countFoldersInFolder($folderIdentifier)) === 0;
     }
 
     /**
-     * @param string $fileIdentifier
-     * @param string $hashAlgorithm The hash algorithm to use
+     * @param non-empty-string $fileIdentifier
+     * @param non-empty-string $hashAlgorithm
+     * @return non-empty-string
      */
-    public function hash($fileIdentifier, $hashAlgorithm): string
+    public function hash(string $fileIdentifier, string $hashAlgorithm): string
     {
         return hash($hashAlgorithm, $fileIdentifier);
     }
 
-    /**
-     * @param string $fileIdentifier
-     */
-    public function getFileContents($fileIdentifier): string
+    public function getFileContents(string $fileIdentifier): string
     {
         $publicUrl = $this->getPublicUrl($fileIdentifier);
-        if ($publicUrl !== '') {
-            return GeneralUtility::getUrl($publicUrl);
+        if ((string)$publicUrl === '') {
+            return '';
         }
-        return '';
+
+        return GeneralUtility::getUrl($publicUrl);
     }
 
-    /**
-     * @param string $fileName
-     * @param string $folderIdentifier
-     */
-    public function fileExistsInFolder($fileName, $folderIdentifier): bool
+    public function fileExistsInFolder(string $fileName, string $folderIdentifier): bool
     {
         $fileInfo = $this->getFileInfoByIdentifier($fileName);
         foreach ($fileInfo['folder_identifiers'] as $parentFolderIdentifier) {
@@ -255,11 +250,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         return false;
     }
 
-    /**
-     * @param string $parentFolderIdentifier
-     * @param string $folderIdentifier
-     */
-    public function folderExistsInFolder($parentFolderIdentifier, $folderIdentifier): bool
+    public function folderExistsInFolder(string $parentFolderIdentifier, string $folderIdentifier): bool
     {
         if ($parentFolderIdentifier === $folderIdentifier) {
             return true;
@@ -274,22 +265,12 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         return in_array($parentFolderId, GeneralUtility::trimExplode('/', $folderInfo['idPath']), true);
     }
 
-    /**
-     * @param string $fileIdentifier
-     * @param bool $writable Set this to FALSE if you only need the file for read
-     *                       operations. This might speed up things, e.g. by using
-     *                       a cached local version. Never modify the file if you
-     *                       have set this flag!
-     */
-    public function getFileForLocalProcessing($fileIdentifier, $writable = true): string
+    public function getFileForLocalProcessing(string $fileIdentifier, bool $writable = true): string
     {
         return $this->cantoRepository->getFileForLocalProcessing($fileIdentifier);
     }
 
-    /**
-     * @param string $identifier
-     */
-    public function getPermissions($identifier): array
+    public function getPermissions(string $identifier): array
     {
         return [
             'r' => true,
@@ -297,19 +278,12 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         ];
     }
 
-    /**
-     * @param string $identifier
-     */
-    public function dumpFileContents($identifier): void
+    public function dumpFileContents(string $identifier): void
     {
         echo $this->getFileContents($identifier);
     }
 
-    /**
-     * @param string $folderIdentifier
-     * @param string $identifier identifier to be checked against $folderIdentifier
-     */
-    public function isWithin($folderIdentifier, $identifier): bool
+    public function isWithin(string $folderIdentifier, string $identifier): bool
     {
         /*
          * Ensure that the given identifiers are valid. Do not throw an exception,
@@ -332,13 +306,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         return $this->fileExistsInFolder($identifier, $folderIdentifier);
     }
 
-    /**
-     * @param string $fileIdentifier
-     * @param array $propertiesToExtract Array of properties which are being extracted
-     *                                   If empty all will be extracted
-     * @throws FolderDoesNotExistException
-     */
-    public function getFileInfoByIdentifier($fileIdentifier, array $propertiesToExtract = []): array
+    public function getFileInfoByIdentifier(string $fileIdentifier, array $propertiesToExtract = []): array
     {
         $scheme = CantoUtility::getSchemeFromCombinedIdentifier($fileIdentifier);
         if (CantoUtility::isFolder($scheme)) {
@@ -356,7 +324,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
                 'size' => 1000,
                 'atime' => time(),
                 'mtime' => 0,
-                'ctime' =>  0,
+                'ctime' => 0,
                 'mimetype' => '',
                 'name' => 'fallbackimage.jpg',
                 'extension' => 'jpg',
@@ -393,14 +361,14 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         foreach ($propertiesToExtract as $item) {
             $properties[$item] = $data[$item];
         }
+
         return $properties;
     }
 
     /**
-     * @param string $folderIdentifier In the case of the LocalDriver, this is the (relative) path to the file.
-     * @throws FolderDoesNotExistException
+     * @return array{'identifier': string, 'name': string, 'mtime': int, 'ctime': int, 'storage': ?int, 'idPath': string}
      */
-    public function getFolderInfoByIdentifier($folderIdentifier): array
+    public function getFolderInfoByIdentifier(string $folderIdentifier): array
     {
         $now = time();
         $rootFolder = [
@@ -433,11 +401,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         ];
     }
 
-    /**
-     * @param string $fileName
-     * @param string $folderIdentifier
-     */
-    public function getFileInFolder($fileName, $folderIdentifier): string
+    public function getFileInFolder(string $fileName, string $folderIdentifier): string
     {
         $filesWithName = $this->resolveFilesInFolder(
             $folderIdentifier,
@@ -445,36 +409,24 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             0,
             false,
             [],
-        ) ?? [];
+        );
         foreach ($filesWithName as $file) {
             if ($file['name'] === $fileName) {
                 return $file['id'];
             }
         }
+
         return '';
     }
 
-    /**
-     * @param string $folderIdentifier
-     * @param int $start
-     * @param int $numberOfItems
-     * @param bool $recursive
-     * @param array $filenameFilterCallbacks callbacks for filtering the items
-     * @param string $sort Property name used to sort the items.
-     *                     Among them may be: '' (empty, no sorting), name,
-     *                     fileext, size, tstamp and rw.
-     *                     If a driver does not support the given property, it
-     *                     should fall back to "name".
-     * @param bool $sortRev TRUE to indicate reverse sorting (last to first)
-     */
     public function getFilesInFolder(
-        $folderIdentifier,
-        $start = 0,
-        $numberOfItems = 0,
-        $recursive = false,
+        string $folderIdentifier,
+        int $start = 0,
+        int $numberOfItems = 0,
+        bool $recursive = false,
         array $filenameFilterCallbacks = [],
-        $sort = '',
-        $sortRev = false
+        string $sort = '',
+        bool $sortRev = false
     ): array {
         $files = [];
         $results = $this->resolveFilesInFolder($folderIdentifier, $start, $numberOfItems, $recursive, $filenameFilterCallbacks, $sort, $sortRev);
@@ -483,9 +435,13 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             $this->cantoRepository->setFileCache($fileIdentifier, $result);
             $files[] = $fileIdentifier;
         }
+
         return $files;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function resolveFilesInFolder(
         string $folderIdentifier,
         int $start = 0,
@@ -494,7 +450,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         array $filenameFilterCallbacks = [],
         string $sort = '',
         bool $sortRev = false
-    ) {
+    ): array {
         $scheme = CantoUtility::getSchemeFromCombinedIdentifier($folderIdentifier);
         if ($scheme === CantoUtility::SCHEME_FOLDER || $folderIdentifier === $this->rootFolderIdentifier) {
             // There are no files in folders, just other files and albums.
@@ -506,6 +462,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         $sortDirection = $sortRev ? ListAlbumContentRequest::SORT_DIRECTION_DESC
             : ListAlbumContentRequest::SORT_DIRECTION_ASC;
         $limit = $numberOfItems > 0 ? min($numberOfItems, 1000) : 1000;
+
         // TODO Check if there are more that 1000 files and make multiple requests if needed.
         return $this->cantoRepository->getFilesInFolder(
             $explicitFolderIdentifier,
@@ -516,47 +473,30 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         );
     }
 
-    /**
-     * @param string $folderName The name of the target folder
-     * @param string $folderIdentifier
-     */
-    public function getFolderInFolder($folderName, $folderIdentifier): string
+    public function getFolderInFolder(string $folderName, string $folderIdentifier): string
     {
         $foldersWithName = $this->getFoldersInFolder(
             $folderIdentifier,
             0,
             0,
             false,
-            [$folderIdentifier],
+            [],
         ) ?? [];
         if (count($foldersWithName) !== 1) {
             return '';
         }
+
         return $foldersWithName[0];
     }
 
-    /**
-     * @param string $folderIdentifier
-     * @param int $start
-     * @param int $numberOfItems
-     * @param bool $recursive
-     * @param array $folderNameFilterCallbacks The method callbacks to use for filtering the items
-     * @param string $sort Property name used to sort the items.
-     *                     Among them may be: '' (empty, no sorting), name,
-     *                     fileext, size, tstamp and rw.
-     *                     If a driver does not support the given property, it
-     *                     should fall back to "name".
-     * @param bool $sortRev TRUE to indicate reverse sorting (last to first)
-     * @throws FolderDoesNotExistException
-     */
     public function getFoldersInFolder(
-        $folderIdentifier,
-        $start = 0,
-        $numberOfItems = 0,
-        $recursive = false,
+        string $folderIdentifier,
+        int $start = 0,
+        int $numberOfItems = 0,
+        bool $recursive = false,
         array $folderNameFilterCallbacks = [],
-        $sort = '',
-        $sortRev = false
+        string $sort = '',
+        bool $sortRev = false
     ): array {
         $scheme = CantoUtility::getSchemeFromCombinedIdentifier($folderIdentifier);
         if ($scheme === CantoUtility::SCHEME_ALBUM) {
@@ -572,7 +512,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             $folderTree = $folderTree[$this->rootFolderIdentifier] ?? $folderTree;
         } else {
             $folderInformation = $this->cantoRepository->getFolderDetails($scheme, $explicitFolderIdentifier);
-            $idPathSegments = str_getcsv($folderInformation['idPath'], '/');
+            $idPathSegments = str_getcsv($folderInformation['idPath'], '/', '"', '');
             $lastSegmentIndex = count($idPathSegments) - 1;
             array_walk(
                 $idPathSegments,
@@ -607,19 +547,18 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             if ($start > 0) {
                 $start--;
             } else {
-                $folders[$identifier] = $identifier;
+                $folders[$identifier] = (string)$identifier;
                 --$c;
             }
         }
+
         return $folders;
     }
 
     /**
-     * @param string $folderIdentifier
-     * @param bool $recursive
-     * @param array $filenameFilterCallbacks callbacks for filtering the items
+     * @return int<0, max>
      */
-    public function countFilesInFolder($folderIdentifier, $recursive = false, array $filenameFilterCallbacks = []): int
+    public function countFilesInFolder(string $folderIdentifier, bool $recursive = false, array $filenameFilterCallbacks = []): int
     {
         $scheme = CantoUtility::getSchemeFromCombinedIdentifier($folderIdentifier);
         $explicitFolderIdentifier = CantoUtility::getIdFromCombinedIdentifier($folderIdentifier);
@@ -627,18 +566,13 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             // Folders can not have files, just other folders and albums.
             return 0;
         }
+
         return $this->cantoRepository->countFilesInFolder($explicitFolderIdentifier);
     }
 
-    /**
-     * @param string $folderIdentifier
-     * @param bool $recursive
-     * @param array $folderNameFilterCallbacks callbacks for filtering the items
-     * @throws FolderDoesNotExistException
-     */
     public function countFoldersInFolder(
-        $folderIdentifier,
-        $recursive = false,
+        string $folderIdentifier,
+        bool $recursive = false,
         array $folderNameFilterCallbacks = []
     ): int {
         return count($this->getFoldersInFolder(
@@ -650,16 +584,14 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         ));
     }
 
-    /**
-     * @param string $identifier
-     */
-    public function hashIdentifier($identifier): string
+    public function hashIdentifier(string $identifier): string
     {
         $scheme = CantoUtility::getSchemeFromCombinedIdentifier($identifier);
         if (CantoUtility::isFolder($scheme)) {
             $identifier = $this->canonicalizeAndCheckFolderIdentifier($identifier);
         }
         $identifier = $this->canonicalizeAndCheckFileIdentifier($identifier);
+
         return $this->hash($identifier, 'sha1');
     }
 
@@ -673,9 +605,13 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             case 'size':
                 return SearchFolderRequest::SORT_BY_SIZE;
         }
+
         return SearchFolderRequest::SORT_BY_TIME;
     }
 
+    /**
+     * @phpstan-return non-empty-string
+     */
     protected function buildRootFolderIdentifier(): string
     {
         $rootFolderScheme = CantoUtility::SCHEME_FOLDER;
@@ -695,32 +631,29 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         );
     }
 
-    /**
-     * @param string $filePath The file path (most times filePath)
-     */
-    protected function canonicalizeAndCheckFilePath($filePath): string
+    public function sanitizeFileName(string $fileName, string $charset = ''): string
+    {
+        return $fileName;
+    }
+
+    protected function canonicalizeAndCheckFilePath(string $filePath): string
     {
         return $filePath;
     }
 
-    /**
-     * @param string $fileIdentifier The file Identifier
-     */
-    protected function canonicalizeAndCheckFileIdentifier($fileIdentifier): string
+    protected function canonicalizeAndCheckFileIdentifier(string $fileIdentifier): string
     {
         return $fileIdentifier;
     }
 
-    /**
-     * @param string $folderIdentifier The folder identifier
-     */
-    protected function canonicalizeAndCheckFolderIdentifier($folderIdentifier): string
+    protected function canonicalizeAndCheckFolderIdentifier(string $folderIdentifier): string
     {
         return $folderIdentifier;
     }
 
     /**
      * Transient File-Cache cleanup
+     *
      * @see https://review.typo3.org/#/c/36446/
      */
     public function __destruct()
@@ -732,6 +665,11 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         }
     }
 
+    /**
+     * @param non-empty-string $identifier
+     * @param array $properties
+     * @return ResponseInterface
+     */
     public function streamFile(string $identifier, array $properties): ResponseInterface
     {
         $fileInfo = $this->getFileInfoByIdentifier($identifier, ['name', 'mimetype', 'mtime', 'size']);
@@ -754,16 +692,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         );
     }
 
-    /**
-     * Creates a folder, within a parent folder.
-     * If no parent folder is given, a root level folder will be created
-     *
-     * @param string $newFolderName
-     * @param string $parentFolderIdentifier
-     * @param bool $recursive
-     * @return string the Identifier of the new folder
-     */
-    public function createFolder($newFolderName, $parentFolderIdentifier = '', $recursive = false): string
+    public function createFolder(string $newFolderName, string $parentFolderIdentifier = '', bool $recursive = false): string
     {
         $createAlbum = str_starts_with($newFolderName, 'A:');
         $newFolderName = str_replace(['A:', 'F:'], '', $newFolderName);
@@ -776,32 +705,19 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             $folder = $this->cantoRepository->getClient()->libraryTree()->createFolder($request);
             $id = 'folder<>' . $folder->getId();
             $this->cantoRepository->setFolderCache($id, $folder->getResponseData());
+
             return $id;
         } catch (NotAuthorizedException|InvalidResponseException $e) {
             throw new \RuntimeException('Creating the folder did not work - ' . $e->getMessage());
         }
     }
 
-    /**
-     * Renames a folder in this storage.
-     *
-     * @param string $folderIdentifier
-     * @param string $newName
-     * @return array A map of old to new file identifiers of all affected resources
-     */
-    public function renameFolder($folderIdentifier, $newName)
+    public function renameFolder(string $folderIdentifier, string $newName): array
     {
         throw new NotSupportedException('Renaming a folder is currently not supported.', 1626963089);
     }
 
-    /**
-     * Removes a folder in filesystem.
-     *
-     * @param string $folderIdentifier
-     * @param bool $deleteRecursively
-     * @return bool
-     */
-    public function deleteFolder($folderIdentifier, $deleteRecursively = false)
+    public function deleteFolder(string $folderIdentifier, bool $deleteRecursively = false): bool
     {
         $request = new DeleteFolderOrAlbumRequest();
         ['scheme' => $scheme, 'identifier' => $identifier] = CantoUtility::splitCombinedIdentifier($folderIdentifier);
@@ -815,23 +731,11 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             }
         }
         CantoUtility::flushCache($this->cantoRepository);
+
         return false;
     }
 
-    /**
-     * Adds a file from the local server hard disk to a given path in TYPO3s
-     * virtual file system. This assumes that the local file exists, so no
-     * further check is done here! After a successful operation the original
-     * file must not exist anymore.
-     *
-     * @param string $localFilePath within public web path
-     * @param string $targetFolderIdentifier
-     * @param string $newFileName optional, if not given original name is used
-     * @param bool $removeOriginal if set the original file will be removed
-     *                                after successful operation
-     * @return string the identifier of the new file
-     */
-    public function addFile($localFilePath, $targetFolderIdentifier, $newFileName = '', $removeOriginal = true)
+    public function addFile(string $localFilePath, string $targetFolderIdentifier, string $newFileName = '', bool $removeOriginal = true): string
     {
         $uploadSettingsRequest = new GetUploadSettingRequest(false);
         $response = $this->cantoRepository->getClient()->upload()->getUploadSetting($uploadSettingsRequest);
@@ -848,13 +752,13 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         try {
             $this->cantoRepository->getClient()->upload()->uploadFile($request);
         } catch (NotAuthorizedException $e) {
-            $this->sendFlashMessageToUser('Not Authorized', $e->getMessage(), FlashMessage::ERROR);
+            $this->sendFlashMessageToUser('Not Authorized', $e->getMessage(), ContextualFeedbackSeverity::ERROR);
             throw $e;
         } catch (InvalidResponseException $e) {
-            $this->sendFlashMessageToUser('Invalid Response', $e->getMessage(), FlashMessage::ERROR);
+            $this->sendFlashMessageToUser('Invalid Response', $e->getMessage(), ContextualFeedbackSeverity::ERROR);
             throw $e;
         } catch (\JsonException $e) {
-            $this->sendFlashMessageToUser('JSON Exception', $e->getMessage(), FlashMessage::ERROR);
+            $this->sendFlashMessageToUser('JSON Exception', $e->getMessage(), ContextualFeedbackSeverity::ERROR);
             throw $e;
         }
         $id = '';
@@ -870,7 +774,8 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
                 }
             }
             if (++$count > 15) {
-                $this->sendFlashMessageToUser('Timeout', 'File not fully processed. Please reload', FlashMessage::WARNING);
+                $this->sendFlashMessageToUser('Timeout', 'File not fully processed. Please reload', ContextualFeedbackSeverity::WARNING);
+
                 return '';
             }
         }
@@ -878,48 +783,26 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             unlink($localFilePath);
         }
         CantoUtility::flushCache($this->cantoRepository);
+
         return $id;
     }
 
-    /**
-     * Creates a new (empty) file and returns the identifier.
-     *
-     * @param string $fileName
-     * @param string $parentFolderIdentifier
-     * @return string
-     */
-    public function createFile($fileName, $parentFolderIdentifier)
+    public function createFile(string $fileName, string $parentFolderIdentifier): string
     {
         $path = '/tmp/' . $fileName;
         touch($path);
         $identifier = $this->addFile($path, $parentFolderIdentifier, $fileName);
         CantoUtility::flushCache($this->cantoRepository);
+
         return $identifier;
     }
 
-    /**
-     * Copies a file *within* the current storage.
-     * Note that this is only about an inner storage copy action,
-     * where a file is just copied to another folder in the same storage.
-     *
-     * @param string $fileIdentifier
-     * @param string $targetFolderIdentifier
-     * @param string $fileName
-     * @return string the Identifier of the new file
-     */
-    public function copyFileWithinStorage($fileIdentifier, $targetFolderIdentifier, $fileName)
+    public function copyFileWithinStorage(string $fileIdentifier, string $targetFolderIdentifier, string $fileName): string
     {
         throw new NotSupportedException('This driver does not support this operation yet.', 1626963232);
     }
 
-    /**
-     * Renames a file in this storage.
-     *
-     * @param string $fileIdentifier
-     * @param string $newName The target path (including the file name!)
-     * @return string The identifier of the file after renaming
-     */
-    public function renameFile($fileIdentifier, $newName)
+    public function renameFile(string $fileIdentifier, string $newName): string
     {
         ['scheme' => $scheme, 'identifier' => $identifier] = CantoUtility::splitCombinedIdentifier($fileIdentifier);
         $request = new RenameContentRequest($scheme, $identifier, $newName);
@@ -930,30 +813,16 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             // replace with logger
             debug([$request, $e->getPrevious()->getMessage()]);
         }
+
         return $fileIdentifier;
     }
 
-    /**
-     * Replaces a file with file in local file system.
-     *
-     * @param string $fileIdentifier
-     * @param string $localFilePath
-     * @return bool TRUE if the operation succeeded
-     */
-    public function replaceFile($fileIdentifier, $localFilePath)
+    public function replaceFile(string $fileIdentifier, string $localFilePath): bool
     {
         throw new NotSupportedException('This driver does not support this operation yet.', 1626963248);
     }
 
-    /**
-     * Removes a file from the filesystem. This does not check if the file is
-     * still used or if it is a bad idea to delete it for some other reason
-     * this has to be taken care of in the upper layers (e.g. the Storage)!
-     *
-     * @param string $fileIdentifier
-     * @return bool TRUE if deleting the file succeeded
-     */
-    public function deleteFile($fileIdentifier)
+    public function deleteFile(string $fileIdentifier): bool
     {
         ['scheme' => $scheme, 'identifier' => $identifier] = CantoUtility::splitCombinedIdentifier($fileIdentifier);
         $request = new BatchDeleteContentRequest();
@@ -965,63 +834,31 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             debug([$request, $e->getPrevious()->getMessage()]);
         }
         CantoUtility::flushCache($this->cantoRepository);
+
         return true;
     }
 
-    /**
-     * Moves a file *within* the current storage.
-     * Note that this is only about an inner-storage move action,
-     * where a file is just moved to another folder in the same storage.
-     *
-     * @param string $fileIdentifier
-     * @param string $targetFolderIdentifier
-     * @param string $newFileName
-     * @return string
-     */
-    public function moveFileWithinStorage($fileIdentifier, $targetFolderIdentifier, $newFileName)
+    public function moveFileWithinStorage(string $fileIdentifier, string $targetFolderIdentifier, string $newFileName): string
     {
         throw new NotSupportedException('This driver does not support this operation yet.', 1626963285);
     }
 
-    /**
-     * Folder equivalent to moveFileWithinStorage().
-     *
-     * @param string $sourceFolderIdentifier
-     * @param string $targetFolderIdentifier
-     * @param string $newFolderName
-     * @return array All files which are affected, map of old => new file identifiers
-     */
-    public function moveFolderWithinStorage($sourceFolderIdentifier, $targetFolderIdentifier, $newFolderName)
+    public function moveFolderWithinStorage(string $sourceFolderIdentifier, string $targetFolderIdentifier, string $newFolderName): array
     {
         throw new NotSupportedException('This driver does not support this operation yet.', 1626963299);
     }
 
-    /**
-     * Folder equivalent to copyFileWithinStorage().
-     *
-     * @param string $sourceFolderIdentifier
-     * @param string $targetFolderIdentifier
-     * @param string $newFolderName
-     * @return bool
-     */
-    public function copyFolderWithinStorage($sourceFolderIdentifier, $targetFolderIdentifier, $newFolderName)
+    public function copyFolderWithinStorage(string $sourceFolderIdentifier, string $targetFolderIdentifier, string $newFolderName): bool
     {
         throw new NotSupportedException('This driver does not support this operation yet.', 1626963313);
     }
 
-    /**
-     * Sets the contents of a file to the specified value.
-     *
-     * @param string $fileIdentifier
-     * @param string $contents
-     * @return int The number of bytes written to the file
-     */
-    public function setFileContents($fileIdentifier, $contents)
+    public function setFileContents(string $fileIdentifier, string $contents): int
     {
         throw new NotSupportedException('This driver does not support this operation yet.', 1626963332);
     }
 
-    private function sendFlashMessageToUser(string $messageHeader, string $messageText, int $messageSeverity): void
+    private function sendFlashMessageToUser(string $messageHeader, string $messageText, ContextualFeedbackSeverity $messageSeverity): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,
@@ -1032,6 +869,6 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         );
         $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
         $messageQueue = $flashMessageService->getMessageQueueByIdentifier();
-        $messageQueue->addMessage($message);
+        $messageQueue->enqueue($message);
     }
 }

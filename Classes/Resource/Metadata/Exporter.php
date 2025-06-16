@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Metadata;
 
-use Doctrine\DBAL\FetchMode;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Resource\File;
@@ -43,15 +42,9 @@ final class Exporter
             ->select('file')
             ->from('sys_file_metadata')
             ->where('uid = ' . $uid)
-            ->execute();
+            ->executeQuery();
 
-        if (method_exists($result, 'fetchAssociative')) {
-            $fileUid = $result->fetchAssociative()['file'] ?? null;
-        } elseif (method_exists($result, 'fetch')) {
-            $fileUid = $result->fetch(FetchMode::ASSOCIATIVE)['file'] ?? null;
-        } else {
-            return false;
-        }
+        $fileUid = $result->fetchAssociative()['file'] ?? null;
 
         if ($fileUid === null) {
             return false;

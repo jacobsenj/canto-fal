@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Repository;
 
+use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\SingletonInterface;
 
@@ -47,9 +48,9 @@ class CantoAlbumRepository implements SingletonInterface
                 'album' => $albumIdentifier,
             ],
             [
-                \PDO::PARAM_INT,
-                \PDO::PARAM_INT,
-                \PDO::PARAM_STR,
+                ParameterType::INTEGER,
+                ParameterType::INTEGER,
+                ParameterType::STRING,
             ]
         );
     }
@@ -63,7 +64,7 @@ class CantoAlbumRepository implements SingletonInterface
                 'file' => $fileUid,
             ],
             [
-                \PDO::PARAM_INT,
+                ParameterType::INTEGER,
             ]
         );
     }

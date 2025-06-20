@@ -145,7 +145,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         }
 
         // TODO Check if this method is used for files.
-        return self::ROOT_FOLDER;
+        return $this->rootFolderIdentifier;
     }
 
     /**

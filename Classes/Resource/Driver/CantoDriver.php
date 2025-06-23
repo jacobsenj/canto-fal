@@ -30,6 +30,7 @@ use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\NotAuthorizedException;
 use TYPO3Canto\CantoApi\Http\Asset\BatchDeleteContentRequest;
 use TYPO3Canto\CantoApi\Http\Asset\RenameContentRequest;
+use TYPO3Canto\CantoApi\Http\Asset\SearchRequest;
 use TYPO3Canto\CantoApi\Http\InvalidResponseException;
 use TYPO3Canto\CantoApi\Http\LibraryTree\CreateAlbumFolderRequest;
 use TYPO3Canto\CantoApi\Http\LibraryTree\DeleteFolderOrAlbumRequest;
@@ -155,7 +156,7 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             return null;
         }
         if ($useMdc && $this->mdcUrlGenerator) {
-            if ($scheme === 'document') {
+            if ($scheme === SearchRequest::SCHEME_DOCUMENT) {
                 $url = $this->cantoRepository->generateAssetMdcUrl($identifier, $fileData['name']);
             } else {
                 $url = $this->cantoRepository->generateMdcUrl($identifier);
@@ -839,8 +840,8 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
             $localFilePath,
             $response,
         );
-        $request->setScheme('image');
-        if (CantoUtility::getSchemeFromCombinedIdentifier($targetFolderIdentifier) === 'folder') {
+        $request->setScheme(SearchRequest::SCHEME_IMAGE);
+        if (CantoUtility::getSchemeFromCombinedIdentifier($targetFolderIdentifier) === CantoUtility::SCHEME_FOLDER) {
             throw new \Exception('Files need to be within an album, not a folder');
         }
         $request->setAlbumId(CantoUtility::getIdFromCombinedIdentifier($targetFolderIdentifier));

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace TYPO3Canto\CantoFal\Resource\Event;
 
 use TYPO3\CMS\Core\Utility\PathUtility;
+use TYPO3Canto\CantoApi\Http\Asset\SearchRequest;
 
 final class BeforeLocalFileProcessingEvent
 {
@@ -59,7 +60,7 @@ final class BeforeLocalFileProcessingEvent
         if ($this->isForPreview()) {
             return $this->fileData['url']['directUrlPreview'] ?? null;
         }
-        if ($this->scheme === 'image' && !in_array($this->getFileExtension(), $GLOBALS['CANTO_FAL']['IMAGE_TYPES'], true)) {
+        if ($this->scheme === SearchRequest::SCHEME_IMAGE && !in_array($this->getFileExtension(), $GLOBALS['CANTO_FAL']['IMAGE_TYPES'], true)) {
             $this->setFileExtension(self::DEFAULT_IMAGE_FILE_EXTENSION);
             return $this->fileData['url']['detail'] ?? null;
         }

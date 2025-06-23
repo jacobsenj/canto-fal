@@ -22,6 +22,7 @@ use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3Canto\CantoApi\Endpoint\Authorization\AuthorizationFailedException;
+use TYPO3Canto\CantoApi\Http\Asset\SearchRequest;
 use TYPO3Canto\CantoFal\Domain\Model\Dto\AssetSearch;
 use TYPO3Canto\CantoFal\Pagination\SearchResultPaginator;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
@@ -108,7 +109,14 @@ class CantoAssetBrowserController
                 explode(',', $allowedFileExtensions)
             )));
         } else {
-            $search->setSchemes(['image', 'video', 'audio', 'document', 'presentation', 'other']);
+            $search->setSchemes([
+                SearchRequest::SCHEME_IMAGE,
+                SearchRequest::SCHEME_VIDEO,
+                SearchRequest::SCHEME_AUDIO,
+                SearchRequest::SCHEME_DOCUMENT,
+                SearchRequest::SCHEME_PRESENTATION,
+                SearchRequest::SCHEME_OTHER,
+            ]);
         }
 
         // TODO We cannot use keyword search and file extension filter because of missing support for logical grouping.

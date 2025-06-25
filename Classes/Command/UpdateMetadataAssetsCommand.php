@@ -15,8 +15,11 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
+use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\ProcessedFileRepository;
+use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use TYPO3Canto\CantoFal\Resource\Metadata\Extractor;
@@ -56,6 +59,7 @@ EOF
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
+        $this->initTSFE();
         $files = $this->fileRepository->findAll();
         $counter = 0;
         foreach ($files as $file) {
@@ -78,6 +82,7 @@ EOF
                 $metaData = $this->metadataExtractor->extractMetaData($file);
 
                 if ($metaData) {
+                    var_dump($metaData);
                     $file->getMetaData()->add($metaData)->save();
                     $file->getForLocalProcessing(true);
                     $processedFileRepository = GeneralUtility::makeInstance(ProcessedFileRepository::class);
@@ -97,5 +102,15 @@ EOF
         }
 
         return self::SUCCESS;
+    }
+
+    protected function initTSFE($id = 1, $typeNum = 0)
+    {
+        $this->site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($id);
+        $request = (new ServerRequest())
+            ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
+            ->withAttribute('site', $this->site);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+        $_SERVER['HTTP_HOST'] = $this->site->getBase()->getHost();
     }
 }

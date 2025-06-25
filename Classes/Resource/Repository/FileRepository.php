@@ -33,7 +33,7 @@ readonly class FileRepository extends \TYPO3\CMS\Core\Resource\FileRepository
     public function findAll(): array
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
-        $result = $queryBuilder->select(self::TABLE_NAME . '.*')
+        $result = $queryBuilder->select('file.*')
             ->from(self::TABLE_NAME, 'file')
             ->leftJoin(
                 'file',

@@ -92,7 +92,7 @@ class WarmupCantoCache extends Command
     {
         $cantoRepository = GeneralUtility::makeInstance(CantoRepository::class);
         $cantoRepository->initialize(
-            (string)$storage->getUid(),
+            $storage->getUid(),
             $storage->getConfiguration()
         );
         return $cantoRepository;

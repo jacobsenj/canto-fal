@@ -81,11 +81,6 @@ parameters:
 			path: Classes/Command/WarmupCantoCache.php
 
 		-
-			message: "#^Parameter \\#1 \\$storageUid of method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:initialize\\(\\) expects int, string given\\.$#"
-			count: 1
-			path: Classes/Command/WarmupCantoCache.php
-
-		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Controller\\\\MetadataWebhookController\\:\\:getBody\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Controller/MetadataWebhookController.php

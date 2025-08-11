@@ -16,36 +16,24 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 use TYPO3\CMS\Core\Resource\Index\Indexer;
 use TYPO3\CMS\Core\Resource\Service\ExtractorService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
+use TYPO3Canto\CantoFal\Resource\Repository\FileRepository;
 
 final class UpdateMetadataAssetsCommand extends Command
 {
-    private ExtractorService $extractorService;
-
-    private FileRepository $fileRepository;
-
-    private FileIndexRepository $fileIndexRepository;
-
-    private FrontendInterface $cantoFileCache;
-
     private int $apiRateLimit = 500;
 
     public function __construct(
-        ExtractorService $extractorService,
-        FileRepository $fileRepository,
-        FileIndexRepository $fileIndexRepository,
-        FrontendInterface $cantoFileCache
+        private ExtractorService $extractorService,
+        private FileRepository $fileRepository,
+        private FileIndexRepository $fileIndexRepository,
+        private FrontendInterface $cantoFileCache
     ) {
         parent::__construct();
-        $this->extractorService = $extractorService;
-        $this->fileRepository = $fileRepository;
-        $this->fileIndexRepository = $fileIndexRepository;
-        $this->cantoFileCache = $cantoFileCache;
     }
 
     protected function configure(): void

@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Metadata;
 
+use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\RootLevelRestriction;
@@ -34,15 +35,15 @@ class MetadataRepository extends Typo3MetaDataRepository
             ->where(
                 $queryBuilder->expr()->eq(
                     'file',
-                    $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter($uid, ParameterType::INTEGER)
                 ),
                 $queryBuilder->expr()->eq(
                     'sys_language_uid',
                     $queryBuilder->createNamedParameter($languageUid, Connection::PARAM_INT)
                 )
             )
-            ->execute()
-            ->fetch();
+            ->executeQuery()
+            ->fetchAssociative();
 
         if (empty($record)) {
             return [];
@@ -64,15 +65,15 @@ class MetadataRepository extends Typo3MetaDataRepository
             ->where(
                 $queryBuilder->expr()->eq(
                     'file',
-                    $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter($uid, ParameterType::INTEGER)
                 ),
             )
             ->orderBy('sys_language_uid')
-            ->execute();
+            ->executeQuery();
 
         $records = [];
 
-        while ($row = $statement->fetch()) {
+        while ($row = $statement->fetchAssociative()) {
             $records[(int)$row['uid']] = $this->eventDispatcher->dispatch(new EnrichFileMetaDataEvent($uid, (int)$row['uid'], $row))->getRecord();
         }
 

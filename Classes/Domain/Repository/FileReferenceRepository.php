@@ -30,7 +30,7 @@ final class FileReferenceRepository
                 $queryBuilder->expr()->eq('uid_local', $uid)
             )->andWhere(
                 $queryBuilder->expr()->eq('deleted', $deletedStatus)
-            )->execute()->fetchAll();
+            )->executeQuery()->fetchAllAssociative();
         return $result;
     }
 }

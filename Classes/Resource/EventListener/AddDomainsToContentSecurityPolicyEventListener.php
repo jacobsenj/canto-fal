@@ -45,6 +45,9 @@ final class AddDomainsToContentSecurityPolicyEventListener
         $uriValues = [];
         while ($row = $storageRows->fetchAssociative()) {
             $configuration = GeneralUtility::xml2array($row['configuration']);
+            if (empty($configuration['data']['sDEF']['lDEF']['cantoName']['vDEF'])) {
+                continue;
+            }
             $uriValues[] = implode(
                 '.',
                 [

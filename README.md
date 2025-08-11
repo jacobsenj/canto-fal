@@ -19,4 +19,5 @@ or `permissions.file.storage.[storageUID].cantoAssetPicker = 1`.
 
 ## Community
 
-- Thanks to [Wilhelm Böllhoff GmbH & Co. KG](https://www.boellhoff.com) that sponsored fixing several bugs of this extension
+- Thanks to [Wilhelm Böllhoff GmbH & Co. KG](https://www.boellhoff.com) for sponsoring bug fixes
+- Thanks to [Canto Inc.](https://www.canto.com) for sponsoring the TYPO3 13 update

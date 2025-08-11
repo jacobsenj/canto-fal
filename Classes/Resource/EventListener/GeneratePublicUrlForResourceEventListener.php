@@ -29,6 +29,7 @@ final class GeneratePublicUrlForResourceEventListener
             // This applies a public url for the given asset.
             // If the file has been registered as a mdc-asset, then this returns the url for it
             // Otherwise we get the url to the downloaded resource instead
+            assert($file->getIdentifier() !== '');
             $url = $event->getDriver()->getPublicUrl($file->getIdentifier());
             $event->setPublicUrl($url);
         } catch (\InvalidArgumentException $e) {

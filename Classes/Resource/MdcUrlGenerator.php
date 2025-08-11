@@ -87,7 +87,7 @@ final class MdcUrlGenerator
 
     /**
      * @param array{width: int, height: int, size?: int, x?: int, y?: int, format?: string, crop?: Area, resizedCropped?: array{width: int, height: int, offsetLeft: int, offsetTop: int}} $configuration
-     * @return string
+     * @return non-empty-string
      */
     public function addOperationToMdcUrl(array $configuration): string
     {

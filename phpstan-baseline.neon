@@ -6,11 +6,6 @@ parameters:
 			path: Classes/Browser/CantoAssetBrowser.php
 
 		-
-			message: "#^Anonymous function should return TYPO3\\\\CMS\\\\Core\\\\View\\\\FluidViewAdapter but returns TYPO3\\\\CMS\\\\Core\\\\View\\\\ViewInterface\\.$#"
-			count: 1
-			path: Classes/Browser/CantoAssetBrowser.php
-
-		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowser\\:\\:getUrlParameters\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Browser/CantoAssetBrowser.php
@@ -26,47 +21,12 @@ parameters:
 			path: Classes/Browser/CantoAssetBrowser.php
 
 		-
-			message: "#^Access to an undefined property TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowserV11AndV10\\:\\:\\$moduleTemplate\\.$#"
-			count: 5
-			path: Classes/Browser/CantoAssetBrowserV11AndV10.php
-
-		-
-			message: "#^Call to an undefined method TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowserV11AndV10\\:\\:setBodyTagParameters\\(\\)\\.$#"
-			count: 1
-			path: Classes/Browser/CantoAssetBrowserV11AndV10.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowserV11AndV10\\:\\:getUrlParameters\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Browser/CantoAssetBrowserV11AndV10.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowserV11AndV10\\:\\:isCurrentlySelectedItem\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Browser/CantoAssetBrowserV11AndV10.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowserV11AndV10\\:\\:processSessionData\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Browser/CantoAssetBrowserV11AndV10.php
-
-		-
-			message: "#^Parameter \\#1 \\$object_or_class of function method_exists expects object\\|string, Doctrine\\\\DBAL\\\\Result\\|int given\\.$#"
-			count: 2
-			path: Classes/Command/MigrateFileIdentifiersToNewFormat.php
-
-		-
 			message: "#^Left side of && is always true\\.$#"
 			count: 1
 			path: Classes/Command/UpdateImageAssetsUsedInFrontendCommand.php
 
 		-
 			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, array\\|null given\\.$#"
-			count: 1
-			path: Classes/Command/UpdateImageAssetsUsedInFrontendCommand.php
-
-		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Command\\\\UpdateImageAssetsUsedInFrontendCommand\\:\\:\\$storageRepository is never read, only written\\.$#"
 			count: 1
 			path: Classes/Command/UpdateImageAssetsUsedInFrontendCommand.php
 
@@ -121,11 +81,6 @@ parameters:
 			path: Classes/Domain/Model/Dto/AssetSearchResponse.php
 
 		-
-			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/FileReferenceRepository.php
-
-		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Domain\\\\Repository\\\\FileReferenceRepository\\:\\:getFileReferenzesByFileUid\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Domain/Repository/FileReferenceRepository.php
@@ -134,11 +89,6 @@ parameters:
 			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Domain\\\\Repository\\\\FileReferenceRepository\\:\\:\\$connectionPool is unused\\.$#"
 			count: 1
 			path: Classes/Domain/Repository/FileReferenceRepository.php
-
-		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Domain\\\\Repository\\\\FileRepository\\:\\:\\$connectionPool is unused\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/FileRepository.php
 
 		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Form\\\\Container\\\\FileControlContainer\\:\\:getFileSelectors\\(\\) has parameter \\$inlineConfiguration with no value type specified in iterable type array\\.$#"
@@ -154,36 +104,6 @@ parameters:
 			message: "#^Variable \\$service in PHPDoc tag @var does not match assigned variable \\$storageReporitory\\.$#"
 			count: 1
 			path: Classes/Form/Container/FileControlContainer.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Form\\\\Container\\\\InlineControlContainer\\:\\:cantoAssetPickerEnabled\\(\\) has parameter \\$inlineConfiguration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Form/Container/InlineControlContainer.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Form\\\\Container\\\\InlineControlContainer\\:\\:renderCantoAssetPickerButton\\(\\) has parameter \\$inlineConfiguration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Form/Container/InlineControlContainer.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Form\\\\Container\\\\InlineControlContainer\\:\\:renderPossibleRecordsSelectorTypeGroupDB\\(\\) has parameter \\$inlineConfiguration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Form/Container/InlineControlContainer.php
-
-		-
-			message: "#^Parameter \\#3 \\$offset of function strpos expects int, int\\<0, max\\>\\|false given\\.$#"
-			count: 1
-			path: Classes/Form/Container/InlineControlContainer.php
-
-		-
-			message: "#^Parameter \\#3 \\$offset of function substr_replace expects array\\|int, int\\<0, max\\>\\|false given\\.$#"
-			count: 1
-			path: Classes/Form/Container/InlineControlContainer.php
-
-		-
-			message: "#^Property TYPO3\\\\CMS\\\\Core\\\\DataHandling\\\\DataHandler\\:\\:\\$datamap \\(array\\<int\\|string, array\\<int\\|string, array\\>\\>\\) on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: Classes/Hooks/DataHandlerHooks.php
 
 		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Pagination\\\\SearchResultPaginator\\:\\:getPaginatedItems\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -216,12 +136,7 @@ parameters:
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:countFilesInFolder\\(\\) has parameter \\$filenameFilterCallbacks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:countFoldersInFolder\\(\\) has parameter \\$folderNameFilterCallbacks with no value type specified in iterable type array\\.$#"
+			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:addFile\\(\\) should return non\\-empty\\-string but returns ''\\.$#"
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
@@ -231,67 +146,27 @@ parameters:
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFileInfoByIdentifier\\(\\) has parameter \\$propertiesToExtract with no value type specified in iterable type array\\.$#"
+			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFileForLocalProcessing\\(\\) should return non\\-empty\\-string but returns string\\.$#"
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFileInfoByIdentifier\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFileInFolder\\(\\) should return non\\-empty\\-string but returns ''\\.$#"
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFilesInFolder\\(\\) has parameter \\$filenameFilterCallbacks with no value type specified in iterable type array\\.$#"
+			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFolderInFolder\\(\\) should return non\\-empty\\-string but returns ''\\.$#"
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFilesInFolder\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFolderInFolder\\(\\) should return non\\-empty\\-string but returns string\\.$#"
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFolderInfoByIdentifier\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFoldersInFolder\\(\\) has parameter \\$folderNameFilterCallbacks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFoldersInFolder\\(\\) should return array\\<int\\|string, string\\> but returns array\\<int\\|string, int\\|string\\>\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getPermissions\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:moveFolderWithinStorage\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:processConfiguration\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:renameFolder\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Driver/CantoDriver.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:resolveFilesInFolder\\(\\) has no return type specified\\.$#"
+			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getPublicUrl\\(\\) should return non\\-empty\\-string\\|null but returns string\\.$#"
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
@@ -367,11 +242,6 @@ parameters:
 
 		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeLocalFileProcessingEvent\\:\\:getFileData\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Event/BeforeLocalFileProcessingEvent.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeLocalFileProcessingEvent\\:\\:getFileExtension\\(\\) should return string but returns array\\<string\\>\\|string\\.$#"
 			count: 1
 			path: Classes/Resource/Event/BeforeLocalFileProcessingEvent.php
 
@@ -533,11 +403,6 @@ parameters:
 		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:transformMetadataIntoPropertiesArray\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: Classes/Resource/Metadata/Exporter.php
-
-		-
-			message: "#^Parameter \\#1 \\$object_or_class of function method_exists expects object\\|string, Doctrine\\\\DBAL\\\\Result\\|int given\\.$#"
-			count: 2
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
@@ -756,11 +621,6 @@ parameters:
 			path: Classes/Resource/Metadata/MetadataRepository.php
 
 		-
-			message: "#^Cannot call method fetch\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
-			count: 2
-			path: Classes/Resource/Metadata/MetadataRepository.php
-
-		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\MetadataRepository\\:\\:findAllByFileUid\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Resource/Metadata/MetadataRepository.php
@@ -791,16 +651,6 @@ parameters:
 			path: Classes/Resource/Processing/CantoPreviewHelper.php
 
 		-
-			message: "#^Offset 0 does not exist on array\\|null\\.$#"
-			count: 1
-			path: Classes/Resource/Processing/CantoPreviewProcessor.php
-
-		-
-			message: "#^Offset 1 does not exist on array\\|null\\.$#"
-			count: 1
-			path: Classes/Resource/Processing/CantoPreviewProcessor.php
-
-		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoAlbumRepository\\:\\:updateAlbumsForFileUid\\(\\) has parameter \\$albumIdentifiers with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Resource/Repository/CantoAlbumRepository.php
@@ -813,16 +663,6 @@ parameters:
 		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoFileIndexRepository\\:\\:findByFolders\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: Classes/Resource/Repository/CantoFileIndexRepository.php
-
-		-
-			message: "#^Offset 'identifier' does not exist on non\\-empty\\-array\\<int, mixed\\>\\.$#"
-			count: 1
-			path: Classes/Resource/Repository/CantoFileIndexRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$object_or_class of function method_exists expects object\\|string, Doctrine\\\\DBAL\\\\Result\\|int given\\.$#"
-			count: 4
 			path: Classes/Resource/Repository/CantoFileIndexRepository.php
 
 		-
@@ -847,11 +687,6 @@ parameters:
 
 		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:getFileDetails\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Repository/CantoRepository.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:getFilesInFolder\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
@@ -911,6 +746,11 @@ parameters:
 			path: Classes/Utility/CantoUtility.php
 
 		-
+			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Utility\\\\CantoUtility\\:\\:buildCombinedIdentifier\\(\\) should return non\\-empty\\-string but returns string\\.$#"
+			count: 1
+			path: Classes/Utility/CantoUtility.php
+
+		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Utility\\\\CantoUtility\\:\\:isMdcActivated\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Utility/CantoUtility.php
@@ -929,83 +769,3 @@ parameters:
 			message: "#^Parameter \\#1 \\$string of function parse_str expects string, string\\|false given\\.$#"
 			count: 1
 			path: Classes/Utility/SiteConfigurationResolver.php
-
-		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Backend\\\\Template\\\\Components\\\\Buttons\\\\Action\\\\ShortcutButton\\:\\:setModuleName\\(\\)\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Core\\\\Resource\\\\FolderInterface\\:\\:getCombinedIdentifier\\(\\)\\.$#"
-			count: 2
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Call to method getModuleTemplate\\(\\) on an unknown class TYPO3\\\\CMS\\\\Backend\\\\View\\\\BackendTemplateView\\.$#"
-			count: 2
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot access property \\$clipObj on TYPO3\\\\CMS\\\\Filelist\\\\FileList\\|null\\.$#"
-			count: 4
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot access property \\$thumbs on TYPO3\\\\CMS\\\\Filelist\\\\FileList\\|null\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot call method checkActionPermission\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\Folder\\|null\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot call method getCombinedIdentifier\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\Folder\\|null\\.$#"
-			count: 2
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot call method getIdentifier\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\Folder\\|null\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot call method getName\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\Folder\\|null\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot call method getParentFolder\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\Folder\\|null\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot call method getReadablePath\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\Folder\\|null\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot call method getStorage\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\Folder\\|null\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Cannot call method listURL\\(\\) on TYPO3\\\\CMS\\\\Filelist\\\\FileList\\|null\\.$#"
-			count: 2
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Xclass\\\\FileListController\\:\\:registerButtons\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^PHPDoc tag @var for variable \\$view contains unknown class TYPO3\\\\CMS\\\\Backend\\\\View\\\\BackendTemplateView\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php
-
-		-
-			message: "#^Parameter \\#2 \\$resource of method TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ResourceStorage\\:\\:isWithinFolder\\(\\) expects TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ResourceInterface, TYPO3\\\\CMS\\\\Core\\\\Resource\\\\Folder\\|null given\\.$#"
-			count: 1
-			path: Classes/Xclass/FileListController.php

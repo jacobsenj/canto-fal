@@ -267,6 +267,9 @@ class CantoRepository
         }
     }
 
+    /**
+     * @return non-empty-string
+     */
     public function generateAssetMdcUrl(string $identifier, ?string $downloadName): string
     {
         $domain = $this->driverConfiguration['mdcDomainName'];
@@ -288,6 +291,9 @@ class CantoRepository
         );
     }
 
+    /**
+     * @return non-empty-string
+     */
     public function generateMdcUrl(string $identifier): string
     {
         $domain = $this->driverConfiguration['mdcDomainName'];
@@ -297,6 +303,9 @@ class CantoRepository
         return sprintf('https://%s/image/%s/%s_%s/', $domain, $awsAccountId, $combinedIdentifier['scheme'], $combinedIdentifier['identifier']);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getFilesInFolder(
         string $folderIdentifier,
         int $start,
@@ -317,6 +326,9 @@ class CantoRepository
         return $response->getResults();
     }
 
+    /**
+     * @return int<0, max>
+     */
     public function countFilesInFolder(string $folderIdentifier): int
     {
         $request = new ListAlbumContentRequest($folderIdentifier);
@@ -326,7 +338,7 @@ class CantoRepository
         } catch (InvalidResponseException | NotAuthorizedException $e) {
             return 0;
         }
-        return $response->getFound();
+        return max(0, $response->getFound());
     }
 
     public function getFolderIdentifierTree(string $sortBy, string $sortDirection): array

@@ -1,3 +1,11 @@
+2025-08-12         [RELEASE] Release of canto-fal 2.0.0 (Nicole Hummel)
+2025-08-11 9d67100 [TASK] Add new supporters to README (Nicole Hummel)
+2025-07-16 218f22c [BUGFIX] Fix parameter $fileRepository for UpdateMetadataAssetsCommand (Jens Jacobsen)
+2025-06-25 24206ef [BUGFIX] Use alias in select instead of table name (Jens Jacobsen)
+2025-06-21 2137fad [BUGFIX] Return correct root identifier (Nicole Hummel)
+2025-06-16 7ab60fe [FEATURE] Add compatibility to TYPO3 13.4 (Nicole Hummel)
+2025-06-16 e9c60e3 [TASK] Raise testing compatibility to TYPO3 13.4 (Nicole Hummel)
+
 2025-07-14         [RELEASE] Release of canto-fal 1.1.2 (Nicole Hummel)
 2025-07-14 ccddd3e [TASK] Add community part to README (Nicole Hummel)
 2025-07-11 d90a859 [FEATURE] Reduce sleep time for API rate limits in commands (Nicole Hummel)

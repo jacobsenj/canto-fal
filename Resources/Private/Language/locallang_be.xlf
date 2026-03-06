@@ -97,6 +97,22 @@
 			<trans-unit id="canto_asset_browser.searchResults.resultItem.title" resname="canto_asset_browser.searchResults.resultItem.title">
 				<source>Add file</source>
 			</trans-unit>
+
+			<trans-unit id="file_reload.label.confirm.title">
+				<source>Do you want to save before reloading?</source>
+			</trans-unit>
+			<trans-unit id="file_reload.label.confirm.content">
+				<source>You need to save your changes before reloading asset information. Do you want to save and reload now?</source>
+			</trans-unit>
+			<trans-unit id="file_reload.buttons.confirm.cancel">
+				<source>Cancel</source>
+			</trans-unit>
+			<trans-unit id="file_reload.buttons.confirm.no">
+				<source>No, just reload</source>
+			</trans-unit>
+			<trans-unit id="file_reload.buttons.confirm.yes">
+				<source>Yes, save and reload now</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

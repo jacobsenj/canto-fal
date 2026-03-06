@@ -94,6 +94,11 @@ services:
         identifier: addDomainsToContentSecurityPolicyEventListener
         event: TYPO3\CMS\Core\Security\ContentSecurityPolicy\Event\PolicyMutatedEvent
 
+  TYPO3Canto\CantoFal\Resource\EventListener\AddFileReferenceHeaderControlEventListener:
+    tags:
+      -   name: event.listener
+          identifier: addFileReferenceHeaderControlEventListener
+
   TYPO3Canto\CantoFal\Resource\EventListener\HandleMultipleFolders:
     tags:
       - name: event.listener
@@ -151,6 +156,10 @@ services:
         identifier: afterFormEnginePageInitializedEventListener
         event: TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent
 
+  TYPO3Canto\CantoFal\Resource\EventListener\ReloadMetadataInFormEngineEventListener:
+    tags:
+      -   name: event.listener
+          identifier: 'reloadMetadataInFormEngineEventListener'
 
   TYPO3Canto\CantoFal\Resource\EventListener\SyncMetaDataCategoriesEventListener:
     tags:

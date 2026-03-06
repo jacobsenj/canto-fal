@@ -341,11 +341,6 @@ parameters:
 			path: Classes/Resource/EventListener/NewAssetVersionWebhookEventListener.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:getMdcUrl\\(\\)\\.$#"
-			count: 1
-			path: Classes/Resource/MdcUrlGenerator.php
-
-		-
 			message: "#^Offset 'height' on array\\{width\\: int, height\\: int, scale\\: float\\} on left side of \\?\\? always exists and is not nullable\\.$#"
 			count: 1
 			path: Classes/Resource/MdcUrlGenerator.php
@@ -429,11 +424,6 @@ parameters:
 			message: "#^Variable \\$configuration on left side of \\?\\? is never defined\\.$#"
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
-
-		-
-			message: "#^Call to an undefined method object\\:\\:getMetadata\\(\\)\\.$#"
-			count: 1
-			path: Classes/Resource/Metadata/Extractor.php
 
 		-
 			message: "#^Call to method add\\(\\) on an unknown class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\CategoryRepository\\.$#"

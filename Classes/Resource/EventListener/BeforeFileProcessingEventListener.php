@@ -39,6 +39,9 @@ final class BeforeFileProcessingEventListener
         }
         $processedFile = $event->getProcessedFile();
         $identifier = $processedFile->getOriginalFile()->getIdentifier();
+        if ($processedFile->isProcessed()) {
+            return;
+        }
         if (!CantoUtility::isMdcActivated($event->getFile()->getStorage()->getConfiguration())) {
             return;
         }

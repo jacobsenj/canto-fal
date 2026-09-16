@@ -20,7 +20,6 @@ return [
             'label' => 'File',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'sys_file',
                 'maxitems' => 1,
                 'minitems' => 0,

@@ -111,6 +111,7 @@ if ($GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']) {
     [
         \TYPO3Canto\CantoFal\Controller\MetadataWebhookController::class => 'index',
     ],
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
 );
 /*
 $signalSlotDispatcher = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);

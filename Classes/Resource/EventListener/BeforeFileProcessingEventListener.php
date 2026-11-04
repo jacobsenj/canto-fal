@@ -68,6 +68,11 @@ final class BeforeFileProcessingEventListener
             $processedFile->setName($processedFile->getOriginalFile()->getName());
         }
         $event->setProcessedFile($processedFile);
+        if ($processedFile->getOriginalFile()->getExtension() === 'svg') {
+            $task->setExecuted(true);
+            $processedFile->setName($task->getTargetFileName());
+            $processedFile->updateProperties(['identifier' => $processedFile->getOriginalFile()->getIdentifier()]);
+        }
         // The second argument is required since TYPO3 v14 and ignored by TYPO3 v13
         $this->processedFileRepository->add($processedFile, $task);
     }

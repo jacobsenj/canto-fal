@@ -5,4 +5,9 @@ parameters:
     paths:
         - Classes
         - Configuration
+    excludePaths:
+        analyse:
+            # Declares the class conditionally for TYPO3 v13 (non-readonly) and v14 (readonly),
+            # PHPStan reports a non-ignorable error for the branch not matching the installed core
+            - Classes/Resource/Repository/CantoFileIndexRepository.php
     reportUnmatchedIgnoredErrors: true

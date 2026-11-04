@@ -14,8 +14,8 @@ namespace TYPO3Canto\CantoFal\Resource\EventListener;
 use TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
@@ -66,7 +66,7 @@ final class AddFileReferenceHeaderControlEventListener
             'canto',
             '<button type="button" class="btn btn-default"' .
             ' data-cantofal-id="' . $file->getUid() . '">' .
-            $this->iconFactory->getIcon('action-refresh-canto', Icon::SIZE_SMALL)->render() .
+            $this->iconFactory->getIcon('action-refresh-canto', IconSize::SMALL)->render() .
             '</button>'
         );
     }

@@ -91,17 +91,7 @@ parameters:
 			path: Classes/Domain/Repository/FileReferenceRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Form\\\\Container\\\\FileControlContainer\\:\\:getFileSelectors\\(\\) has parameter \\$inlineConfiguration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Form/Container/FileControlContainer.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Form\\\\Container\\\\FileControlContainer\\:\\:getFileSelectors\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Form/Container/FileControlContainer.php
-
-		-
-			message: "#^Variable \\$service in PHPDoc tag @var does not match assigned variable \\$storageReporitory\\.$#"
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Backend\\\\Form\\\\InlineStackProcessor\\:\\:getCurrentStructureDomObjectIdPrefix\\(\\)\\.$#"
 			count: 1
 			path: Classes/Form/Container/FileControlContainer.php
 
@@ -611,16 +601,6 @@ parameters:
 			path: Classes/Resource/Metadata/MetadataRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\MetadataRepository\\:\\:findAllByFileUid\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Metadata/MetadataRepository.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\MetadataRepository\\:\\:findByFileUidAndLanguageUid\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Metadata/MetadataRepository.php
-
-		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Processing\\\\CantoMdcProcessor\\:\\:processTask\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: Classes/Resource/Processing/CantoMdcProcessor.php
@@ -631,39 +611,9 @@ parameters:
 			path: Classes/Resource/Processing/CantoMdcProcessor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Processing\\\\CantoPreviewHelper\\:\\:generatePreviewFromFile\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Processing/CantoPreviewHelper.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Processing\\\\CantoPreviewHelper\\:\\:generatePreviewFromFile\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Processing/CantoPreviewHelper.php
-
-		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoAlbumRepository\\:\\:updateAlbumsForFileUid\\(\\) has parameter \\$albumIdentifiers with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Resource/Repository/CantoAlbumRepository.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoFileIndexRepository\\:\\:findByFolder\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Repository/CantoFileIndexRepository.php
-
-		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoFileIndexRepository\\:\\:findByFolders\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Repository/CantoFileIndexRepository.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function trim expects string, string\\|null given\\.$#"
-			count: 1
-			path: Classes/Resource/Repository/CantoFileIndexRepository.php
-
-		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoFileIndexRepository\\:\\:\\$fieldsWithTableNamePrefix type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Resource/Repository/CantoFileIndexRepository.php
 
 		-
 			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:buildFolderTree\\(\\) has parameter \\$treeItems with no value type specified in iterable type array\\.$#"

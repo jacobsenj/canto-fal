@@ -30,6 +30,9 @@ services:
       - '@cache.canto_folder'
       - '@cache.canto_file'
 
+  TYPO3Canto\CantoFal\Resource\Repository\CantoFileIndexRepository:
+    public: true
+
   TYPO3Canto\CantoFal\Resource\Metadata\Extractor:
     public: true
 

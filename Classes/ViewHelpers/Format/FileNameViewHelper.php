@@ -12,26 +12,13 @@ declare(strict_types=1);
 namespace TYPO3Canto\CantoFal\ViewHelpers\Format;
 
 use TYPO3\CMS\Core\Utility\PathUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class FileNameViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    /**
-     * @param array<string, mixed> $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return string
-     */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ): string {
-        $fileName = $renderChildrenClosure();
+    public function render(): string
+    {
+        $fileName = (string)$this->renderChildren();
         if ($fileName === '') {
             return '';
         }

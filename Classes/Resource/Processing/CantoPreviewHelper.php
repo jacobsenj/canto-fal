@@ -11,13 +11,20 @@ declare(strict_types=1);
 
 namespace TYPO3Canto\CantoFal\Resource\Processing;
 
+use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\Processing\LocalPreviewHelper;
+use TYPO3\CMS\Core\Resource\Processing\TaskInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Imaging\GifBuilder;
 use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
 
-class CantoPreviewHelper extends LocalPreviewHelper
+/**
+ * Generates preview images for Canto assets.
+ *
+ * Formerly extended the core LocalPreviewHelper, which has been removed in TYPO3 v14.
+ * The relevant logic has been adopted from TYPO3 core (GPL-2.0-or-later).
+ */
+class CantoPreviewHelper
 {
     protected CantoRepository $cantoRepository;
 
@@ -26,6 +33,36 @@ class CantoPreviewHelper extends LocalPreviewHelper
         $this->cantoRepository = $cantoRepository;
     }
 
+    /**
+     * @return array{filePath?: string}|null
+     */
+    public function process(TaskInterface $task): ?array
+    {
+        $sourceFile = $task->getSourceFile();
+        $task->sanitizeConfiguration();
+        $configuration = $task->getConfiguration();
+
+        // Do not scale up, if the source file has dimensions and any target dimension (width/height) is larger
+        if ($sourceFile->getProperty('width') > 0 && $sourceFile->getProperty('height') > 0
+            && (
+                $configuration['width'] > $sourceFile->getProperty('width')
+                || $configuration['height'] > $sourceFile->getProperty('height')
+            )
+        ) {
+            return null;
+        }
+
+        return $this->generatePreviewFromFile(
+            $sourceFile,
+            $configuration,
+            GeneralUtility::tempnam('preview_', '.' . $task->getTargetFileExtension())
+        );
+    }
+
+    /**
+     * @param array<string, mixed> $configuration
+     * @return array{filePath: string}
+     */
     protected function generatePreviewFromFile(File $file, array $configuration, string $targetFilePath): array
     {
         try {
@@ -49,5 +86,31 @@ class CantoPreviewHelper extends LocalPreviewHelper
         GeneralUtility::unlink_tempfile($tempFile);
 
         return $processedImagePath;
+    }
+
+    /**
+     * @param array<string, mixed> $configuration
+     * @return array{filePath: string}
+     */
+    protected function generatePreviewFromLocalFile(string $originalFileName, array $configuration, string $targetFilePath): array
+    {
+        $imageService = GeneralUtility::makeInstance(GraphicalFunctions::class);
+        $result = $imageService->resize($originalFileName, 'WEB', $configuration['width'] . 'm', $configuration['height'] . 'm', '', ['sample' => true]);
+        if ($result) {
+            $targetFilePath = $result->getRealPath();
+        }
+        if (!file_exists($targetFilePath)) {
+            // Create an error gif
+            $graphicalFunctions = GeneralUtility::makeInstance(GifBuilder::class);
+            $graphicalFunctions->getTemporaryImageWithText(
+                $targetFilePath,
+                'No thumb',
+                'generated!'
+            );
+        }
+
+        return [
+            'filePath' => $targetFilePath,
+        ];
     }
 }

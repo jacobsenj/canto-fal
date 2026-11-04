@@ -17,7 +17,6 @@ use TYPO3\CMS\Backend\Form\InlineStackProcessor;
 use TYPO3\CMS\Core\Crypto\HashService;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Resource\DefaultUploadFolderResolver;
-use TYPO3\CMS\Core\Resource\Filter\FileExtensionFilter;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -38,18 +37,28 @@ final class FileControlContainer extends FilesControlContainerCore
 
     /**
      * Generate buttons to select, reference and upload files.
+     *
+     * The signature of the parent method differs between TYPO3 versions:
+     * - v13: getFileSelectors(array $inlineConfiguration, FileExtensionFilter $fileExtensionFilter)
+     * - v14: getFileSelectors(array $inlineStructure, array $inlineConfiguration, FileExtensionFilter $fileExtensionFilter)
+     * A variadic signature is compatible with both.
+     *
+     * @return array<int|string, string>
      */
-    protected function getFileSelectors(array $inlineConfiguration, FileExtensionFilter $fileExtensionFilter): array
+    protected function getFileSelectors(mixed ...$arguments): array
     {
-        $rval = parent::getFileSelectors($inlineConfiguration, $fileExtensionFilter);
-        /** @var  StorageRepository $service */
-        $storageReporitory = GeneralUtility::makeInstance(StorageRepository::class);
-        $storages = $storageReporitory->findAll();
+        $rval = parent::getFileSelectors(...$arguments);
+        /** @var array<string, mixed> $inlineConfiguration */
+        $inlineConfiguration = $arguments[count($arguments) - 2];
+        /** @var array<string, mixed> $inlineStructure */
+        $inlineStructure = count($arguments) === 3 ? $arguments[0] : ($this->data['inlineStructure'] ?? []);
+
+        $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
+        $storages = $storageRepository->findAll();
 
         foreach ($storages as $storage) {
             if ($storage->getDriverType() === 'Canto' && $storage->getUid() > 0) {
-                $newbuttonData = $this->renderAssetPickerButton($inlineConfiguration, $storage->getUid(), $storage->getName());
-                $rval[count($rval)] = $newbuttonData;
+                $rval[] = $this->renderAssetPickerButton($inlineStructure, $inlineConfiguration, $storage->getUid(), $storage->getName());
             }
         }
 
@@ -57,20 +66,28 @@ final class FileControlContainer extends FilesControlContainerCore
     }
 
     /**
+     * @param array<string, mixed> $inlineStructure
      * @param array<string, mixed> $inlineConfiguration
-     * @param int $storageId
-     * @return string
      */
-    private function renderAssetPickerButton(array $inlineConfiguration, int $storageId, string $storageName): string
+    private function renderAssetPickerButton(array $inlineStructure, array $inlineConfiguration, int $storageId, string $storageName): string
     {
         $foreign_table = $inlineConfiguration['foreign_table'];
         $allowed = '';
         if (isset($inlineConfiguration['allowed'])) {
             $allowed = $inlineConfiguration['allowed'];
         }
-        $currentStructureDomObjectIdPrefix = $this->inlineStackProcessor->getCurrentStructureDomObjectIdPrefix(
-            $this->data['inlineFirstPid']
-        );
+        if (method_exists($this->inlineStackProcessor, 'getDomObjectIdPrefixFromStructure')) {
+            // TYPO3 v14
+            $currentStructureDomObjectIdPrefix = $this->inlineStackProcessor->getDomObjectIdPrefixFromStructure(
+                $inlineStructure,
+                $this->data['inlineFirstPid']
+            );
+        } else {
+            // TYPO3 v13
+            $currentStructureDomObjectIdPrefix = $this->inlineStackProcessor->getCurrentStructureDomObjectIdPrefix(
+                $this->data['inlineFirstPid']
+            );
+        }
         $objectPrefix = $currentStructureDomObjectIdPrefix . '-' . $foreign_table;
 
         $hideButton = isset($inlineConfiguration['maxitems']) && count($this->data['parameterArray']['fieldConf']['children']) >= $inlineConfiguration['maxitems'];

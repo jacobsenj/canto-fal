@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
 use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use TYPO3Canto\CantoFal\Resource\Event\IncomingWebhookEvent;
@@ -22,13 +21,11 @@ use TYPO3Canto\CantoFal\Utility\CantoUtility;
 final class MetadataWebhookEventListener
 {
     private Extractor $metadataExtractor;
-    private ResourceFactory $resourceFactory;
     private StorageRepository $storageRepository;
 
-    public function __construct(Extractor $metadataExtractor, ResourceFactory $resourceFactory, StorageRepository $storageRepository)
+    public function __construct(Extractor $metadataExtractor, StorageRepository $storageRepository)
     {
         $this->metadataExtractor = $metadataExtractor;
-        $this->resourceFactory = $resourceFactory;
         $this->storageRepository = $storageRepository;
     }
 
@@ -41,7 +38,7 @@ final class MetadataWebhookEventListener
         $identifier = CantoUtility::buildCombinedIdentifier($event->getScheme(), $event->getId());
         $file = null;
         foreach ($cantoStorages as $storage) {
-            $file = $this->resourceFactory->getFileObjectByStorageAndIdentifier($storage->getUid(), $identifier);
+            $file = $storage->getFileByIdentifier($identifier);
             if ($file instanceof File) {
                 break;
             }

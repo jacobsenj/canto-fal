@@ -5,12 +5,15 @@ env:
         "ubuntu-latest"
     PHP: |
         "8.2"
-        "8.4"
         "8.3"
+        "8.4"
+        "8.5"
     TYPO3: |
         "^13.4"
+        "^14.3"
     TYPO3_DEV: |
         "13.4.x-dev"
+        "14.3.x-dev"
     EXCLUDE: |
         {},
 
@@ -58,16 +61,16 @@ jobs:
                     echo "::group::OS"
                     os=$(echo $OS | jq --compact-output --raw-input --raw-output '.' | jq --compact-output --slurp '.')
                     echo "os = $os"
-                    echo "os=$os" >> "$GITHUB_OUTPUT" 
+                    echo "os=$os" >> "$GITHUB_OUTPUT"
                     echo "os-single = $(echo $os | jq '.'[0])"
-                    echo "os-single=$(echo $os | jq '.'[0])" >> "$GITHUB_OUTPUT" 
+                    echo "os-single=$(echo $os | jq '.'[0])" >> "$GITHUB_OUTPUT"
                     echo "::endgroup::"
-                    
+
                     echo ""
                     echo "::group::PHP"
                     php=$(echo $PHP | jq --compact-output --raw-input --raw-output '.' | jq --compact-output --slurp '.')
                     echo "php = $php"
-                    echo "php=$php" >> "$GITHUB_OUTPUT" 
+                    echo "php=$php" >> "$GITHUB_OUTPUT"
                     echo "php-single = $(echo $php | jq '.'[-1])"
                     echo "php-single=$(echo $php | jq '.'[-1])" >> "$GITHUB_OUTPUT"
                     echo "::endgroup::"

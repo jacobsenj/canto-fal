@@ -14,6 +14,8 @@ namespace TYPO3Canto\CantoFal\Resource\EventListener;
 use TYPO3\CMS\Core\Resource\Event\BeforeFileProcessingEvent;
 use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Core\Resource\ProcessedFileRepository;
+use TYPO3\CMS\Core\Resource\Processing\TaskTypeRegistry;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
 use TYPO3Canto\CantoFal\Resource\MdcUrlGenerator;
 use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
@@ -49,10 +51,16 @@ final class BeforeFileProcessingEventListener
         if ($event->getTaskType() === ProcessedFile::CONTEXT_IMAGEPREVIEW) {
             $configuration['fileExtension'] = 'jpg';
         }
-        $url = $this->mdcUrlGenerator->generateMdcUrl($processedFile->getTask());
+        // ProcessedFile::getTask() has been removed in TYPO3 v14
+        $task = GeneralUtility::makeInstance(TaskTypeRegistry::class)->getTaskForType(
+            $processedFile->getTaskIdentifier(),
+            $processedFile,
+            $processedFile->getProcessingConfiguration()
+        );
+        $url = $this->mdcUrlGenerator->generateMdcUrl($task);
         $processedFile->updateProcessingUrl($url);
         $properties = $processedFile->getProperties() ?? [];
-        $properties = array_merge($properties, $this->mdcUrlGenerator->resolveImageWidthHeight($processedFile->getTask()));
+        $properties = array_merge($properties, $this->mdcUrlGenerator->resolveImageWidthHeight($task));
         $properties['processing_url'] = $url;
         $processedFile->updateProperties($properties);
         $processedFile->setIdentifier(CantoUtility::identifierToProcessedIdentifier($identifier));
@@ -60,6 +68,7 @@ final class BeforeFileProcessingEventListener
             $processedFile->setName($processedFile->getOriginalFile()->getName());
         }
         $event->setProcessedFile($processedFile);
-        $this->processedFileRepository->add($processedFile);
+        // The second argument is required since TYPO3 v14 and ignored by TYPO3 v13
+        $this->processedFileRepository->add($processedFile, $task);
     }
 }

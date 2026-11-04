@@ -13,7 +13,6 @@ namespace TYPO3Canto\CantoFal\Resource\EventListener;
 
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\ProcessedFileRepository;
-use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3Canto\CantoFal\Resource\Driver\CantoDriver;
@@ -22,13 +21,11 @@ use TYPO3Canto\CantoFal\Utility\CantoUtility;
 
 final class NewAssetVersionWebhookEventListener
 {
-    private ResourceFactory $resourceFactory;
     private StorageRepository $storageRepository;
     private ProcessedFileRepository $processedFileRepository;
 
-    public function __construct(ResourceFactory $resourceFactory, StorageRepository $storageRepository, ProcessedFileRepository $processedFileRepository)
+    public function __construct(StorageRepository $storageRepository, ProcessedFileRepository $processedFileRepository)
     {
-        $this->resourceFactory = $resourceFactory;
         $this->storageRepository = $storageRepository;
         $this->processedFileRepository = $processedFileRepository;
     }
@@ -57,7 +54,7 @@ final class NewAssetVersionWebhookEventListener
     private function getFile(array $storages, string $identifier): ?File
     {
         foreach ($storages as $storage) {
-            $file = $this->resourceFactory->getFileObjectByStorageAndIdentifier($storage->getUid(), $identifier);
+            $file = $storage->getFileByIdentifier($identifier);
             if ($file instanceof File) {
                 return $file;
             }

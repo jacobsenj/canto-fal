@@ -11,3 +11,17 @@ parameters:
             # PHPStan reports a non-ignorable error for the branch not matching the installed core
             - Classes/Resource/Repository/CantoFileIndexRepository.php
     reportUnmatchedIgnoredErrors: true
+    ignoreErrors:
+        # Only used by CantoFileIndexRepository, which is excluded from analysis (see above)
+        -
+            identifier: trait.unused
+            path: Classes/Resource/Repository/CantoFileIndexRepositoryTrait.php
+        # TYPO3 v13 / v14 compatibility: the analysis runs against TYPO3 v14
+        -
+            identifier: function.alreadyNarrowedType
+            message: '#method_exists\(\) with TYPO3\\CMS\\Backend\\Form\\InlineStackProcessor#'
+            path: Classes/Form/Container/FileControlContainer.php
+        -
+            identifier: method.notFound
+            message: '#InlineStackProcessor::getCurrentStructureDomObjectIdPrefix\(\)#'
+            path: Classes/Form/Container/FileControlContainer.php

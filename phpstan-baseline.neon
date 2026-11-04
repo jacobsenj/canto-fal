@@ -1,711 +1,967 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowser\\:\\:\\$moduleTemplate\\.$#"
+			message: '#^Access to an undefined property TYPO3Canto\\CantoFal\\Browser\\CantoAssetBrowser\:\:\$moduleTemplate\.$#'
+			identifier: property.notFound
 			count: 1
 			path: Classes/Browser/CantoAssetBrowser.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowser\\:\\:getUrlParameters\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Browser\\CantoAssetBrowser\:\:getUrlParameters\(\) has parameter \$values with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Browser/CantoAssetBrowser.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowser\\:\\:isCurrentlySelectedItem\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Browser\\CantoAssetBrowser\:\:isCurrentlySelectedItem\(\) has parameter \$values with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Browser/CantoAssetBrowser.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Browser\\\\CantoAssetBrowser\\:\\:processSessionData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Browser\\CantoAssetBrowser\:\:processSessionData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Browser/CantoAssetBrowser.php
 
 		-
-			message: "#^Left side of && is always true\\.$#"
+			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: Classes/Command/MigrateFileIdentifiersToNewFormat.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Database\\ConnectionPool and TYPO3\\CMS\\Core\\Database\\ConnectionPool will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Command/MigrateFileIdentifiersToNewFormat.php
+
+		-
+			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: Classes/Command/RemoveMdcPrefixForFilesCommand.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Resource\\File and TYPO3\\CMS\\Core\\Resource\\File will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Command/RemoveMdcPrefixForFilesCommand.php
+
+		-
+			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: Classes/Command/UpdateImageAssetsUsedInFrontendCommand.php
 
 		-
-			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, array\\|null given\\.$#"
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Resource\\File and TYPO3\\CMS\\Core\\Resource\\File will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
 			count: 1
 			path: Classes/Command/UpdateImageAssetsUsedInFrontendCommand.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Command\\\\WarmupCantoCache\\:\\:getStorages\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Left side of && is always true\.$#'
+			identifier: booleanAnd.leftAlwaysTrue
+			count: 1
+			path: Classes/Command/UpdateImageAssetsUsedInFrontendCommand.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, array\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/UpdateImageAssetsUsedInFrontendCommand.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between TYPO3\\CMS\\Core\\Cache\\Frontend\\FrontendInterface and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: Classes/Command/UpdateImageAssetsUsedInFrontendCommand.php
+
+		-
+			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: Classes/Command/UpdateMetadataAssetsCommand.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Resource\\File and TYPO3\\CMS\\Core\\Resource\\File will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Command/UpdateMetadataAssetsCommand.php
+
+		-
+			message: '#^Method TYPO3Canto\\CantoFal\\Command\\WarmupCantoCache\:\:getStorages\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Command/WarmupCantoCache.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Controller\\\\MetadataWebhookController\\:\\:getBody\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Controller\\MetadataWebhookController\:\:getBody\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Controller/MetadataWebhookController.php
 
 		-
-			message: "#^Parameter \\#1 \\$json of static method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\IncomingWebhookEvent\\:\\:fromJsonArray\\(\\) expects array\\{secure_token\\: string, scheme\\: string, album\\: string, displayname\\: string, id\\: string\\}, array given\\.$#"
+			message: '#^Parameter \#1 \$json of static method TYPO3Canto\\CantoFal\\Resource\\Event\\IncomingWebhookEvent\:\:fromJsonArray\(\) expects array\{secure_token\: string, scheme\: string, album\: string, displayname\: string, id\: string\}, array given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Controller/MetadataWebhookController.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Domain\\\\Model\\\\Dto\\\\AssetSearch\\:\\:getSchemes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Domain\\Model\\Dto\\AssetSearch\:\:getSchemes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Domain/Model/Dto/AssetSearch.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Domain\\\\Model\\\\Dto\\\\AssetSearch\\:\\:setSchemes\\(\\) has parameter \\$schemes with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Domain\\Model\\Dto\\AssetSearch\:\:setSchemes\(\) has parameter \$schemes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Domain/Model/Dto/AssetSearch.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Domain\\\\Model\\\\Dto\\\\AssetSearch\\:\\:\\$schemes type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Domain\\Model\\Dto\\AssetSearch\:\:\$schemes type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Domain/Model/Dto/AssetSearch.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Domain\\\\Model\\\\Dto\\\\AssetSearchResponse\\:\\:getResults\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Domain\\Model\\Dto\\AssetSearchResponse\:\:getResults\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Domain/Model/Dto/AssetSearchResponse.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Domain\\\\Model\\\\Dto\\\\AssetSearchResponse\\:\\:setResults\\(\\) has parameter \\$results with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Domain\\Model\\Dto\\AssetSearchResponse\:\:setResults\(\) has parameter \$results with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Domain/Model/Dto/AssetSearchResponse.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Domain\\\\Model\\\\Dto\\\\AssetSearchResponse\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Domain\\Model\\Dto\\AssetSearchResponse\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Domain/Model/Dto/AssetSearchResponse.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Domain\\\\Model\\\\Dto\\\\AssetSearchResponse\\:\\:\\$results type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Domain\\Model\\Dto\\AssetSearchResponse\:\:\$results type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Domain/Model/Dto/AssetSearchResponse.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Domain\\\\Repository\\\\FileReferenceRepository\\:\\:getFileReferenzesByFileUid\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Domain\\Repository\\FileReferenceRepository\:\:getFileReferenzesByFileUid\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
 			count: 1
 			path: Classes/Domain/Repository/FileReferenceRepository.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Domain\\\\Repository\\\\FileReferenceRepository\\:\\:\\$connectionPool is unused\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Domain\\Repository\\FileReferenceRepository\:\:getFileReferenzesByFileUid\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Domain/Repository/FileReferenceRepository.php
 
 		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Backend\\\\Form\\\\InlineStackProcessor\\:\\:getCurrentStructureDomObjectIdPrefix\\(\\)\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Domain\\Repository\\FileReferenceRepository\:\:\$connectionPool is unused\.$#'
+			identifier: property.unused
 			count: 1
-			path: Classes/Form/Container/FileControlContainer.php
+			path: Classes/Domain/Repository/FileReferenceRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Pagination\\\\SearchResultPaginator\\:\\:getPaginatedItems\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3\\CMS\\Core\\DataHandling\\DataHandler\:\:\$datamap \(array\<string, array\<int\|string, array\>\>\) on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.property
+			count: 1
+			path: Classes/Hooks/DataHandlerHooks.php
+
+		-
+			message: '#^Method TYPO3Canto\\CantoFal\\Pagination\\SearchResultPaginator\:\:getPaginatedItems\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Pagination/SearchResultPaginator.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\CantoClientFactory\\:\\:createClientFromDriverConfiguration\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\CantoClientFactory\:\:createClientFromDriverConfiguration\(\) has parameter \$configuration with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/CantoClientFactory.php
 
 		-
-			message: "#^Static call to instance method TYPO3\\\\CMS\\\\Core\\\\Http\\\\Client\\\\GuzzleClientFactory\\:\\:getClient\\(\\)\\.$#"
+			message: '#^Static call to instance method TYPO3\\CMS\\Core\\Http\\Client\\GuzzleClientFactory\:\:getClient\(\)\.$#'
+			identifier: method.staticCall
 			count: 1
 			path: Classes/Resource/CantoClientFactory.php
 
 		-
-			message: "#^Cannot call method getMessage\\(\\) on Throwable\\|null\\.$#"
+			message: '#^Cannot call method getMessage\(\) on Throwable\|null\.$#'
+			identifier: method.nonObject
 			count: 2
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			message: '#^Expression on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.expr
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:__construct\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:__construct\(\) has parameter \$configuration with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:addFile\\(\\) should return non\\-empty\\-string but returns ''\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:addFile\(\) should return non\-empty\-string but returns ''''\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFileContents\\(\\) should return string but returns string\\|false\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:getFileContents\(\) should return string but returns string\|false\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFileForLocalProcessing\\(\\) should return non\\-empty\\-string but returns string\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:getFileForLocalProcessing\(\) should return non\-empty\-string but returns string\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFileInFolder\\(\\) should return non\\-empty\\-string but returns ''\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:getFileInFolder\(\) should return non\-empty\-string but returns ''''\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFolderInFolder\\(\\) should return non\\-empty\\-string but returns ''\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:getFolderInFolder\(\) should return non\-empty\-string but returns ''''\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getFolderInFolder\\(\\) should return non\\-empty\\-string but returns string\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:getFolderInFolder\(\) should return non\-empty\-string but returns string\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:getPublicUrl\\(\\) should return non\\-empty\\-string\\|null but returns string\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:getPublicUrl\(\) should return non\-empty\-string\|null but returns string\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:resolveFilesInFolder\\(\\) has parameter \\$filenameFilterCallbacks with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:resolveFilesInFolder\(\) has parameter \$filenameFilterCallbacks with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Driver\\\\CantoDriver\\:\\:streamFile\\(\\) has parameter \\$properties with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Driver\\CantoDriver\:\:streamFile\(\) has parameter \$properties with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Parameter \\#1 \\$scheme of static method TYPO3Canto\\\\CantoFal\\\\Utility\\\\CantoUtility\\:\\:buildCombinedIdentifier\\(\\) expects string, string\\|null given\\.$#"
+			message: '#^Parameter \#1 \$scheme of static method TYPO3Canto\\CantoFal\\Utility\\CantoUtility\:\:buildCombinedIdentifier\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Parameter \\#1 \\$url of static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\GeneralUtility\\:\\:getUrl\\(\\) expects string, string\\|null given\\.$#"
+			message: '#^Parameter \#1 \$url of static method TYPO3\\CMS\\Core\\Utility\\GeneralUtility\:\:getUrl\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Parameter \\#2 \\$callback of function array_walk expects callable\\(string\\|null, int, 'folder'\\)\\: mixed, Closure\\(string, int, mixed\\)\\: void given\\.$#"
+			message: '#^Parameter \#2 \$callback of function array_walk expects callable\(string\|null, int\<0, max\>, ''folder''\)\: mixed, Closure\(string, int, mixed\)\: void given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Parameter \\#2 \\$id of static method TYPO3Canto\\\\CantoFal\\\\Utility\\\\CantoUtility\\:\\:buildCombinedIdentifier\\(\\) expects string, string\\|null given\\.$#"
+			message: '#^Parameter \#2 \$id of static method TYPO3Canto\\CantoFal\\Utility\\CantoUtility\:\:buildCombinedIdentifier\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 2
 			path: Classes/Resource/Driver/CantoDriver.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\AfterMetaDataExtractionEvent\\:\\:__construct\\(\\) has parameter \\$fileData with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\AfterMetaDataExtractionEvent\:\:__construct\(\) has parameter \$fileData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/AfterMetaDataExtractionEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\AfterMetaDataExtractionEvent\\:\\:__construct\\(\\) has parameter \\$metadata with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\AfterMetaDataExtractionEvent\:\:__construct\(\) has parameter \$metadata with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/AfterMetaDataExtractionEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\AfterMetaDataExtractionEvent\\:\\:getFileData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\AfterMetaDataExtractionEvent\:\:getFileData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/AfterMetaDataExtractionEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\AfterMetaDataExtractionEvent\\:\\:getMetadata\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\AfterMetaDataExtractionEvent\:\:getMetadata\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/AfterMetaDataExtractionEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\AfterMetaDataExtractionEvent\\:\\:setMetadata\\(\\) has parameter \\$metadata with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\AfterMetaDataExtractionEvent\:\:setMetadata\(\) has parameter \$metadata with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/AfterMetaDataExtractionEvent.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\AfterMetaDataExtractionEvent\\:\\:\\$fileData type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\Event\\AfterMetaDataExtractionEvent\:\:\$fileData type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/AfterMetaDataExtractionEvent.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\AfterMetaDataExtractionEvent\\:\\:\\$metadata type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\Event\\AfterMetaDataExtractionEvent\:\:\$metadata type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/AfterMetaDataExtractionEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeLocalFileProcessingEvent\\:\\:__construct\\(\\) has parameter \\$fileData with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeLocalFileProcessingEvent\:\:__construct\(\) has parameter \$fileData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeLocalFileProcessingEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeLocalFileProcessingEvent\\:\\:getFileData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeLocalFileProcessingEvent\:\:getFileData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeLocalFileProcessingEvent.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeLocalFileProcessingEvent\\:\\:\\$fileData type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeLocalFileProcessingEvent\:\:\$fileData type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeLocalFileProcessingEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeMdcUrlGenerationEvent\\:\\:__construct\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeMdcUrlGenerationEvent\:\:__construct\(\) has parameter \$configuration with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeMdcUrlGenerationEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeMdcUrlGenerationEvent\\:\\:getConfiguration\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeMdcUrlGenerationEvent\:\:getConfiguration\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeMdcUrlGenerationEvent.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeMdcUrlGenerationEvent\\:\\:\\$configuration type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeMdcUrlGenerationEvent\:\:\$configuration type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeMdcUrlGenerationEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeMetadataUploadEvent\\:\\:__construct\\(\\) has parameter \\$properties with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeMetadataUploadEvent\:\:__construct\(\) has parameter \$properties with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeMetadataUploadEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeMetadataUploadEvent\\:\\:getProperties\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeMetadataUploadEvent\:\:getProperties\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeMetadataUploadEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeMetadataUploadEvent\\:\\:setProperties\\(\\) has parameter \\$properties with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeMetadataUploadEvent\:\:setProperties\(\) has parameter \$properties with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeMetadataUploadEvent.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Event\\\\BeforeMetadataUploadEvent\\:\\:\\$properties type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\Event\\BeforeMetadataUploadEvent\:\:\$properties type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Event/BeforeMetadataUploadEvent.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\EventListener\\\\AfterFormEnginePageInitializedEventListener\\:\\:__invoke\\(\\) has no return type specified\\.$#"
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Resource\\File and TYPO3\\CMS\\Core\\Resource\\FileInterface will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Resource/EventListener/AddFileReferenceHeaderControlEventListener.php
+
+		-
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\EventListener\\AfterFormEnginePageInitializedEventListener\:\:__invoke\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/EventListener/AfterFormEnginePageInitializedEventListener.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\EventListener\\\\AfterFormEnginePageInitializedEventListener\\:\\:accessProtectedDataProperty\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\EventListener\\AfterFormEnginePageInitializedEventListener\:\:accessProtectedDataProperty\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/EventListener/AfterFormEnginePageInitializedEventListener.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\EventListener\\\\AfterFormEnginePageInitializedEventListener\\:\\:updateMetadataInCantoSlot\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\EventListener\\AfterFormEnginePageInitializedEventListener\:\:updateMetadataInCantoSlot\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/EventListener/AfterFormEnginePageInitializedEventListener.php
 
 		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			message: '#^Expression on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.expr
 			count: 1
 			path: Classes/Resource/EventListener/BeforeFileProcessingEventListener.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\EventListener\\\\BeforeFileProcessingEventListener\\:\\:__invoke\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\EventListener\\BeforeFileProcessingEventListener\:\:__invoke\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/EventListener/BeforeFileProcessingEventListener.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\EventListener\\\\BeforeFileProcessingEventListener\\:\\:\\$cantoRepository is never read, only written\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\EventListener\\BeforeFileProcessingEventListener\:\:\$cantoRepository is never read, only written\.$#'
+			identifier: property.onlyWritten
 			count: 1
 			path: Classes/Resource/EventListener/BeforeFileProcessingEventListener.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\EventListener\\\\DeleteAssetWebhookEventListener\\:\\:__invoke\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\EventListener\\DeleteAssetWebhookEventListener\:\:__invoke\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/EventListener/DeleteAssetWebhookEventListener.php
 
 		-
-			message: "#^Cannot call method getMetaData\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ProcessedFile\\|null\\.$#"
+			message: '#^Cannot call method getMetaData\(\) on TYPO3\\CMS\\Core\\Resource\\File\|TYPO3\\CMS\\Core\\Resource\\ProcessedFile\|null\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: Classes/Resource/EventListener/MetadataWebhookEventListener.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\EventListener\\\\MetadataWebhookEventListener\\:\\:__invoke\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\EventListener\\MetadataWebhookEventListener\:\:__invoke\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/EventListener/MetadataWebhookEventListener.php
 
 		-
-			message: "#^Parameter \\#1 \\$file of method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:extractMetaData\\(\\) expects TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File, TYPO3\\\\CMS\\\\Core\\\\Resource\\\\File\\|TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ProcessedFile\\|null given\\.$#"
+			message: '#^Parameter \#1 \$file of method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:extractMetaData\(\) expects TYPO3\\CMS\\Core\\Resource\\File, TYPO3\\CMS\\Core\\Resource\\File\|TYPO3\\CMS\\Core\\Resource\\ProcessedFile\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Resource/EventListener/MetadataWebhookEventListener.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\EventListener\\\\NewAssetVersionWebhookEventListener\\:\\:__invoke\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\EventListener\\NewAssetVersionWebhookEventListener\:\:__invoke\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/EventListener/NewAssetVersionWebhookEventListener.php
 
 		-
-			message: "#^Offset 'height' on array\\{width\\: int, height\\: int, scale\\: float\\} on left side of \\?\\? always exists and is not nullable\\.$#"
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Resource\\File and TYPO3\\CMS\\Core\\Resource\\FileInterface will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Resource/EventListener/ReloadMetadataInFormEngineEventListener.php
+
+		-
+			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: Classes/Resource/EventListener/SyncMetaDataCategoriesEventListener.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Category\\Collection\\CategoryCollection and TYPO3\\CMS\\Core\\Category\\Collection\\CategoryCollection will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Resource/EventListener/SyncMetaDataCategoriesEventListener.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Resource\\File and TYPO3\\CMS\\Core\\Resource\\File will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Resource/EventListener/SyncMetaDataCategoriesEventListener.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Resource\\File and TYPO3\\CMS\\Core\\Resource\\File will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Resource/EventListener/SyncMetaDataTranslationsEventListener.php
+
+		-
+			message: '#^Offset ''height'' on array\{width\: int, height\: int, scale\: float\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
 			count: 1
 			path: Classes/Resource/MdcUrlGenerator.php
 
 		-
-			message: "#^Offset 'width' on array\\{width\\: int, height\\: int, scale\\: float\\} on left side of \\?\\? always exists and is not nullable\\.$#"
+			message: '#^Offset ''width'' on array\{width\: int, height\: int, scale\: float\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
 			count: 1
 			path: Classes/Resource/MdcUrlGenerator.php
 
 		-
-			message: "#^Expression in empty\\(\\) is always falsy\\.$#"
+			message: '#^Expression in empty\(\) is always falsy\.$#'
+			identifier: empty.expr
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:exportToCanto\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:exportToCanto\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:exportToCanto\\(\\) has parameter \\$metadata with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:exportToCanto\(\) has parameter \$metadata with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:transformMetadataAndMappingArray\\(\\) has parameter \\$mapping with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:transformMetadataAndMappingArray\(\) has parameter \$mapping with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:transformMetadataAndMappingArray\\(\\) has parameter \\$metadata with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:transformMetadataAndMappingArray\(\) has parameter \$metadata with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:transformMetadataAndMappingArray\\(\\) is unused\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:transformMetadataAndMappingArray\(\) is unused\.$#'
+			identifier: method.unused
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:transformMetadataIntoPropertiesArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:transformMetadataIntoPropertiesArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:transformMetadataIntoPropertiesArray\\(\\) has parameter \\$mapping with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:transformMetadataIntoPropertiesArray\(\) has parameter \$mapping with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:transformMetadataIntoPropertiesArray\\(\\) is unused\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:transformMetadataIntoPropertiesArray\(\) is unused\.$#'
+			identifier: method.unused
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:transformMetadataIntoPropertiesArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:transformMetadataIntoPropertiesArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:\\$cantoRepository is never read, only written\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:\$cantoRepository is never read, only written\.$#'
+			identifier: property.onlyWritten
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Exporter\\:\\:\\$dispatcher is never read, only written\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\Metadata\\Exporter\:\:\$dispatcher is never read, only written\.$#'
+			identifier: property.onlyWritten
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Result of \\|\\| is always true\\.$#"
+			message: '#^Result of \|\| is always true\.$#'
+			identifier: booleanOr.alwaysTrue
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Variable \\$configuration on left side of \\?\\? is never defined\\.$#"
+			message: '#^Variable \$configuration on left side of \?\? is never defined\.$#'
+			identifier: nullCoalesce.variable
 			count: 1
 			path: Classes/Resource/Metadata/Exporter.php
 
 		-
-			message: "#^Call to method add\\(\\) on an unknown class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\CategoryRepository\\.$#"
+			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Call to method findByTitle\\(\\) on an unknown class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\CategoryRepository\\.$#"
+			message: '#^Call to method add\(\) on an unknown class TYPO3Canto\\CantoFal\\Resource\\Metadata\\CategoryRepository\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Call to method getConnectionForTable\\(\\) on an unknown class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\ConnectionPool\\.$#"
+			message: '#^Call to method findByTitle\(\) on an unknown class TYPO3Canto\\CantoFal\\Resource\\Metadata\\CategoryRepository\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Call to method setDescription\\(\\) on an unknown class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Category\\.$#"
+			message: '#^Call to method getConnectionForTable\(\) on an unknown class TYPO3Canto\\CantoFal\\Resource\\Metadata\\ConnectionPool\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Call to method setParent\\(\\) on an unknown class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Category\\.$#"
+			message: '#^Call to method setDescription\(\) on an unknown class TYPO3Canto\\CantoFal\\Resource\\Metadata\\Category\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Call to method setTitle\\(\\) on an unknown class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Category\\.$#"
+			message: '#^Call to method setParent\(\) on an unknown class TYPO3Canto\\CantoFal\\Resource\\Metadata\\Category\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\CategoryRepository not found\\.$#"
+			message: '#^Call to method setTitle\(\) on an unknown class TYPO3Canto\\CantoFal\\Resource\\Metadata\\Category\.$#'
+			identifier: class.notFound
+			count: 1
+			path: Classes/Resource/Metadata/Extractor.php
+
+		-
+			message: '#^Class TYPO3Canto\\CantoFal\\Resource\\Metadata\\CategoryRepository not found\.$#'
+			identifier: class.notFound
 			count: 2
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\ConnectionPool not found\\.$#"
+			message: '#^Class TYPO3Canto\\CantoFal\\Resource\\Metadata\\ConnectionPool not found\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Instantiated class TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Category not found\\.$#"
+			message: '#^Instanceof between TYPO3Canto\\CantoFal\\Resource\\Metadata\\CategoryRepository and TYPO3Canto\\CantoFal\\Resource\\Metadata\\CategoryRepository will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:addCategory\\(\\) has invalid return type TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Category\\.$#"
+			message: '#^Instantiated class TYPO3Canto\\CantoFal\\Resource\\Metadata\\Category not found\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:applyMappedCategoryData\\(\\) has parameter \\$fileData with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:addCategory\(\) has invalid return type TYPO3Canto\\CantoFal\\Resource\\Metadata\\Category\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:applyMappedCategoryData\\(\\) has parameter \\$mapping with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:applyMappedCategoryData\(\) has parameter \$fileData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:applyMappedCategoryData\\(\\) is unused\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:applyMappedCategoryData\(\) has parameter \$mapping with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:applyMappedCategoryData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:applyMappedCategoryData\(\) is unused\.$#'
+			identifier: method.unused
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:applyMappedMetaData\\(\\) has parameter \\$fileData with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:applyMappedCategoryData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:applyMappedMetaData\\(\\) has parameter \\$mapping with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:applyMappedMetaData\(\) has parameter \$fileData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:applyMappedMetaData\\(\\) invoked with 3 parameters, 2 required\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:applyMappedMetaData\(\) has parameter \$mapping with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:applyMappedMetaData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:applyMappedMetaData\(\) invoked with 3 parameters, 2 required\.$#'
+			identifier: arguments.count
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:buildCategoryTree\\(\\) has invalid return type TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Category\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:applyMappedMetaData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:buildCategoryTree\\(\\) has parameter \\$mappedCategoryConfiguration with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:buildCategoryTree\(\) has invalid return type TYPO3Canto\\CantoFal\\Resource\\Metadata\\Category\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:extractFromMetadata\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:buildCategoryTree\(\) has parameter \$mappedCategoryConfiguration with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:extractFromMetadata\\(\\) has parameter \\$fileKey with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:extractFromMetadata\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:extractFromMetadata\\(\\) has parameter \\$metadata with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:extractFromMetadata\(\) has parameter \$fileKey with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:extractMetaData\\(\\) has parameter \\$previousExtractedData with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:extractFromMetadata\(\) has parameter \$metadata with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:extractMetaData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:extractMetaData\(\) has parameter \$previousExtractedData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:fetchDataForFile\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:extractMetaData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:getDriverRestrictions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:fetchDataForFile\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:getFileTypeRestrictions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:getDriverRestrictions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:getMappedCategories\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:getFileTypeRestrictions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:getMappedMetaData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:getMappedCategories\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:getQueryBuilder\\(\\) has invalid return type TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\QueryBuilder\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:getMappedMetaData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:getQueryBuilder\\(\\) is unused\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:getQueryBuilder\(\) has invalid return type TYPO3Canto\\CantoFal\\Resource\\Metadata\\QueryBuilder\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Parameter \\$categoryRepository of method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:buildCategoryTree\\(\\) has invalid type TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\CategoryRepository\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:getQueryBuilder\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: Classes/Resource/Metadata/Extractor.php
+
+		-
+			message: '#^Parameter \$categoryRepository of method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:buildCategoryTree\(\) has invalid type TYPO3Canto\\CantoFal\\Resource\\Metadata\\CategoryRepository\.$#'
+			identifier: class.notFound
 			count: 2
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Parameter \\$parent of method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:addCategory\\(\\) has invalid type TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Category\\.$#"
+			message: '#^Parameter \$parent of method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:addCategory\(\) has invalid type TYPO3Canto\\CantoFal\\Resource\\Metadata\\Category\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Parameter \\$parent of method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:buildCategoryTree\\(\\) has invalid type TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Category\\.$#"
+			message: '#^Parameter \$parent of method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:buildCategoryTree\(\) has invalid type TYPO3Canto\\CantoFal\\Resource\\Metadata\\Category\.$#'
+			identifier: class.notFound
 			count: 2
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Parameter \\$repository of method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\Extractor\\:\\:addCategory\\(\\) has invalid type TYPO3Canto\\\\CantoFal\\\\Resource\\\\Metadata\\\\CategoryRepository\\.$#"
+			message: '#^Parameter \$repository of method TYPO3Canto\\CantoFal\\Resource\\Metadata\\Extractor\:\:addCategory\(\) has invalid type TYPO3Canto\\CantoFal\\Resource\\Metadata\\CategoryRepository\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/Resource/Metadata/Extractor.php
 
 		-
-			message: "#^Call to an undefined method object\\:\\:getRecord\\(\\)\\.$#"
+			message: '#^Call to an undefined method object\:\:getRecord\(\)\.$#'
+			identifier: method.notFound
 			count: 2
 			path: Classes/Resource/Metadata/MetadataRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Processing\\\\CantoMdcProcessor\\:\\:processTask\\(\\) has no return type specified\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Processing\\CantoMdcProcessor\:\:processTask\(\) has no return type specified\.$#'
+			identifier: missingType.return
 			count: 1
 			path: Classes/Resource/Processing/CantoMdcProcessor.php
 
 		-
-			message: "#^Variable \\$properties on left side of \\?\\? always exists and is not nullable\\.$#"
+			message: '#^Variable \$properties on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.variable
 			count: 2
 			path: Classes/Resource/Processing/CantoMdcProcessor.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoAlbumRepository\\:\\:updateAlbumsForFileUid\\(\\) has parameter \\$albumIdentifiers with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoAlbumRepository\:\:updateAlbumsForFileUid\(\) has parameter \$albumIdentifiers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoAlbumRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:buildFolderTree\\(\\) has parameter \\$treeItems with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:buildFolderTree\(\) has parameter \$treeItems with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:buildFolderTree\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:buildFolderTree\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:getFileDetails\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:getFileDetails\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:getFolderDetails\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:getFolderDetails\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:getFolderIdentifierTree\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:getFolderIdentifierTree\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:initialize\\(\\) has parameter \\$driverConfiguration with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:initialize\(\) has parameter \$driverConfiguration with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:setFileCache\\(\\) has parameter \\$result with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:setFileCache\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:setFolderCache\\(\\) has parameter \\$result with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:setFolderCache\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Parameter \\#1 \\$from of function stream_copy_to_stream expects resource, resource\\|null given\\.$#"
+			message: '#^Parameter \#1 \$from of function stream_copy_to_stream expects resource, resource\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Parameter \\#1 \\$stream of function fclose expects resource, resource\\|false given\\.$#"
+			message: '#^Parameter \#1 \$stream of function fclose expects resource, resource\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Parameter \\#1 \\$uri of method TYPO3Canto\\\\CantoApi\\\\Endpoint\\\\Asset\\:\\:getAuthorizedUrlContent\\(\\) expects string, string\\|null given\\.$#"
+			message: '#^Parameter \#1 \$uri of method TYPO3Canto\\CantoApi\\Endpoint\\Asset\:\:getAuthorizedUrlContent\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Parameter \\#2 \\$to of function stream_copy_to_stream expects resource, resource\\|false given\\.$#"
+			message: '#^Parameter \#2 \$to of function stream_copy_to_stream expects resource, resource\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Property TYPO3Canto\\\\CantoFal\\\\Resource\\\\Repository\\\\CantoRepository\\:\\:\\$driverConfiguration type has no value type specified in iterable type array\\.$#"
+			message: '#^Property TYPO3Canto\\CantoFal\\Resource\\Repository\\CantoRepository\:\:\$driverConfiguration type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Resource/Repository/CantoRepository.php
 
 		-
-			message: "#^Cannot call method getTimestamp\\(\\) on DateTime\\|false\\.$#"
+			message: '#^Cannot call method getTimestamp\(\) on DateTime\|false\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: Classes/Utility/CantoUtility.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Utility\\\\CantoUtility\\:\\:buildCombinedIdentifier\\(\\) should return non\\-empty\\-string but returns string\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Utility\\CantoUtility\:\:buildCombinedIdentifier\(\) should return non\-empty\-string but returns string\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Utility/CantoUtility.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Utility\\\\CantoUtility\\:\\:isMdcActivated\\(\\) has parameter \\$configuration with no value type specified in iterable type array\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Utility\\CantoUtility\:\:isMdcActivated\(\) has parameter \$configuration with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Utility/CantoUtility.php
 
 		-
-			message: "#^Method TYPO3Canto\\\\CantoFal\\\\Utility\\\\CantoUtility\\:\\:splitCombinedIdentifier\\(\\) should return array\\{scheme\\: string, identifier\\: string\\} but returns non\\-empty\\-array\\<'identifier'\\|'scheme', string\\>\\.$#"
+			message: '#^Method TYPO3Canto\\CantoFal\\Utility\\CantoUtility\:\:splitCombinedIdentifier\(\) should return array\{scheme\: string, identifier\: string\} but returns non\-empty\-array\<''identifier''\|''scheme'', string\>\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Utility/CantoUtility.php
 
 		-
-			message: "#^Cannot access offset 'ajax' on array\\|object\\.$#"
+			message: '#^Cannot access offset ''ajax'' on array\|object\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: Classes/Utility/SiteConfigurationResolver.php
 
 		-
-			message: "#^Parameter \\#1 \\$string of function parse_str expects string, string\\|false given\\.$#"
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Site\\Entity\\Site and TYPO3\\CMS\\Core\\Site\\Entity\\Site will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: Classes/Utility/SiteConfigurationResolver.php
+
+		-
+			message: '#^Parameter \#1 \$string of function parse_str expects string, string\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Utility/SiteConfigurationResolver.php

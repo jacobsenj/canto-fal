@@ -56,9 +56,23 @@ final class MdcUrlGenerator
     public function resolveImageWidthHeight(TaskInterface $task): array
     {
         $configuration = $this->transformConfiguration($task);
+        $width = (int)$configuration['width'];
+        $height = (int)$configuration['height'];
+        // -S<width>x<height> fits the image into that box keeping its aspect ratio,
+        // so report the fitted size instead of the box (otherwise <img> gets distorted)
+        $sourceWidth = (int)$task->getSourceFile()->getProperty('width');
+        $sourceHeight = (int)$task->getSourceFile()->getProperty('height');
+        if (!isset($configuration['size'])
+            && !(($configuration['crop'] ?? null) instanceof Area)
+            && $width > 0 && $height > 0 && $sourceWidth > 0 && $sourceHeight > 0
+        ) {
+            $scale = min(1, $width / $sourceWidth, $height / $sourceHeight);
+            $width = (int)round($sourceWidth * $scale);
+            $height = (int)round($sourceHeight * $scale);
+        }
         return [
-            'width' => (int)$configuration['width'],
-            'height' => (int)$configuration['height'],
+            'width' => $width,
+            'height' => $height,
         ];
     }
 

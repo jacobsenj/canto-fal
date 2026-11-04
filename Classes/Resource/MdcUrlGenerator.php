@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Imaging\ImageDimension;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Core\Resource\Processing\TaskInterface;
 use TYPO3Canto\CantoFal\Resource\Event\BeforeMdcUrlGenerationEvent;
 use TYPO3Canto\CantoFal\Resource\Repository\CantoRepository;
@@ -121,7 +120,7 @@ final class MdcUrlGenerator
         $configuration = $task->getConfiguration();
         if (!empty($configuration['width'])
             && !empty($configuration['height'])
-            && $task->getTargetFile()->getTaskIdentifier() !== ProcessedFile::CONTEXT_IMAGEPREVIEW
+            && !isset($configuration['crop'])
         ) {
             // width and height within CONTEXT_IMAGEPREVIEW are taken as maximum values and need further processing
             $configuration['height'] = (int)$configuration['height'];

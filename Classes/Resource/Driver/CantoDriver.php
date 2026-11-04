@@ -182,6 +182,31 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
         return null;
     }
 
+    /**
+     * Returns the URL of the original asset (MDC or direct URL), used to fetch the file contents.
+     */
+    public function getAssetUrl(string $identifier): ?string
+    {
+        $scheme = CantoUtility::getSchemeFromCombinedIdentifier($identifier);
+        $fileIdentifier = CantoUtility::getIdFromCombinedIdentifier($identifier);
+        $useMdc = CantoUtility::isMdcActivated($this->configuration);
+        $fileData = $this->cantoRepository->getFileDetails($scheme, $fileIdentifier);
+        if (!is_array($fileData)) {
+            return null;
+        }
+        if ($useMdc && $this->mdcUrlGenerator) {
+            $url = $this->cantoRepository->generateAssetMdcUrl($identifier, $fileData['name']);
+
+            return rawurldecode($url);
+        }
+        // todo: add FAIRCANTO-72 here
+        if (!empty($fileData['url']['directUrlOriginal'])) {
+            return rawurldecode($fileData['url']['directUrlOriginal']);
+        }
+
+        return null;
+    }
+
     public function fileExists(string $fileIdentifier): bool
     {
         $scheme = CantoUtility::getSchemeFromCombinedIdentifier($fileIdentifier);
@@ -231,12 +256,12 @@ class CantoDriver extends AbstractDriver implements StreamableDriverInterface
 
     public function getFileContents(string $fileIdentifier): string
     {
-        $publicUrl = $this->getPublicUrl($fileIdentifier);
-        if ((string)$publicUrl === '') {
+        $assetUrl = $this->getAssetUrl($fileIdentifier);
+        if ((string)$assetUrl === '') {
             return '';
         }
 
-        return GeneralUtility::getUrl($publicUrl);
+        return GeneralUtility::getUrl($assetUrl);
     }
 
     public function fileExistsInFolder(string $fileName, string $folderIdentifier): bool

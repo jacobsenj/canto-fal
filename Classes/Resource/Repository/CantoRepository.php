@@ -173,7 +173,10 @@ class CantoRepository
         $cacheIdentifier = $this->buildValidCacheIdentifier($combinedIdentifier);
 
         if ($this->cantoFileCache->has($cacheIdentifier)) {
-            return $this->cantoFileCache->get($cacheIdentifier);
+            $cacheItem = $this->cantoFileCache->get($cacheIdentifier);
+            if (is_array($cacheItem)) {
+                return $cacheItem;
+            }
         }
 
         $request = new GetContentDetailsRequest($fileIdentifier, $scheme);
